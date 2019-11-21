@@ -43,7 +43,7 @@ public class Mode7Racer extends Game {
 	public void create () {
 		assMan = new AssetManager();
 		
-		fb01 = new FrameBuffer(Format.RGBA8888, 256, 224, true);
+		fb01 = new FrameBuffer(Format.RGB888, 256, 224, true);
 		fb01.getColorBufferTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		batch = new SpriteBatch();
@@ -59,11 +59,16 @@ public class Mode7Racer extends Game {
 		assMan.load("sample256.png", Texture.class);
 		assMan.load("grassPlane.g3db", Model.class);
 		assMan.load("curbLeft.png", Texture.class);
+		assMan.load("curbRight.png", Texture.class);
+		assMan.load("curbSouth.png", Texture.class);
+		assMan.load("curbNorth.png", Texture.class);
 		assMan.load("road01.png", Texture.class);
 		assMan.load("void.png", Texture.class);
 		
 		assMan.load("levelBg01Back.png", Texture.class);
 		assMan.load("levelBg01Front.png", Texture.class);
+		
+		assMan.load("fog01.png", Texture.class);
 		
 		assMan.load("level01.png", Texture.class);
 		

@@ -1,14 +1,9 @@
 package mysko.pilzhere.mode7racer.screens;
 
-import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,20 +11,17 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureData;
-import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
+import com.badlogic.gdx.graphics.TextureData;
+import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.RegionInfluencer.AspectTextureRegion;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -38,7 +30,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import mysko.pilzhere.mode7racer.Mode7Racer;
 import mysko.pilzhere.mode7racer.entities.Entity;
 import mysko.pilzhere.mode7racer.entities.ModelInstanceBB;
-import mysko.pilzhere.mode7racer.entities.tiles.Tile;
 
 public class GameScreen implements Screen {
 	private final Mode7Racer game;
@@ -55,8 +46,13 @@ public class GameScreen implements Screen {
 	private Texture bgGrid;
 	private Texture bgSample;
 	public Texture texTileCurbLeft;
+	public Texture texTileCurbRight;
+	public Texture texTileCurbSouth;
+	public Texture texTileCurbNorth;
 	public Texture texTileRoad01;
 	public Texture texTileVoid;
+	
+	private Texture texFog;
 
 	public Model mdlTile;
 	private ModelInstance mdlInstTile;
@@ -92,16 +88,19 @@ public class GameScreen implements Screen {
 		bgGrid = assMan.get("bg01.png", Texture.class);
 		bgSample = assMan.get("sample256.png", Texture.class);
 		texTileCurbLeft = assMan.get("curbLeft.png", Texture.class);
+		texTileCurbRight = assMan.get("curbRight.png", Texture.class);
+		texTileCurbSouth = assMan.get("curbSouth.png", Texture.class);
+		texTileCurbNorth = assMan.get("curbNorth.png", Texture.class);
 		texTileRoad01 = assMan.get("road01.png", Texture.class);
 		texTileVoid = assMan.get("void.png", Texture.class);
+		texFog = assMan.get("fog01.png", Texture.class);
+		texFog.setWrap(TextureWrap.Repeat, TextureWrap.ClampToEdge);
 
 		mdlTile = assMan.get("grassPlane.g3db", Model.class);
 //		mdlInstTile = new ModelInstance(mdlTile);
 //		mdlInstTile.transform.setTranslation(0, 0, -1);
 
-//		loadLevelFromText();
-//		loadLevelFromTexture();
-		loadLevelFromTexture2();
+		loadLevelFromTexture();
 
 		levelBgBack = assMan.get("levelBg01Back.png", Texture.class);
 		levelBgFront = assMan.get("levelBg01Front.png", Texture.class);
@@ -109,78 +108,84 @@ public class GameScreen implements Screen {
 		levelBgFront.setWrap(TextureWrap.Repeat, TextureWrap.ClampToEdge);
 	}
 
-	private void loadLevelFromText() {
-		FileHandle handle = Gdx.files.local("level01.txt");
-		String text = handle.readString();
-		String wordsArray[] = text.split("\\r?\\n");
+//	private void loadLevelFromText() {
+//		FileHandle handle = Gdx.files.local("level01.txt");
+//		String text = handle.readString();
+//		String wordsArray[] = text.split("\\r?\\n");
+//
+////		Check for level line length. Should be same length.
+////		TODO: Make sure it looks for EVEN LINE LENGTH!
+//		for (int i = 0; i < wordsArray.length; i++) {
+////			System.out.println(wordsArray[i]);
+//			if (wordsArray[i].length() != wordsArray[0].length()) {
+//				System.err.println("Error: Level: Lines not same length. (Line: " + (i + 1) + ")");
+//			}
+//		}
+//
+//		final int levelXOffset = wordsArray[0].length() / 2;
+//		final int levelZOffset = wordsArray.length / 2;
+//
+//		final char death = 'X';
+//		final char road = '#';
+//		final char curb = 'C';
+//
+//		int hori = -1;
+//		int vert = -1;
+//
+////		Place tiles for each char at line
+//		for (int x = -levelXOffset; x < levelXOffset; x++) {
+//			hori++;
+//			for (int z = -levelZOffset; z < levelZOffset; z++) {
+//				vert++;
+//				if (vert > wordsArray.length - 1) {
+//					vert = 0;
+//				}
+//				final char type = wordsArray[vert].charAt(hori);
+//				System.out.println("x: " + hori + " | " + "y: " + vert + " | char: " + type);
+//
+//				entities.add(new Tile(this, new Vector3(x + 0.5f, 0, z), type));
+//			}
+//		}
+//	}
 
-//		Check for level line length. Should be same length.
-//		TODO: Make sure it looks for EVEN LINE LENGTH!
-		for (int i = 0; i < wordsArray.length; i++) {
-//			System.out.println(wordsArray[i]);
-			if (wordsArray[i].length() != wordsArray[0].length()) {
-				System.err.println("Error: Level: Lines not same length. (Line: " + (i + 1) + ")");
-			}
-		}
-
-		final int levelXOffset = wordsArray[0].length() / 2;
-		final int levelZOffset = wordsArray.length / 2;
-
-		final char death = 'X';
-		final char road = '#';
-		final char curb = 'C';
-
-		int hori = -1;
-		int vert = -1;
-
-//		Place tiles for each char at line
-		for (int x = -levelXOffset; x < levelXOffset; x++) {
-			hori++;
-			for (int z = -levelZOffset; z < levelZOffset; z++) {
-				vert++;
-				if (vert > wordsArray.length - 1) {
-					vert = 0;
-				}
-				final char type = wordsArray[vert].charAt(hori);
-				System.out.println("x: " + hori + " | " + "y: " + vert + " | char: " + type);
-
-				entities.add(new Tile(this, new Vector3(x + 0.5f, 0, z), type));
-			}
-		}
-	}
-
-	private void loadLevelFromTexture() {
-		Texture levelMap = assMan.get("level01.png", Texture.class);
-		TextureData levelMapData = levelMap.getTextureData();
-		if (!levelMapData.isPrepared()) {
-			levelMapData.prepare();
-		}
-
-		Pixmap pixmap = levelMapData.consumePixmap();
-
-//		Place tiles for each char at line FROM PIXMAP
-		for (int x = 0; x < pixmap.getWidth(); x++) {
-			for (int y = 0; y < pixmap.getHeight(); y++) {
-				final int pix = pixmap.getPixel(x, y);
-				System.out.println(pix);
-
-				entities.add(new Tile(this, new Vector3((x - (pixmap.getWidth() / 2)), 0, y - (pixmap.getHeight() / 2)),
-						pix));
-			}
-
-		}
-	}
+//	private void loadLevelFromTexture() {
+//		Texture levelMap = assMan.get("level01.png", Texture.class);
+//		TextureData levelMapData = levelMap.getTextureData();
+//		if (!levelMapData.isPrepared()) {
+//			levelMapData.prepare();
+//		}
+//
+//		Pixmap pixmap = levelMapData.consumePixmap();
+//
+////		Place tiles for each char at line FROM PIXMAP
+//		for (int x = 0; x < pixmap.getWidth(); x++) {
+//			for (int y = 0; y < pixmap.getHeight(); y++) {
+//				final int pix = pixmap.getPixel(x, y);
+//				System.out.println(pix);
+//
+//				entities.add(new Tile(this, new Vector3((x - (pixmap.getWidth() / 2)), 0, y - (pixmap.getHeight() / 2)),
+//						pix));
+//			}
+//
+//		}
+//	}
 
 	private final int tileSize = 16;
 
-	private final int red = Color.rgba8888(Color.RED);
-	private final int green = Color.rgba8888(Color.GREEN);
-	private final int grey = Color.rgba8888(Color.GRAY);
-	
-	private void loadLevelFromTexture2() {
+//	Colors
+	private final int redVoid01 = Color.rgba8888(Color.RED);
+
+	private final int greenCurbLeft = Color.rgba8888(Color.GREEN);
+	private final int forestCurbRight = Color.rgba8888(Color.FOREST);
+	private final int limeCurbSouth = Color.rgba8888(Color.LIME);
+	private final int oliveCurbNorth = Color.rgba8888(Color.OLIVE);
+
+	private final int greyRoad01 = Color.rgba8888(Color.GRAY);
+
+	private void loadLevelFromTexture() {
 		long startTime = System.nanoTime();
 		System.out.println("STATUS: Building level started...");
-		
+
 		Texture levelLevelMap = assMan.get("level01.png", Texture.class);
 		TextureData loadedlevelMapData = levelLevelMap.getTextureData();
 		if (!loadedlevelMapData.isPrepared()) {
@@ -201,6 +206,27 @@ public class GameScreen implements Screen {
 
 		Pixmap pixTileCurbLeft = tileCurbLeftData.consumePixmap();
 
+		TextureData tileCurbRightData = texTileCurbRight.getTextureData();
+		if (!tileCurbRightData.isPrepared()) {
+			tileCurbRightData.prepare();
+		}
+
+		Pixmap pixTileCurbRight = tileCurbRightData.consumePixmap();
+
+		TextureData tileCurbSouthData = texTileCurbSouth.getTextureData();
+		if (!tileCurbSouthData.isPrepared()) {
+			tileCurbSouthData.prepare();
+		}
+
+		Pixmap pixTileCurbSouth = tileCurbSouthData.consumePixmap();
+
+		TextureData tileCurbNorthData = texTileCurbNorth.getTextureData();
+		if (!tileCurbNorthData.isPrepared()) {
+			tileCurbNorthData.prepare();
+		}
+
+		Pixmap pixTileCurbNorth = tileCurbNorthData.consumePixmap();
+
 		TextureData tileRoad01Data = texTileRoad01.getTextureData();
 		if (!tileRoad01Data.isPrepared()) {
 			tileRoad01Data.prepare();
@@ -214,7 +240,7 @@ public class GameScreen implements Screen {
 		}
 
 		Pixmap pixTileVoid01 = tileVoidData.consumePixmap();
-		
+
 		int[][] array2d = new int[loadedlevelTextureWidth + 1][loadedlevelTextureHeight + 1];
 
 		int loadedMapPixelX = -1;
@@ -241,7 +267,7 @@ public class GameScreen implements Screen {
 
 		int tileX = -1;
 		int tileY = -1;
-		
+
 		for (int i = 0; i < loadedLevelPixmap.getWidth() * tileSize; i++) {
 			tileX++;
 			if (tileX > tileSize - 1) {
@@ -255,13 +281,24 @@ public class GameScreen implements Screen {
 				}
 
 				final int color = array2d[(i / tileSize)][(j / tileSize)];
-				if (color == red) {
+
+				final int colorAbove = array2d[i / tileSize][(j + 1) / tileSize];
+				final int colorUnder = array2d[i / tileSize][(j - 1) / tileSize];
+				final int colorLeft = array2d[(i - 1) / tileSize][j / tileSize];
+				final int colorRight = array2d[(i + 1) / tileSize][j / tileSize];
+
+				if (color == redVoid01) {
 //					System.out.println("RED");
 					generatedLevelPixmap.drawPixel(i, j, pixTileVoid01.getPixel(tileX, tileY));
-				} else if (color == green) {
+				} else if (color == greenCurbLeft) {
 //					System.out.println("GREEN");
-					generatedLevelPixmap.drawPixel(i, j, pixTileCurbLeft.getPixel(tileX, tileY));
-				} else if (color == grey) {
+//					if (colorAbove == redVoid01) {
+//						generatedLevelPixmap.drawPixel(i, j, pixTileRoad01.getPixel(tileX, tileY));
+//					} else {
+						generatedLevelPixmap.drawPixel(i, j, pixTileCurbLeft.getPixel(tileX, tileY));
+//					}
+
+				} else if (color == greyRoad01) {
 //					System.out.println("GREY");
 					generatedLevelPixmap.drawPixel(i, j, pixTileRoad01.getPixel(tileX, tileY));
 				} else {
@@ -284,9 +321,12 @@ public class GameScreen implements Screen {
 		loadedLevelPixmap.dispose();
 		generatedLevelPixmap.dispose();
 		pixTileCurbLeft.dispose();
+		pixTileCurbRight.dispose();
+		pixTileCurbSouth.dispose();
+		pixTileCurbNorth.dispose();
 		pixTileRoad01.dispose();
 		pixTileVoid01.dispose();
-		
+
 		long endTime = System.nanoTime();
 		System.out.println("STATUS: Building level finished. (" + (endTime - startTime) / 1000000 + " ms)");
 	}
@@ -390,13 +430,23 @@ public class GameScreen implements Screen {
 		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidthStretched, viewportHeight);
 
 		mdlBatch.begin(cam);
-		for (Entity entity : entities) {
-			entity.render3D(delta);
-		}
+//		for (Entity entity : entities) {
+//			entity.render3D(delta);
+//		}
 
 		mdlBatch.render(mdlInstLevel);
 
 		mdlBatch.end();
+		
+		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidth, viewportHeight);
+		
+		batch.begin();
+		batch.setColor(Color.WHITE); // Use to tint color of fog for loaded level.
+		batch.draw(texFog, 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 40);
+		batch.setColor(Color.WHITE);
+		batch.end();
+		
+		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidthStretched, viewportHeight);
 
 		if (useFbo) {
 			game.fb01.end();
