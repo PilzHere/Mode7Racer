@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.UBJsonReader;
 
 import mysko.pilzhere.mode7racer.screens.GameScreen;
@@ -22,11 +23,20 @@ public class Mode7Racer extends Game {
 	
 	private SpriteBatch batch;
 	private ModelBatch mdlBatch;
+	private ShapeRenderer shapeRenderer;
 	
 	public G3dModelLoader mdlLoader;
 	
-	public FrameBuffer fb01;
+	private FrameBuffer fb01;
 	
+	public ShapeRenderer getShapeRenderer() {
+		return shapeRenderer;
+	}
+
+	public FrameBuffer getFb01() {
+		return fb01;
+	}
+
 	public SpriteBatch getBatch() {
 		return batch;
 	}
@@ -41,12 +51,15 @@ public class Mode7Racer extends Game {
 
 	@Override
 	public void create () {
+		System.out.println("Mode7Racer is running.");
+		
 		assMan = new AssetManager();
 		
 		fb01 = new FrameBuffer(Format.RGB888, 256, 224, true);
 		fb01.getColorBufferTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		batch = new SpriteBatch();
+		shapeRenderer = new ShapeRenderer();
 		mdlBatch = new ModelBatch();
 		
 		loadAssets();
@@ -58,11 +71,27 @@ public class Mode7Racer extends Game {
 		assMan.load("bg01.png", Texture.class);
 		assMan.load("sample256.png", Texture.class);
 		assMan.load("grassPlane.g3db", Model.class);
-		assMan.load("curbLeft.png", Texture.class);
-		assMan.load("curbRight.png", Texture.class);
-		assMan.load("curbSouth.png", Texture.class);
-		assMan.load("curbNorth.png", Texture.class);
+		
+		assMan.load("curb0101.png", Texture.class); // l
+		assMan.load("curb1010.png", Texture.class); // r
+		assMan.load("curb1100.png", Texture.class); // s
+		assMan.load("curb0011.png", Texture.class); // n
+		
+		assMan.load("curb1110.png", Texture.class); // Outer corner nl
+		assMan.load("curb1101.png", Texture.class); // Outer corner nr
+		assMan.load("curb0111.png", Texture.class); // Outer corner sr
+		assMan.load("curb1011.png", Texture.class); // Outer corner sl
+		
+		assMan.load("curb1000.png", Texture.class); // Inner corner nl
+		assMan.load("curb0100.png", Texture.class); // Inner corner nr
+		assMan.load("curb0010.png", Texture.class); // Inner corner sl
+		assMan.load("curb0001.png", Texture.class); // Inner corner sr
+		
+		assMan.load("curb0000.png", Texture.class); // none
+		assMan.load("curb1111.png", Texture.class); // full
+		
 		assMan.load("road01.png", Texture.class);
+		assMan.load("road02.png", Texture.class);
 		assMan.load("void.png", Texture.class);
 		
 		assMan.load("levelBg01Back.png", Texture.class);
@@ -70,7 +99,11 @@ public class Mode7Racer extends Game {
 		
 		assMan.load("fog01.png", Texture.class);
 		
-		assMan.load("level01.png", Texture.class);
+		assMan.load("level02.png", Texture.class);
+		
+		assMan.load("car01BigBack01.png", Texture.class);
+		
+		assMan.load("car01Big.g3db", Model.class);
 		
 		assMan.finishLoading();
 	}
@@ -89,8 +122,12 @@ public class Mode7Racer extends Game {
 		
 		fb01.dispose();
 		
-		assMan.dispose();
+		mdlBatch.dispose();
+		
+		shapeRenderer.dispose();
 		
 		batch.dispose();
+		
+		assMan.dispose();
 	}
 }

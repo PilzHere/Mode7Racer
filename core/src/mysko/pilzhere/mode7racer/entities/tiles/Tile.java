@@ -31,15 +31,15 @@ public class Tile extends Entity {
 		Material mat = mdlInstTile.materials.get(0);
 		mat.set(ColorAttribute.createDiffuse(Color.WHITE));
 		if (tileType == death) {
-			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbLeft));
+			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbL));
 			mat.set(ColorAttribute.createDiffuse(Color.RED));
 		} else if (tileType == road) {
-			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbLeft));
+			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbL));
 			mat.set(ColorAttribute.createDiffuse(Color.GRAY));
 		} else if (tileType == curb) {
-			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbLeft));
+			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbL));
 		} else {
-			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbLeft));
+			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbL));
 			mat.set(ColorAttribute.createDiffuse(Color.BLACK));
 		}
 
@@ -69,9 +69,9 @@ public class Tile extends Entity {
 			mat.set(TextureAttribute.createDiffuse(screen.texTileRoad01));
 //			mat.set(ColorAttribute.createDiffuse(Color.GRAY));
 		} else if (color == curb) {
-			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbLeft));
+			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbL));
 		} else {
-			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbLeft));
+			mat.set(TextureAttribute.createDiffuse(screen.texTileCurbL));
 			mat.set(ColorAttribute.createDiffuse(Color.BLACK));
 		}
 
