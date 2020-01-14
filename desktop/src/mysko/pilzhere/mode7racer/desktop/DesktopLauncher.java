@@ -11,11 +11,11 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.title = "Mode7Racer";
-		config.width = 1280;
-		config.height = 720;
+		config.width = 299 * 4; // 4 is scale // 299 // 1280
+		config.height = 224 * 4; // 224 // 720
 
 		config.allowSoftwareMode = true;
-		config.foregroundFPS = 60; // 144
+		config.foregroundFPS = 60; // 60
 		config.backgroundFPS = 60;
 		config.fullscreen = false;
 		config.resizable = true;

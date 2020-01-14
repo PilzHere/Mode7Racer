@@ -3,20 +3,24 @@ package mysko.pilzhere.mode7racer;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.ModelLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
-import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.UBJsonReader;
 
 import mysko.pilzhere.mode7racer.screens.GameScreen;
+
+/**
+ * TODO: 
+ * @author pilzhere
+ *
+ */
 
 public class Mode7Racer extends Game {
 	private AssetManager assMan;
@@ -24,8 +28,6 @@ public class Mode7Racer extends Game {
 	private SpriteBatch batch;
 	private ModelBatch mdlBatch;
 	private ShapeRenderer shapeRenderer;
-	
-	public G3dModelLoader mdlLoader;
 	
 	private FrameBuffer fb01;
 	
@@ -49,11 +51,24 @@ public class Mode7Racer extends Game {
 		return mdlBatch;
 	}
 
+	public final long timeStarted = System.currentTimeMillis(); 
+	
+	private long timePro;
+	private long timeEnd;
+	
+	private void updateTimePro() {
+		timePro = System.currentTimeMillis();
+	}
+	
+	private void updateTimeEnd(long timeStart) {
+		timeEnd = System.currentTimeMillis() - timeStart;
+	}
+	
 	@Override
 	public void create () {
 		System.out.println("Mode7Racer is running.");
-		
-		assMan = new AssetManager();
+		System.out.println("STATUS: Setting up critical objects...");
+		updateTimePro();
 		
 		fb01 = new FrameBuffer(Format.RGB888, 256, 224, true);
 		fb01.getColorBufferTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
@@ -62,9 +77,29 @@ public class Mode7Racer extends Game {
 		shapeRenderer = new ShapeRenderer();
 		mdlBatch = new ModelBatch();
 		
+		assMan = new AssetManager();
+		
+		updateTimeEnd(timePro);
+		System.out.println("STATUS: Finished setting up critical objects. (" + timeEnd + " ms)");
+		
+		System.out.println("STATUS: Loading assets...");
+		updateTimePro();
+		
 		loadAssets();
 		
+		updateTimeEnd(timePro);
+		System.out.println("STATUS: All assets loaded. (" + timeEnd + " ms)");
+		
+		System.out.println("STATUS: Setting up new screen...");
+		updateTimePro();
+		
 		setScreen(new GameScreen(this));
+		
+		updateTimeEnd(timePro);
+		System.out.println("STATUS: Screen done. (" + timeEnd + " ms");
+		
+		updateTimeEnd(timeStarted);
+		System.out.println("STATUS: Total time for loading and setting up everything: (" + timeEnd + " ms)");
 	}
 	
 	private void loadAssets() {
@@ -101,9 +136,19 @@ public class Mode7Racer extends Game {
 		
 		assMan.load("level02.png", Texture.class);
 		
-		assMan.load("car01BigBack01.png", Texture.class);
+		assMan.load("car01Size09Back01.png", Texture.class);
+		assMan.load("car01Size08Back01.png", Texture.class);
+		assMan.load("car01Size07Back01.png", Texture.class);
+		assMan.load("car01Size06Back01.png", Texture.class);
+		assMan.load("car01Size05Back01.png", Texture.class);
+		assMan.load("car01Size04Back01.png", Texture.class);
+		assMan.load("car01Size03Back01.png", Texture.class);
+		assMan.load("car01Size02Back01.png", Texture.class);
+		assMan.load("car01Size01Back01.png", Texture.class);
 		
-		assMan.load("car01Big.g3db", Model.class);
+		assMan.load("car01Size09BackTurnRight02.png", Texture.class);
+		
+		assMan.load("fonts/font01_16.fnt", BitmapFont.class);
 		
 		assMan.finishLoading();
 	}
