@@ -13,8 +13,4 @@ public class Curb extends Entity{
 		
 		rect = new Rectangle(posX, posZ, width, height);
 	}
-
-//	@Override
-//	public void render2D(SpriteBatch batch, float delta) {
-//	}
 }

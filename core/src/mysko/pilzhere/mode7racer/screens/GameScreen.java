@@ -25,6 +25,34 @@ import mysko.pilzhere.mode7racer.entities.Map;
 import mysko.pilzhere.mode7racer.entities.ModelInstanceBB;
 
 public class GameScreen implements Screen {
+	public Array<Entity> getEntities() {
+		return entities;
+	}
+
+	public Map getCurrentMap() {
+		return currentMap;
+	}
+
+	public PerspectiveCamera getCam() {
+		return cam;
+	}
+
+	public Viewport getViewport() {
+		return viewport;
+	}
+
+	public long getCurrentTime() {
+		return game.getCurrentTime();
+	}
+
+	public ModelBatch getModelBatch() {
+		return this.mdlBatch;
+	}
+
+	public final int bgMoveSpeed = 80; // 2.135f
+	public final float bgMoveSpeedBoost = 2.0f; // 1.5f
+	public final float camDesiredDistFromCar = 2.3f;
+
 	private final Mode7Racer game;
 	public final AssetManager assMan; // get
 	private final SpriteBatch batch;
@@ -33,26 +61,18 @@ public class GameScreen implements Screen {
 
 	private final FrameBuffer fbo;
 
-	public PerspectiveCamera cam;
-	public Viewport viewport; // get
+	private PerspectiveCamera cam;
+	private Viewport viewport; // get
 	public final int viewportWidth = 256;
 	public final int viewportHeight = 224;
 	public final int viewportWidthStretched = 299; // As displayed stretched from SNES output.
 
-	public final long nanoToMs = 1000000L;
-
 	private Car playerCar;
-	public Car carTwo;
-	public Map currentMap; // get
-	public Array<Entity> entities = new Array<Entity>();
-
-//	public Array<Rectangle> rects = new Array<Rectangle>();
+	public Car carTwo; // testing
+	private Map currentMap;
+	private Array<Entity> entities = new Array<Entity>();
 
 	private BitmapFont font01;
-
-	public ModelBatch getModelBatch() {
-		return this.mdlBatch;
-	}
 
 	public GameScreen(Mode7Racer game) {
 		this.game = game;
@@ -92,12 +112,8 @@ public class GameScreen implements Screen {
 	public void show() {
 	}
 
-//	private final int moveSpeed = 10; // 25
-//	private final int camRotSpeed = 250;
-	public final int bgMoveSpeed = 80; // 2.135f
-	public final float bgMoveSpeedBoost = 2.0f; // 1.5f
-
-	public final float camDesiredDistFromCar = 2.3f;
+	private boolean dbgUseFbo = true;
+	private boolean dbgDisplayMap = false;
 
 	private void input(float delta) {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
@@ -157,9 +173,6 @@ public class GameScreen implements Screen {
 
 	public int renderedModels = 0; // set (get?)
 
-	private boolean dbgUseFbo = true;
-	private boolean dbgDisplayMap = true;
-
 	@Override
 	public void render(float delta) {
 		renderedModels = 0;
@@ -208,15 +221,15 @@ public class GameScreen implements Screen {
 
 	private void renderMapBackgrounds() {
 		batch.begin();
-		batch.draw(currentMap.levelBgBack, 0, viewportHeight - 64 + 5, (int) currentMap.bgBackPosX, 17,
+		batch.draw(currentMap.getLevelBgBack(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgBackPosX(), 17,
 				viewportWidthStretched, 64);
-		batch.draw(currentMap.levelBgFront, 0, viewportHeight - 64 + 5, (int) currentMap.bgFrontPosX, 17,
+		batch.draw(currentMap.getLevelBgFront(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgFrontPosX(), 17,
 				viewportWidthStretched, 64);
 		batch.end();
 	}
 
 	private void render3D(float delta) {
-		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidthStretched, viewportHeight); // not needed?
+//		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidthStretched, viewportHeight); // not needed?
 		mdlBatch.begin(cam);
 		currentMap.render3D(mdlBatch, delta);
 		mdlBatch.end();
@@ -226,7 +239,7 @@ public class GameScreen implements Screen {
 		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidth, viewportHeight);
 		batch.begin();
 		batch.setColor(Color.WHITE); // Use to tint color of fog for loaded level.
-		batch.draw(currentMap.texFog, 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 40);
+		batch.draw(currentMap.getTexFog(), 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 40);
 		batch.setColor(Color.WHITE);
 		batch.end();
 	}
@@ -240,23 +253,24 @@ public class GameScreen implements Screen {
 		batch.end();
 	}
 
+//	DONT USE SHAPERENDERER WHEN SHIPPING, DECREASES FPS A LOT.
 	private void renderMap() {
 		shapeRenderer.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidth, viewportHeight); // This should appear
 																								// stretched(?).
 
 		shapeRenderer.setColor(Color.WHITE);
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-		for (int x = 0; x < currentMap.array2d.length; x++) {
-			for (int y = 0; y < currentMap.array2d.length; y++) {
-				if (currentMap.array2d[x][y] == currentMap.greenCurb) {
+		for (int x = 0; x < currentMap.colors2d.length; x++) {
+			for (int y = 0; y < currentMap.colors2d.length; y++) {
+				if (currentMap.colors2d[x][y] == currentMap.greenCurb) {
 					shapeRenderer.box(-((viewportWidth / 2) - x) + 128 + 64, (viewportHeight / 2) - y + 64, 0, 1, 1, 0);
 				}
 			}
 		}
 
 		shapeRenderer.setColor(Color.RED);
-		shapeRenderer.box((viewportWidth / 2) + playerCar.position.x, (viewportHeight / 2) - playerCar.position.z, 0, 1,
-				1, 0);
+		shapeRenderer.box((viewportWidth / 2) + playerCar.getPosition().x,
+				(viewportHeight / 2) - playerCar.getPosition().z, 0, 1, 1, 0);
 
 		shapeRenderer.end();
 		shapeRenderer.setColor(Color.WHITE); // Always reset color to white after using.
@@ -265,7 +279,7 @@ public class GameScreen implements Screen {
 	private void renderGUI() {
 		if (playerCar != null) {
 			batch.begin();
-			font01.draw(batch, "HP: " + playerCar.hp, 0, 224);
+			font01.draw(batch, "HP: " + playerCar.getHp(), 0, 224);
 			batch.end();
 		}
 	}

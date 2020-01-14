@@ -17,19 +17,29 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
 /**
- * TODO: 
+ * TODO: REFACTOR CODE. SPLIT THINGS UP.
+ * TODO: Redo assets. Same style?, new look.
+ * TODO: Implement jumps
+ * Jump from ramps.
+ * TODO: Implement weapons?
+ * F-zero X Mario kart?
+ * Homing missiles? Lasers? Mines? Shield?
+ * TODO: Implement more micro/macro gameplay.
+ * 
+ * 
+ * 
+ * TODO: Implement environment sprites.
+ * Buildings, domes, futuristic stuff...
+ * TODO: Sounds? Music?
+ * Download samples and use them? Change/create new with Reaper and Akai MPK Mini MK2?
  * @author pilzhere
  *
  */
 
 public class Mode7Racer extends Game {
-	private AssetManager assMan;
-	
-	private SpriteBatch batch;
-	private ModelBatch mdlBatch;
-	private ShapeRenderer shapeRenderer;
-	
-	private FrameBuffer fb01;
+	public long getCurrentTime() {
+		return currentTime;
+	}
 	
 	public ShapeRenderer getShapeRenderer() {
 		return shapeRenderer;
@@ -50,24 +60,40 @@ public class Mode7Racer extends Game {
 	public ModelBatch getModelBatch() {
 		return mdlBatch;
 	}
+	
+	private AssetManager assMan;
+	
+	private SpriteBatch batch;
+	private ModelBatch mdlBatch;
+	private ShapeRenderer shapeRenderer;
+	
+	private FrameBuffer fb01;
 
-	public final long timeStarted = System.currentTimeMillis(); 
+	public final long timeStarted = System.currentTimeMillis();
 	
 	private long timePro;
-	private long timeEnd;
 	
 	private void updateTimePro() {
 		timePro = System.currentTimeMillis();
 	}
 	
+	private long timeEnd;
+	
 	private void updateTimeEnd(long timeStart) {
 		timeEnd = System.currentTimeMillis() - timeStart;
+	}
+	
+	private long currentTime;
+	
+	private void updateCurrentTime() {
+		currentTime = System.currentTimeMillis();
 	}
 	
 	@Override
 	public void create () {
 		System.out.println("Mode7Racer is running.");
 		System.out.println("STATUS: Setting up critical objects...");
+		updateCurrentTime();
 		updateTimePro();
 		
 		fb01 = new FrameBuffer(Format.RGB888, 256, 224, true);
@@ -154,7 +180,9 @@ public class Mode7Racer extends Game {
 	}
 
 	@Override
-	public void render () {		
+	public void render () {
+		updateCurrentTime();
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		

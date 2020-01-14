@@ -13,24 +13,4 @@ public class Edge extends Entity{
 		
 		rect = new Rectangle(posX, posZ, width, height);
 	}
-
-//	@Override
-//	public void render2D(SpriteBatch batch, float delta) {
-//	}
-	
-//	@Override
-//	public void render3D(ModelBatch batch, float delta) {
-//	}
-	
-//	@Override
-//	public void tick(float delta) {
-//	}
-	
-//	@Override
-//	public void destroy() {
-//	}
-	
-//	@Override
-//	public void dispose() {
-//	}
 }
