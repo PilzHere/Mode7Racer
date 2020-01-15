@@ -31,7 +31,7 @@ public class Map extends Entity {
 	}
 
 	private float bgFrontPosX, bgBackPosX;
-	
+
 	public float getBgFrontPosX() {
 		return bgFrontPosX;
 	}
@@ -58,13 +58,13 @@ public class Map extends Entity {
 
 	public Texture getTexFog() {
 		return texFog;
-	}	
+	}
 
 	public Map(GameScreen screen, Vector3 position) {
 		super(screen, position);
 		setupTextures();
 	}
-	
+
 	private Texture texFog;
 	private Texture texTileCurbL, texTileCurbR, texTileCurbS, texTileCurbN;
 	private Texture texTileCurbOuterCornerNL, texTileCurbOuterCornerNR, texTileCurbOuterCornerSL,
@@ -75,7 +75,7 @@ public class Map extends Entity {
 	private Texture texTileRoad01, texTileRoad02;
 	private Texture texTileVoid;
 	private Texture levelBgFront, levelBgBack;
-	
+
 	private void setupTextures() {
 		texTileCurbL = screen.assMan.get("curb0101.png"); // L
 		texTileCurbR = screen.assMan.get("curb1010.png"); // R
@@ -121,7 +121,7 @@ public class Map extends Entity {
 	public int[][] colors2d; // get
 
 	private final int tileSize = 16;
-	
+
 	private Pixmap createWorldPixmap(Pixmap pix, Pixmap loadedLevelPix) {
 		pix = new Pixmap(loadedLevelPix.getWidth() * tileSize, loadedLevelPix.getHeight() * tileSize, Format.RGB888);
 		loadedlevelTextureWidth = loadedLevelPix.getWidth();
@@ -136,11 +136,13 @@ public class Map extends Entity {
 	private Model mdlLevel;
 	private ModelInstanceBB mdlInstLevel;
 	private Array<ModelInstanceBB> mdlInstances = new Array<ModelInstanceBB>();
-	
+
 	public void loadLevelFromTexture() {
 		long startTime = System.currentTimeMillis();
 		System.out.println("STATUS: Building level.");
 
+//		Texture levelLevelMap = screen.assMan.get("level03.png", Texture.class);
+//		Texture levelLevelMap = screen.assMan.get("level04.png", Texture.class);
 		Texture levelLevelMap = screen.assMan.get("level02.png", Texture.class);
 		TextureData loadedlevelMapData = levelLevelMap.getTextureData();
 
@@ -201,8 +203,24 @@ public class Map extends Entity {
 		int loadedMapPixelX = -1;
 		int loadedMapPixelY = -1;
 
+		int noName = 0;
+		switch (loadedLevelPixmap.getWidth()) {
+		case 128:
+			noName = 8;
+			break;
+		case 256:
+			noName = 16;
+			break;
+		case 512:
+			noName = 32;
+			break;
+		case 1024:
+			noName = 64;
+			break;
+		}
+
 		for (int x = 0; x < generatedLevelPixmap.getWidth(); x++) {
-			if (x % loadedlevelTextureWidth / (tileSize / 2) == 0) {
+			if (x % loadedlevelTextureWidth / noName == 0) { // noName was (tileSize / 2) when loading 128x128.
 				loadedMapPixelX++;
 			}
 
@@ -435,8 +453,9 @@ public class Map extends Entity {
 
 	@Override
 	public void tick(float delta) {
-		if (blink)
-			System.out.println("Map Blink!");
+		if (blink) {
+//			System.out.println("Map Blink!");
+		}
 
 //			Blink all curbs ehre!		
 

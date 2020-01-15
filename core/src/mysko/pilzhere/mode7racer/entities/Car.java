@@ -18,8 +18,11 @@ public class Car extends Entity {
 		return hp;
 	}
 
-	private Sprite sprite;
 	private final float rectSize = 0.25f;
+
+	public boolean isClient = false;
+
+	private Sprite sprite;
 
 	public Car(GameScreen screen, Vector3 position) {
 		super(screen, position);
@@ -139,15 +142,27 @@ public class Car extends Entity {
 
 		checkForCollision(delta);
 
-		updateCamPos(delta);
+		if (this == screen.playerCar) {
+			updateCamPos(delta);
+		}
 
 		checkRightOrLeftTurn();
-		moveBackgroundsWithTurn(delta);
 
-		updateCamLastPosition();
+		if (this == screen.playerCar) {
+			moveBackgroundsWithTurn(delta);
+
+			updateCamLastPosition();
+		}
 
 //		System.out.println(position.cpy().sub(screen.carTwo.position.cpy()));
 //		System.out.println("Speed: " + carCurrentSpeed);
+
+//		if (this == screen.carTwo) {
+//			System.err.println("carTwoDistFromCam: " +  distFromCam);
+//		}
+//		else {
+//			System.out.println("playerCarDistFromCam: " + distFromCam);
+//		}
 	}
 
 	private void updateGotHitTimeSet() {
@@ -308,7 +323,7 @@ public class Car extends Entity {
 	private float newPosX;
 	private float newPosZ;
 
-	private final int carSpeedIncrementBoost = 32;
+	private final int carSpeedIncrementBoost = 40; // was 32
 
 	/**
 	 * Move with speed in angle direction.
@@ -407,23 +422,61 @@ public class Car extends Entity {
 
 	private boolean render = true;
 	private final int renderHeightLimit = 186 + 16; // Screen height limit for rendering when in window scale of 1. This
-													// is a
+	private final int renderWidthLimit = 299;
+	// is a
 	// fix for cars that are behind camera, they might render in the
 	// background
 	// above player.
 	private int currentRenderHeightLimit; // screen position varies by window height
+	private int currentRenderWidthLimit; // screen position varies by window height
+
+	private float distFromCam;
+	private final int distChangeSprite = 7;
+	private float angleFromCam;
+
+	private SpriteSize spriteSize;
 
 	@Override
 	public void render2D(SpriteBatch batch, float delta) {
 		render = true;
+
+		// TODO: This doesnt have to be set for every sprite/object! Only ince in
+		// gamescreen tick/render.
 		currentRenderHeightLimit = renderHeightLimit * Gdx.graphics.getHeight() / screen.viewportHeight;
+		currentRenderWidthLimit = renderWidthLimit * Gdx.graphics.getWidth() / screen.viewportWidthStretched;
 
 		screenPos.set(screen.getViewport().project(position.cpy()));
 		screenPos.z = 0;
 
-		final float distFromCam = Vector3.dst(position.x, position.y, position.z, screen.getCam().position.x,
+		distFromCam = Vector3.dst(position.x, position.y, position.z, screen.getCam().position.x,
 				screen.getCam().position.y, screen.getCam().position.z);
-		if (distFromCam < 7) {
+
+		angleFromCam = (screen.getCam().direction.cpy().dot(position.cpy()) * MathUtils.PI);
+		
+		if (distFromCam < distChangeSprite) {
+			spriteSize = SpriteSize.ONE;
+		} else if (distFromCam < distChangeSprite * SpriteSize.TWO.getSize()) {
+			spriteSize = SpriteSize.TWO;
+		} else if (distFromCam < distChangeSprite * SpriteSize.THREE.getSize()) {
+			spriteSize = SpriteSize.THREE;
+		} else if (distFromCam < distChangeSprite * SpriteSize.FOUR.getSize()) {
+			spriteSize = SpriteSize.FOUR;
+		} else if (distFromCam < distChangeSprite * SpriteSize.FIVE.getSize()) {
+			spriteSize = SpriteSize.FIVE;
+		} else if (distFromCam < distChangeSprite * SpriteSize.SIX.getSize()) {
+			spriteSize = SpriteSize.SIX;
+		} else if (distFromCam < distChangeSprite * SpriteSize.SEVEN.getSize()) {
+			spriteSize = SpriteSize.SEVEN;
+		} else if (distFromCam < distChangeSprite * SpriteSize.EIGHT.getSize()) {
+			spriteSize = SpriteSize.EIGHT;
+		} else if (distFromCam < distChangeSprite * SpriteSize.NINE.getSize()) {
+			spriteSize = SpriteSize.NINE;
+		} else {
+			render = false;
+		}
+		
+		switch (spriteSize) {
+		case ONE:
 			if (leftTurn) {
 				sprite.setTexture(texCar01BigBackTurnRight02);
 				sprite.setFlip(true, false);
@@ -433,25 +486,38 @@ public class Car extends Entity {
 			} else {
 				sprite.setTexture(texCar01Size09Back01);
 			}
-		} else if (distFromCam < 14) {
+			break;
+		case TWO:
 			sprite.setTexture(texCar01Size08Back01);
-		} else if (distFromCam < 21) {
+			break;
+		case THREE:
 			sprite.setTexture(texCar01Size07Back01);
-		} else if (distFromCam < 28) {
+			break;
+		case FOUR:
 			sprite.setTexture(texCar01Size06Back01);
-		} else if (distFromCam < 35) {
+			break;
+		case FIVE:
 			sprite.setTexture(texCar01Size05Back01);
-		} else if (distFromCam < 42) {
+			break;
+		case SIX:
 			sprite.setTexture(texCar01Size04Back01);
-		} else if (distFromCam < 49) {
+			break;
+		case SEVEN:
 			sprite.setTexture(texCar01Size03Back01);
-		} else if (distFromCam < 56) {
+			break;
+		case EIGHT:
 			sprite.setTexture(texCar01Size02Back01);
-		} else if (distFromCam < 63) {
+			break;
+		case NINE:
 			sprite.setTexture(texCar01Size01Back01);
-		} else {
-			render = false;
+			break;
 		}
+
+//		if (this == screen.carTwo) {
+//			System.out.println(angleFromCam);
+//		}
+
+		
 
 		sprite.setSize(
 				MathUtils.round(
@@ -470,15 +536,18 @@ public class Car extends Entity {
 //			rect.setY(position.z - rectSize / 2);
 
 //		if (this == screen.carTwo) {
-//			System.out.println(distFromCam + " units from cam.");
-////			System.out.println(position.y);
+////			System.out.println(distFromCam + " units from cam.");
+//			System.out.println(screen.carTwo.screenPos.x);
 //		}
 
-		if (screenPos.y > currentRenderHeightLimit)
+		if (screenPos.x < 0 - (sprite.getWidth() / 2) || screenPos.x > currentRenderWidthLimit + (sprite.getWidth() / 2)
+				|| screenPos.y < 0 - (sprite.getHeight() / 2) || screenPos.y > currentRenderHeightLimit) {
 			render = false;
+		}
 
-		if (render)
-			sprite.draw(batch);
+		if (render) {
+			screen.sprites.add(sprite);
+		}
 
 //		reset stuff
 		rightTurn = false;

@@ -1,5 +1,7 @@
 package mysko.pilzhere.mode7racer.screens;
 
+import java.util.Comparator;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -26,7 +29,7 @@ import mysko.pilzhere.mode7racer.entities.ModelInstanceBB;
 
 public class GameScreen implements Screen {
 	public Array<Entity> getEntities() {
-		return entities;
+		return ents;
 	}
 
 	public Map getCurrentMap() {
@@ -67,10 +70,11 @@ public class GameScreen implements Screen {
 	public final int viewportHeight = 224;
 	public final int viewportWidthStretched = 299; // As displayed stretched from SNES output.
 
-	private Car playerCar;
+	public Car playerCar; // test
 	public Car carTwo; // testing
 	private Map currentMap;
-	private Array<Entity> entities = new Array<Entity>();
+	private Array<Entity> ents = new Array<Entity>();
+	public Array<Sprite> sprites = new Array<Sprite>(); // get
 
 	private BitmapFont font01;
 
@@ -96,8 +100,9 @@ public class GameScreen implements Screen {
 		currentMap = new Map(this, new Vector3());
 		currentMap.loadLevelFromTexture();
 
-		entities.add(playerCar = new Car(this, new Vector3(0, 0, 0)));
-		entities.add(carTwo = new Car(this, new Vector3(0, 0, -2)));
+		ents.add(playerCar = new Car(this, new Vector3(0, 0, 0)));
+//		playerCar.isClient = true;
+		ents.add(carTwo = new Car(this, new Vector3(0, 0, -2)));
 	}
 
 	private final Vector3 currentModelPos = new Vector3();
@@ -128,22 +133,24 @@ public class GameScreen implements Screen {
 			dbgDisplayMap = !dbgDisplayMap;
 		}
 
-		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-			playerCar.onInputA(delta);
-		}
+		if (playerCar != null) {
+			if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+				playerCar.onInputA(delta);
+			}
 
-		if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-			playerCar.onInputD(delta);
-		}
+			if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+				playerCar.onInputD(delta);
+			}
 
-		if (!Gdx.input.isKeyPressed(Input.Keys.W))
-			playerCar.onNoInputW(delta);
-		else if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-			playerCar.onInputW(delta);
-		}
+			if (!Gdx.input.isKeyPressed(Input.Keys.W))
+				playerCar.onNoInputW(delta);
+			else if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+				playerCar.onInputW(delta);
+			}
 
-		if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-			playerCar.onInputS(delta);
+			if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+				playerCar.onInputS(delta);
+			}
 		}
 
 		/**
@@ -160,8 +167,8 @@ public class GameScreen implements Screen {
 	private void tick(float delta) {
 		currentMap.tick(delta);
 
-		for (Entity entity : entities) {
-			entity.tick(delta);
+		for (Entity ent : ents) {
+			ent.tick(delta);
 		}
 
 //		System.out.println(entities.size);
@@ -171,11 +178,68 @@ public class GameScreen implements Screen {
 		cam.update();
 	}
 
+////	Sorts render order!
+//	Comparator<Entity> comparatorRenderOrder = new Comparator<Entity>() {
+//		@Override
+//		public int compare(Entity ent1, Entity ent2) {
+//			if (ent1.getDistFromCam() > ent2.getDistFromCam()) {
+//				return 1;
+//			} else if (ent1.getDistFromCam() < ent2.getDistFromCam()) {
+//				return -1;
+//			} else {
+//				return 0;
+//			}
+//		}
+//	};
+
+	Comparator<Entity> comparator = new Comparator<Entity>() {
+		@Override
+		public int compare(Entity o1, Entity o2) {
+			return (int) (o1.getScreenPos().y - o2.getScreenPos().y);
+//				if (o1.getScreenPos().y > o2.getScreenPos().y) {
+//					final float y1 = o1.getScreenPos().y;
+//					final float y2 = o2.getScreenPos().y;
+//					System.out.println(o1.compareTo(o2));
+//					return o1.compareTo(o2);
+//				} else if (o1.getScreenPos().y < o2.getScreenPos().y) {
+//					return -1;
+//				} else {
+//					retuCrn 0;
+//				}
+		}
+	};
+
+//	Comparator<Entity> comparatorRenderOrder = new Comparator<Entity>() {
+//		@Override
+//		public int compare(Entity ent1, Entity ent2) {
+//			if (ent1.getSprite() != null && ent2.getSprite() != null) {
+//				if (ent1.getSprite().getY() > ent2.getSprite().getY()) {
+//					return 1;
+//				} else if (ent1.getSprite().getY() > ent2.getSprite().getY()) {
+//					return -1;
+//				} else {
+//					return 0;
+//				}
+//			} else {
+//				return 0;
+//			}
+////			if (ent1.getScreenPos().y > ent2.getScreenPos().y) {
+////				
+////			} else if (ent1.getScreenPos().y < ent2.getScreenPos().y) {
+////				return 1;
+////			} else {
+////				return 0;
+////			}
+//		}
+//	};
+
 	public int renderedModels = 0; // set (get?)
+	public int renderedSprites = 0;
 
 	@Override
 	public void render(float delta) {
 		renderedModels = 0;
+		renderedSprites = 0;
 
 		input(delta);
 		tick(delta);
@@ -244,13 +308,37 @@ public class GameScreen implements Screen {
 		batch.end();
 	}
 
+	Comparator<Sprite> spriteComparator = new Comparator<Sprite>() {
+		public int compare(Sprite spr1, Sprite spr2) {
+			if (spr1.getY() > spr2.getY()) {
+				return -1;
+			} else if (spr1.getY() < spr2.getY()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+	};
+	
 	private void renderEnts(float delta) {
 		batch.setProjectionMatrix(cam.projection.setToOrtho2D(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+
 		batch.begin();
-		for (Entity ent : entities) {
+		for (Entity ent : ents) {
 			ent.render2D(batch, delta);
 		}
+
+//		Sort render order from y position.
+		sprites.sort(spriteComparator);
+
+		for (Sprite spr : sprites) {
+			spr.draw(batch);
+			renderedSprites++;
+		}
+
 		batch.end();
+
+		sprites.clear();
 	}
 
 //	DONT USE SHAPERENDERER WHEN SHIPPING, DECREASES FPS A LOT.
@@ -291,8 +379,8 @@ public class GameScreen implements Screen {
 	}
 
 	private void updateWndowTitle() {
-		Gdx.app.getGraphics()
-				.setTitle("Mode7Racer | " + Gdx.graphics.getFramesPerSecond() + " FPS | " + renderedModels + " models");
+		Gdx.app.getGraphics().setTitle("Mode7Racer | " + Gdx.graphics.getFramesPerSecond() + " FPS | " + renderedModels
+				+ " models | " + renderedSprites + " sprites");
 	}
 
 	@Override

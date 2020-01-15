@@ -17,23 +17,21 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
 /**
- * TODO: REFACTOR CODE. SPLIT THINGS UP.
- * TODO: Redo assets. Same style?, new look.
+ * TODO: Implement sprite change from directon of camera.
  * TODO: Implement jumps
  * Jump from ramps.
  * TODO: Implement weapons?
  * F-zero X Mario kart?
  * Homing missiles? Lasers? Mines? Shield?
  * TODO: Implement more micro/macro gameplay.
- * 
- * 
- * 
+ *  ...
+ * TODO: Redo assets. Same style?, new look.
  * TODO: Implement environment sprites.
  * Buildings, domes, futuristic stuff...
  * TODO: Sounds? Music?
  * Download samples and use them? Change/create new with Reaper and Akai MPK Mini MK2?
+ * 
  * @author pilzhere
- *
  */
 
 public class Mode7Racer extends Game {
@@ -161,6 +159,8 @@ public class Mode7Racer extends Game {
 		assMan.load("fog01.png", Texture.class);
 		
 		assMan.load("level02.png", Texture.class);
+		assMan.load("level03.png", Texture.class);
+		assMan.load("level04.png", Texture.class);
 		
 		assMan.load("car01Size09Back01.png", Texture.class);
 		assMan.load("car01Size08Back01.png", Texture.class);
