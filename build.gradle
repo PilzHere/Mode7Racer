@@ -119,7 +119,3 @@ project(":ios") {
         
     }
 }
-
-tasks.eclipse.doLast {
-    delete ".project"
-}

@@ -19,6 +19,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -28,6 +29,9 @@ import mysko.pilzhere.mode7racer.entities.Car;
 import mysko.pilzhere.mode7racer.entities.Entity;
 import mysko.pilzhere.mode7racer.entities.Map;
 import mysko.pilzhere.mode7racer.entities.ModelInstanceBB;
+import mysko.pilzhere.mode7racer.inputs.GameInputManager.PlayerCommand;
+import mysko.pilzhere.mode7racer.inputs.base.ControllerBase;
+import mysko.pilzhere.mode7racer.ui.GameHUD;
 
 public class GameScreen implements Screen {
 	public Array<Entity> getEntities() {
@@ -79,6 +83,9 @@ public class GameScreen implements Screen {
 	public HashMap<Integer, Car> cars = new HashMap<Integer, Car>();
 
 	private BitmapFont font01;
+	
+	private Stage stage;
+	private GameHUD hud;
 
 	public GameScreen(Mode7Racer game) {
 		this.game = game;
@@ -108,6 +115,9 @@ public class GameScreen implements Screen {
 		playerCar = cars.get(0);
 
 		System.err.println("Size after: " + ents.size);
+
+		stage = new Stage(new FitViewport(299 * 4, 224 * 4));
+		stage.addActor(hud = new GameHUD(game, this, game.getSkin()));
 	}
 
 	private final Vector3 currentModelPos = new Vector3();
@@ -120,12 +130,16 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	private boolean dbgUseFbo = true;
 	private boolean dbgDisplayMap = false;
 
 	private void input(float delta) {
+		
+		final ControllerBase controller = game.inputs.getController(0);
+		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
@@ -137,23 +151,29 @@ public class GameScreen implements Screen {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
 			dbgDisplayMap = !dbgDisplayMap;
 		}
+		
+		if(hud.isSettingsOpened()) return;
+		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+			hud.showSettings();
+		}
 
 		if (playerCar != null) {
-			if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+			if (controller.isOn(PlayerCommand.LEFT)) {
 				playerCar.onInputA(delta);
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+			if (controller.isOn(PlayerCommand.RIGHT)) {
 				playerCar.onInputD(delta);
 			}
 
-			if (!Gdx.input.isKeyPressed(Input.Keys.W))
+			if (!controller.isOn(PlayerCommand.THROTTLE))
 				playerCar.onNoInputW(delta);
-			else if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+			else if (controller.isOn(PlayerCommand.THROTTLE)) {
 				playerCar.onInputW(delta);
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+			if (controller.isOn(PlayerCommand.BRAKE)) {
 				playerCar.onInputS(delta);
 //				playerCar.moveUp(delta); // TEST
 			}
@@ -266,6 +286,11 @@ public class GameScreen implements Screen {
 			renderFBO();
 		}
 
+		stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		stage.act();
+		stage.draw();
+		viewport.apply();
+		
 		updateWndowTitle();
 	}
 
@@ -397,6 +422,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void hide() {
+		Gdx.input.setInputProcessor(null);
 	}
 
 	@Override
