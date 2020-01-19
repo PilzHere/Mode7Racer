@@ -13,8 +13,11 @@ import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import mysko.pilzhere.mode7racer.inputs.GameInputManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
+import mysko.pilzhere.mode7racer.storage.GameStorage;
 
 /** 
  * @author pilzhere
@@ -45,6 +48,14 @@ public class Mode7Racer extends Game {
 		return mdlBatch;
 	}
 	
+	public Skin getSkin(){
+		return assMan.get("skins/game-skin.json");
+	}
+	
+	public GameStorage getStorage(){
+		return storage;
+	}
+	
 	private AssetManager assMan;
 	
 	private SpriteBatch batch;
@@ -68,6 +79,9 @@ public class Mode7Racer extends Game {
 	}
 	
 	private long currentTime;
+
+	private GameStorage storage;
+	public final GameInputManager inputs = new GameInputManager();
 	
 	private void updateCurrentTime() {
 		currentTime = System.currentTimeMillis();
@@ -75,6 +89,10 @@ public class Mode7Racer extends Game {
 	
 	@Override
 	public void create () {		
+		
+		storage = new GameStorage(this);
+		storage.load();
+		
 		System.out.println("Mode7Racer is running.");
 		System.out.println("STATUS: Setting up critical objects...");
 		updateCurrentTime();
@@ -212,6 +230,8 @@ public class Mode7Racer extends Game {
 		assMan.load("car01Size01FrontLeft01.png", Texture.class); // Not from F-zero.
 		
 		assMan.load("fonts/font01_16.fnt", BitmapFont.class);
+		
+		assMan.load("skins/game-skin.json", Skin.class);
 		
 		assMan.finishLoading();
 	}
