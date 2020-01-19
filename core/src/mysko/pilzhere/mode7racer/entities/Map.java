@@ -19,9 +19,14 @@ import com.badlogic.gdx.utils.Array;
 
 import mysko.pilzhere.mode7racer.entities.colliders.Curb;
 import mysko.pilzhere.mode7racer.entities.colliders.Edge;
+import mysko.pilzhere.mode7racer.entities.colliders.Jump;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
 public class Map extends Entity {
+	public Array<ModelInstanceBB> getMdlInstances() {
+		return mdlInstances;
+	}
+
 	public boolean isBlink() {
 		return blink;
 	}
@@ -220,6 +225,16 @@ public class Map extends Entity {
 		}
 
 		System.out.println("New map is: " + generatedLevelPixmap.getWidth() + " x " + generatedLevelPixmap.getHeight());
+		
+		/**
+		 * Need to read custom objects before painting map: As some objects such as jumps will have tiles on the floor.
+		 */
+		
+//		TEST ADDING NEW OBJECTS
+//		float xo = 0;
+//		float zo = 0;
+//		screen.getEntities().add(new Jump(screen, new Vector3(xo, 0, zo), 0 - loadedLevelPixmap.getWidth() / 2, 0 - loadedLevelPixmap.getHeight() / 2, 1, 1));
+////		test end
 
 		for (int x = 0; x < generatedLevelPixmap.getWidth(); x++) {
 			if (x % loadedlevelTextureWidth / noName == 0) { // noName was (tileSize / 2) when loading 128x128.

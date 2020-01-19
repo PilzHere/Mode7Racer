@@ -155,7 +155,7 @@ public class GameScreen implements Screen {
 
 			if (Gdx.input.isKeyPressed(Input.Keys.S)) {
 				playerCar.onInputS(delta);
-//				playerCar.moveUp(delta);
+//				playerCar.moveUp(delta); // TEST
 			}
 		}
 

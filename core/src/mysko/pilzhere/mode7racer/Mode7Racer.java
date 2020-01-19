@@ -16,26 +16,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
-/**
- * TODO: Implement classic intro cam.
- * TODO: Implement jumps
- * Jump from ramps.
- * TODO: Implement weapons?
- * F-zero X Mario kart?
- * Homing missiles? Lasers? Mines? Shield?
- * TODO: Implement more micro/macro gameplay.
- *  ...
- * TODO: Redo assets. Same style?, new look.
- * TODO: Implement environment sprites.
- * Buildings, domes, futuristic stuff...
- * TODO: Change license? Not MIT?
- * TODO: Sounds? Music?
- * Download samples and use them? Change/create new with Reaper and Akai MPK Mini MK2?
- * RafaSKB said we should contact Barry Leitch for music to the game. He has made music for Top Gear game and many more!
- * 
- * DONE:
- * * Implement sprite change from directon of camera.
- * 
+/** 
  * @author pilzhere
  */
 
@@ -167,6 +148,17 @@ public class Mode7Racer extends Game {
 		assMan.load("level03.png", Texture.class);
 		assMan.load("level04.png", Texture.class);
 		
+		assMan.load("jumpHorizontal01.png", Texture.class);
+		assMan.load("jumpHorizontalRight01.png", Texture.class);
+		assMan.load("jumpHorizontalLeft01.png", Texture.class);
+		
+		assMan.load("jumpVertical01.png", Texture.class);
+		assMan.load("jumpVerticalTop01.png", Texture.class);
+		assMan.load("jumpVerticalBottom01.png", Texture.class);
+		
+		assMan.load("goalVertical01.png", Texture.class);
+		assMan.load("goalHorizontal01.png", Texture.class);
+		
 		assMan.load("car01Size09Back01.png", Texture.class);
 		assMan.load("car01Size08Back01.png", Texture.class);
 		assMan.load("car01Size07Back01.png", Texture.class);
@@ -184,6 +176,10 @@ public class Mode7Racer extends Game {
 		assMan.load("car01Size07BackLeft01.png", Texture.class);
 		assMan.load("car01Size06BackLeft01.png", Texture.class);
 		assMan.load("car01Size05BackLeft01.png", Texture.class);
+		assMan.load("car01Size04BackLeft01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size03BackLeft01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size02BackLeft01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size01BackLeft01.png", Texture.class); // Not from F-zero.
 		
 		assMan.load("car01Size09Left01.png", Texture.class);
 		assMan.load("car01Size08Left01.png", Texture.class);
@@ -191,6 +187,9 @@ public class Mode7Racer extends Game {
 		assMan.load("car01Size06Left01.png", Texture.class);
 		assMan.load("car01Size05Left01.png", Texture.class);
 		assMan.load("car01Size04Left01.png", Texture.class);
+		assMan.load("car01Size03Left01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size02Left01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size01Left01.png", Texture.class); // Not from F-zero.
 		
 		assMan.load("car01Size09Front01.png", Texture.class);
 		assMan.load("car01Size08Front01.png", Texture.class);
@@ -198,12 +197,19 @@ public class Mode7Racer extends Game {
 		assMan.load("car01Size06Front01.png", Texture.class);
 		assMan.load("car01Size05Front01.png", Texture.class);
 		assMan.load("car01Size04Front01.png", Texture.class);
+		assMan.load("car01Size03Front01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size02Front01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size01Front01.png", Texture.class); // Not from F-zero.
 		
 		assMan.load("car01Size09FrontLeft01.png", Texture.class);
 		assMan.load("car01Size08FrontLeft01.png", Texture.class);
 		assMan.load("car01Size07FrontLeft01.png", Texture.class);
 		assMan.load("car01Size06FrontLeft01.png", Texture.class);
 		assMan.load("car01Size05FrontLeft01.png", Texture.class);
+		assMan.load("car01Size04FrontLeft01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size03FrontLeft01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size02FrontLeft01.png", Texture.class); // Not from F-zero.
+		assMan.load("car01Size01FrontLeft01.png", Texture.class); // Not from F-zero.
 		
 		assMan.load("fonts/font01_16.fnt", BitmapFont.class);
 		
@@ -225,11 +231,8 @@ public class Mode7Racer extends Game {
 		getScreen().dispose();
 		
 		fb01.dispose();
-		
 		mdlBatch.dispose();
-		
 		shapeRenderer.dispose();
-		
 		batch.dispose();
 		
 		assMan.dispose();

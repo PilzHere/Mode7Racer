@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -24,6 +23,8 @@ public class Car extends Entity {
 	private final float rectSize = 0.25f;
 
 	private Sprite sprite;
+	
+	private boolean inAir;
 
 	public Car(GameScreen screen, Vector3 position, boolean isLocalPlayer, boolean isCPU) {
 		super(screen, position);
@@ -43,18 +44,19 @@ public class Car extends Entity {
 	private Texture texCar01BigBackTurnRight02;
 
 	private Texture texCar01Size09BackLeft01, texCar01Size08BackLeft01, texCar01Size07BackLeft01,
-			texCar01Size06BackLeft01, texCar01Size05BackLeft01;
+			texCar01Size06BackLeft01, texCar01Size05BackLeft01, texCar01Size04BackLeft01, texCar01Size03BackLeft01, texCar01Size02BackLeft01, texCar01Size01BackLeft01;
 
 	private Texture texCar01Size09Left01, texCar01Size08Left01, texCar01Size07Left01, texCar01Size06Left01,
-			texCar01Size05Left01, texCar01Size04Left01;
+			texCar01Size05Left01, texCar01Size04Left01, texCar01Size03Left01, texCar01Size02Left01, texCar01Size01Left01;
 
 	private Texture texCar01Size09Front01, texCar01Size08Front01, texCar01Size07Front01, texCar01Size06Front01,
-			texCar01Size05Front01, texCar01Size04Front01;
+			texCar01Size05Front01, texCar01Size04Front01, texCar01Size03Front01, texCar01Size02Front01, texCar01Size01Front01;
 
 	private Texture texCar01Size09FrontLeft01, texCar01Size08FrontLeft01, texCar01Size07FrontLeft01,
-			texCar01Size06FrontLeft01, texCar01Size05FrontLeft01;
+			texCar01Size06FrontLeft01, texCar01Size05FrontLeft01, texCar01Size04FrontLeft01, texCar01Size03FrontLeft01, texCar01Size02FrontLeft01, texCar01Size01FrontLeft01;
 
 	private void getTextures() {
+//		Back
 		texCar01Size09Back01 = screen.assMan.get("car01Size09Back01.png");
 		texCar01Size08Back01 = screen.assMan.get("car01Size08Back01.png");
 		texCar01Size07Back01 = screen.assMan.get("car01Size07Back01.png");
@@ -65,33 +67,52 @@ public class Car extends Entity {
 		texCar01Size02Back01 = screen.assMan.get("car01Size02Back01.png");
 		texCar01Size01Back01 = screen.assMan.get("car01Size01Back01.png");
 
+//		Back - Turn
 		texCar01BigBackTurnRight02 = screen.assMan.get("car01Size09BackTurnRight02.png");
 
+//		BackLeft
 		texCar01Size09BackLeft01 = screen.assMan.get("car01Size09BackLeft01.png");
 		texCar01Size08BackLeft01 = screen.assMan.get("car01Size08BackLeft01.png");
 		texCar01Size07BackLeft01 = screen.assMan.get("car01Size07BackLeft01.png");
 		texCar01Size06BackLeft01 = screen.assMan.get("car01Size06BackLeft01.png");
 		texCar01Size05BackLeft01 = screen.assMan.get("car01Size05BackLeft01.png");
+		texCar01Size04BackLeft01 = screen.assMan.get("car01Size04BackLeft01.png");
+		texCar01Size03BackLeft01 = screen.assMan.get("car01Size03BackLeft01.png");
+		texCar01Size02BackLeft01 = screen.assMan.get("car01Size02BackLeft01.png");
+		texCar01Size01BackLeft01 = screen.assMan.get("car01Size01BackLeft01.png");
 
+//		Left
 		texCar01Size09Left01 = screen.assMan.get("car01Size09Left01.png");
 		texCar01Size08Left01 = screen.assMan.get("car01Size08Left01.png");
 		texCar01Size07Left01 = screen.assMan.get("car01Size07Left01.png");
 		texCar01Size06Left01 = screen.assMan.get("car01Size06Left01.png");
 		texCar01Size05Left01 = screen.assMan.get("car01Size05Left01.png");
 		texCar01Size04Left01 = screen.assMan.get("car01Size04Left01.png");
+		texCar01Size03Left01 = screen.assMan.get("car01Size03Left01.png");
+		texCar01Size02Left01 = screen.assMan.get("car01Size02Left01.png");
+		texCar01Size01Left01 = screen.assMan.get("car01Size01Left01.png");
 
+//		Front
 		texCar01Size09Front01 = screen.assMan.get("car01Size09Front01.png");
 		texCar01Size08Front01 = screen.assMan.get("car01Size08Front01.png");
 		texCar01Size07Front01 = screen.assMan.get("car01Size07Front01.png");
 		texCar01Size06Front01 = screen.assMan.get("car01Size06Front01.png");
 		texCar01Size05Front01 = screen.assMan.get("car01Size05Front01.png");
 		texCar01Size04Front01 = screen.assMan.get("car01Size04Front01.png");
+		texCar01Size03Front01 = screen.assMan.get("car01Size03Front01.png");
+		texCar01Size02Front01 = screen.assMan.get("car01Size02Front01.png");
+		texCar01Size01Front01 = screen.assMan.get("car01Size01Front01.png");
 
+//		FrontLeft
 		texCar01Size09FrontLeft01 = screen.assMan.get("car01Size09FrontLeft01.png");
 		texCar01Size08FrontLeft01 = screen.assMan.get("car01Size08FrontLeft01.png");
 		texCar01Size07FrontLeft01 = screen.assMan.get("car01Size07FrontLeft01.png");
 		texCar01Size06FrontLeft01 = screen.assMan.get("car01Size06FrontLeft01.png");
 		texCar01Size05FrontLeft01 = screen.assMan.get("car01Size05FrontLeft01.png");
+		texCar01Size04FrontLeft01 = screen.assMan.get("car01Size04FrontLeft01.png");
+		texCar01Size03FrontLeft01 = screen.assMan.get("car01Size03FrontLeft01.png");
+		texCar01Size02FrontLeft01 = screen.assMan.get("car01Size02FrontLeft01.png");
+		texCar01Size01FrontLeft01 = screen.assMan.get("car01Size01FrontLeft01.png");
 	}
 
 	public float angle = 0; // get?
@@ -475,7 +496,7 @@ public class Car extends Entity {
 	 * @param delta
 	 */
 	private void updateCamPos(float delta) {
-		if (!lastPosition.idt(position)) {
+		if (!lastPosition.idt(position.cpy())) {
 			screen.getCam().position.set(position.cpy());
 //			screen.cam.position.sub(position.cpy().sub(oldPosition.cpy()).nor().scl(screen.camDesiredDistFromCar)); // old one, works but not too good in rotations.
 			camTempPos.x = -carCurrentSpeed * carSpeedIncrementBoost * delta * MathUtils.sin(angle);
@@ -511,7 +532,7 @@ public class Car extends Entity {
 //		Get angle from playe car. Will this be correct if camera leaves playercar? // or just spawn hidden car that cam follows? ;)
 		angleFromPlayerCar = screen.cars.get(0).angle - angle; // compare with playercars angle.
 
-//		FIXME: THIS IS NOT NEEDED IT SEEMS? <
+//		FIXME: THIS IS NOT NEEDED IT SEEMS? Was used before flipping sprite...<
 //		if (screen.cars.get(0).angle < 0) {
 //			Displaying car's sprite according to car's rotation; angleFromPlayerCar needs to be positive.
 //			angleFromPlayerCar = angleFromPlayerCar + 360 * MathUtils.degreesToRadians;
@@ -941,14 +962,14 @@ public class Car extends Entity {
 				sprite.setFlip(false, false);
 				break;
 			case DOWNLEFT:
-				sprite.setTexture(texCar01Size05FrontLeft01);
+				sprite.setTexture(texCar01Size04FrontLeft01);
 				if (flipSpriteX)
 					sprite.setFlip(true, false);
 				else
 					sprite.setFlip(false, false);
 				break;
 			case DOWNRIGHT:
-				sprite.setTexture(texCar01Size05FrontLeft01);
+				sprite.setTexture(texCar01Size04FrontLeft01);
 				if (flipSpriteX)
 					sprite.setFlip(false, false);
 				else
@@ -973,14 +994,14 @@ public class Car extends Entity {
 				sprite.setFlip(false, false);
 				break;
 			case UPLEFT:
-				sprite.setTexture(texCar01Size05BackLeft01);
+				sprite.setTexture(texCar01Size04BackLeft01);
 				if (flipSpriteX)
 					sprite.setFlip(true, false);
 				else
 					sprite.setFlip(false, false);
 				break;
 			case UPRIGHT:
-				sprite.setTexture(texCar01Size05BackLeft01);
+				sprite.setTexture(texCar01Size04BackLeft01);
 				if (flipSpriteX)
 					sprite.setFlip(false, false);
 				else
@@ -992,176 +1013,167 @@ public class Car extends Entity {
 			
 //			TODO: THESE SPRITES DO NOT EXIST. MAYBE IMPLEMENT LATER?
 			
-//			switch (dir) {
-//			case DOWN:
-//				sprite.setTexture(texCar01Size03Front01);
-//				sprite.setFlip(false, false);
-//				break;
-//			case DOWNLEFT:
-//				sprite.setTexture(texCar01Size03FrontLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case DOWNRIGHT:
-//				sprite.setTexture(texCar01Size03FrontLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			case LEFT:
-//				sprite.setTexture(texCar01Size03Left01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case RIGHT:
-//				sprite.setTexture(texCar01Size03Left01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			case UP:
+			switch (dir) {
+			case DOWN:
+				sprite.setTexture(texCar01Size03Front01);
+				sprite.setFlip(false, false);
+				break;
+			case DOWNLEFT:
+				sprite.setTexture(texCar01Size03FrontLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case DOWNRIGHT:
+				sprite.setTexture(texCar01Size03FrontLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			case LEFT:
+				sprite.setTexture(texCar01Size03Left01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case RIGHT:
+				sprite.setTexture(texCar01Size03Left01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			case UP:
 				sprite.setTexture(texCar01Size03Back01);
 				sprite.setFlip(false, false);
-//				break;
-//			case UPLEFT:
-//				sprite.setTexture(texCar01Size03BackLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case UPRIGHT:
-//				sprite.setTexture(texCar01Size03BackLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			}
+				break;
+			case UPLEFT:
+				sprite.setTexture(texCar01Size03BackLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case UPRIGHT:
+				sprite.setTexture(texCar01Size03BackLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			}
 			break;
 		case EIGHT:
-//			switch (dir) {
-//			case DOWN:
-//				sprite.setTexture(texCar01Size02Front01);
-//				sprite.setFlip(false, false);
-//				break;
-//			case DOWNLEFT:
-//				sprite.setTexture(texCar01Size02FrontLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case DOWNRIGHT:
-//				sprite.setTexture(texCar01Size02FrontLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			case LEFT:
-//				sprite.setTexture(texCar01Size02Left01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case RIGHT:
-//				sprite.setTexture(texCar01Size02Left01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			case UP:
+			switch (dir) {
+			case DOWN:
+				sprite.setTexture(texCar01Size02Front01);
+				sprite.setFlip(false, false);
+				break;
+			case DOWNLEFT:
+				sprite.setTexture(texCar01Size02FrontLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case DOWNRIGHT:
+				sprite.setTexture(texCar01Size02FrontLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			case LEFT:
+				sprite.setTexture(texCar01Size02Left01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case RIGHT:
+				sprite.setTexture(texCar01Size02Left01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			case UP:
 				sprite.setTexture(texCar01Size02Back01);
 				sprite.setFlip(false, false);
-//				break;
-//			case UPLEFT:
-//				sprite.setTexture(texCar01Size02BackLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case UPRIGHT:
-//				sprite.setTexture(texCar01Size02BackLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			}
+				break;
+			case UPLEFT:
+				sprite.setTexture(texCar01Size02BackLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case UPRIGHT:
+				sprite.setTexture(texCar01Size02BackLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			}
 			break;
 		case NINE:
-//			switch (dir) {
-//			case DOWN:
-//				sprite.setTexture(texCar01Size01Front01);
-//				sprite.setFlip(false, false);
-//				break;
-//			case DOWNLEFT:
-//				sprite.setTexture(texCar01Size01FrontLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case DOWNRIGHT:
-//				sprite.setTexture(texCar01Size01FrontLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			case LEFT:
-//				sprite.setTexture(texCar01Size01Left01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case RIGHT:
-//				sprite.setTexture(texCar01Size01Left01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			case UP:
+			switch (dir) {
+			case DOWN:
+				sprite.setTexture(texCar01Size01Front01);
+				sprite.setFlip(false, false);
+				break;
+			case DOWNLEFT:
+				sprite.setTexture(texCar01Size01FrontLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case DOWNRIGHT:
+				sprite.setTexture(texCar01Size01FrontLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			case LEFT:
+				sprite.setTexture(texCar01Size01Left01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case RIGHT:
+				sprite.setTexture(texCar01Size01Left01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			case UP:
 				sprite.setTexture(texCar01Size01Back01);
 				sprite.setFlip(false, false);
-//				break;
-//			case UPLEFT:
-//				sprite.setTexture(texCar01Size01BackLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(true, false);
-//				else
-//					sprite.setFlip(false, false);
-//				break;
-//			case UPRIGHT:
-//				sprite.setTexture(texCar01Size01BackLeft01);
-//				if (flipSpriteX)
-//					sprite.setFlip(false, false);
-//				else
-//					sprite.setFlip(true, false);
-//				break;
-//			}
+				break;
+			case UPLEFT:
+				sprite.setTexture(texCar01Size01BackLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(true, false);
+				else
+					sprite.setFlip(false, false);
+				break;
+			case UPRIGHT:
+				sprite.setTexture(texCar01Size01BackLeft01);
+				if (flipSpriteX)
+					sprite.setFlip(false, false);
+				else
+					sprite.setFlip(true, false);
+				break;
+			}
 			break;
 		}
 	}
-
-	@Override
-	public void render3D(ModelBatch batch, float delta) {
-	}
-
-	@Override
-	public void destroy() {
-	}
-
 }
