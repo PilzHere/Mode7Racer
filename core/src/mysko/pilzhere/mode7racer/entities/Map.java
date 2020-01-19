@@ -141,9 +141,9 @@ public class Map extends Entity {
 		long startTime = System.currentTimeMillis();
 		System.out.println("STATUS: Building level.");
 
-//		Texture levelLevelMap = screen.assMan.get("level03.png", Texture.class);
+//		Texture levelLevelMap = screen.assMan.get("level02.png", Texture.class);
 //		Texture levelLevelMap = screen.assMan.get("level04.png", Texture.class);
-		Texture levelLevelMap = screen.assMan.get("level02.png", Texture.class);
+		Texture levelLevelMap = screen.assMan.get("level03.png", Texture.class);
 		TextureData loadedlevelMapData = levelLevelMap.getTextureData();
 
 		Pixmap loadedLevelPixmap = null, generatedLevelPixmap = null, pixTileCurbL = null, pixTileCurbR = null,
@@ -218,6 +218,8 @@ public class Map extends Entity {
 			noName = 64;
 			break;
 		}
+
+		System.out.println("New map is: " + generatedLevelPixmap.getWidth() + " x " + generatedLevelPixmap.getHeight());
 
 		for (int x = 0; x < generatedLevelPixmap.getWidth(); x++) {
 			if (x % loadedlevelTextureWidth / noName == 0) { // noName was (tileSize / 2) when loading 128x128.
@@ -453,21 +455,20 @@ public class Map extends Entity {
 
 	@Override
 	public void tick(float delta) {
-		if (blink) {
+//		if (blink) {
 //			System.out.println("Map Blink!");
-		}
+//		}
 
 //			Blink all curbs ehre!		
-
-		for (ModelInstanceBB mdlInstBB : mdlInstances) {
-			if (blink) {
-				mdlInstBB.materials.get(0).set(ColorAttribute.createDiffuse(Color.RED));
-
-			} else {
-				mdlInstBB.materials.get(0).set(ColorAttribute.createDiffuse(Color.WHITE));
+			for (ModelInstanceBB mdlInstBB : mdlInstances) {
+				if (blink) {
+					mdlInstBB.materials.get(0).set(ColorAttribute.createDiffuse(Color.RED));
+				} else {
+					mdlInstBB.materials.get(0).set(ColorAttribute.createDiffuse(Color.WHITE));
+				}
 			}
 		}
-	}
+//	}
 
 	@Override
 	public void render3D(ModelBatch batch, float delta) {

@@ -1,6 +1,7 @@
 package mysko.pilzhere.mode7racer.screens;
 
 import java.util.Comparator;
+import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -71,10 +73,10 @@ public class GameScreen implements Screen {
 	public final int viewportWidthStretched = 299; // As displayed stretched from SNES output.
 
 	public Car playerCar; // test
-	public Car carTwo; // testing
 	private Map currentMap;
 	private Array<Entity> ents = new Array<Entity>();
 	public Array<Sprite> sprites = new Array<Sprite>(); // get
+	public HashMap<Integer, Car> cars = new HashMap<Integer, Car>();
 
 	private BitmapFont font01;
 
@@ -100,9 +102,12 @@ public class GameScreen implements Screen {
 		currentMap = new Map(this, new Vector3());
 		currentMap.loadLevelFromTexture();
 
-		ents.add(playerCar = new Car(this, new Vector3(0, 0, 0)));
-//		playerCar.isClient = true;
-		ents.add(carTwo = new Car(this, new Vector3(0, 0, -2)));
+		cars.put(0, new Car(this, new Vector3(0, 0, 0), true, false));
+		cars.put(1, new Car(this, new Vector3(0, 0, -2), false, true));
+
+		playerCar = cars.get(0);
+
+		System.err.println("Size after: " + ents.size);
 	}
 
 	private final Vector3 currentModelPos = new Vector3();
@@ -150,6 +155,7 @@ public class GameScreen implements Screen {
 
 			if (Gdx.input.isKeyPressed(Input.Keys.S)) {
 				playerCar.onInputS(delta);
+//				playerCar.moveUp(delta);
 			}
 		}
 
@@ -164,76 +170,54 @@ public class GameScreen implements Screen {
 		 **/
 	}
 
+	int carCount; // test
+
 	private void tick(float delta) {
 		currentMap.tick(delta);
+
+		for (Car car : cars.values()) {
+			car.tick(delta);
+		}
 
 		for (Entity ent : ents) {
 			ent.tick(delta);
 		}
-
-//		System.out.println(entities.size);
 
 		cam.position.y = 3.14f; // Keep same height.
 		cam.direction.y = -0.63f; // Keep same y-direction. Old: -0.59f
 		cam.update();
 	}
 
-////	Sorts render order!
-//	Comparator<Entity> comparatorRenderOrder = new Comparator<Entity>() {
-//		@Override
-//		public int compare(Entity ent1, Entity ent2) {
-//			if (ent1.getDistFromCam() > ent2.getDistFromCam()) {
-//				return 1;
-//			} else if (ent1.getDistFromCam() < ent2.getDistFromCam()) {
-//				return -1;
-//			} else {
-//				return 0;
-//			}
-//		}
-//	};
+	private final int renderHeightLimit = 186; // Screen height limit for rendering when in window scale of 1. This is a
+												// fix for cars that are behind camera, they might render in the
+												// background above player.
+	private final int renderWidthLimit = 299;
+	private int currentRenderHeightLimit; // Screen position varies by window height.
+	private int currentRenderWidthLimit; // Screen position varies by window width.
 
-	Comparator<Entity> comparator = new Comparator<Entity>() {
-		@Override
-		public int compare(Entity o1, Entity o2) {
-			return (int) (o1.getScreenPos().y - o2.getScreenPos().y);
-//				if (o1.getScreenPos().y > o2.getScreenPos().y) {
-//					final float y1 = o1.getScreenPos().y;
-//					final float y2 = o2.getScreenPos().y;
-//					System.out.println(o1.compareTo(o2));
-//					return o1.compareTo(o2);
-//				} else if (o1.getScreenPos().y < o2.getScreenPos().y) {
-//					return -1;
-//				} else {
-//					retuCrn 0;
-//				}
+	private void calculateCurrentRenderLimits() {
+		currentRenderHeightLimit = renderHeightLimit * Gdx.graphics.getHeight() / viewportHeight;
+		currentRenderWidthLimit = renderWidthLimit * Gdx.graphics.getWidth() / viewportWidthStretched;
+	}
+
+	/**
+	 * Returns wether a sprite is inside screen borders. Height is limited to
+	 * background bottom position.
+	 * 
+	 * @param screenPos
+	 * @param sprite
+	 * @return
+	 */
+	public boolean spriteFitsInScreen(Vector3 screenPos, Sprite sprite) {
+		if (screenPos.x < 0 - (sprite.getWidth() / 2) || screenPos.x > currentRenderWidthLimit + (sprite.getWidth() / 2)
+				|| screenPos.y < 0 - (sprite.getHeight() / 2) || screenPos.y > currentRenderHeightLimit) {
+			return false;
+		} else {
+			return true;
 		}
-	};
+	}
 
-//	Comparator<Entity> comparatorRenderOrder = new Comparator<Entity>() {
-//		@Override
-//		public int compare(Entity ent1, Entity ent2) {
-//			if (ent1.getSprite() != null && ent2.getSprite() != null) {
-//				if (ent1.getSprite().getY() > ent2.getSprite().getY()) {
-//					return 1;
-//				} else if (ent1.getSprite().getY() > ent2.getSprite().getY()) {
-//					return -1;
-//				} else {
-//					return 0;
-//				}
-//			} else {
-//				return 0;
-//			}
-////			if (ent1.getScreenPos().y > ent2.getScreenPos().y) {
-////				
-////			} else if (ent1.getScreenPos().y < ent2.getScreenPos().y) {
-////				return 1;
-////			} else {
-////				return 0;
-////			}
-//		}
-//	};
-
-	public int renderedModels = 0; // set (get?)
+	public int renderedModels = 0; // set (get?) // not needed anymore= count sprite.size?
 	public int renderedSprites = 0;
 
 	@Override
@@ -243,6 +227,8 @@ public class GameScreen implements Screen {
 
 		input(delta);
 		tick(delta);
+
+		calculateCurrentRenderLimits();
 
 //		OVERNIGHT AWESOMENESS
 //		cam.position.add(cam.direction.cpy().nor().scl(moveSpeed * delta));
@@ -319,11 +305,16 @@ public class GameScreen implements Screen {
 			}
 		}
 	};
-	
+
 	private void renderEnts(float delta) {
 		batch.setProjectionMatrix(cam.projection.setToOrtho2D(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-		batch.begin();
+		for (Car car : cars.values()) {
+			car.render2D(batch, delta);
+		}
+
+//		cars.get(0).getPosition().cpy().sub(cars.get(1).getPosition().cpy());
+
 		for (Entity ent : ents) {
 			ent.render2D(batch, delta);
 		}
@@ -331,6 +322,7 @@ public class GameScreen implements Screen {
 //		Sort render order from y position.
 		sprites.sort(spriteComparator);
 
+		batch.begin();
 		for (Sprite spr : sprites) {
 			spr.draw(batch);
 			renderedSprites++;
@@ -385,7 +377,14 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
+		limitWindowMinimumWidthAndHeight();
 		viewport.update(width, height);
+	}
+
+	private void limitWindowMinimumWidthAndHeight() {
+		if (Gdx.graphics.getWidth() < viewportWidthStretched || Gdx.graphics.getHeight() < viewportHeight) {
+			Gdx.graphics.setWindowedMode(viewportWidthStretched, viewportHeight);
+		}
 	}
 
 	@Override

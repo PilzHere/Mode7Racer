@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
 /**
- * TODO: Implement sprite change from directon of camera.
+ * TODO: Implement classic intro cam.
  * TODO: Implement jumps
  * Jump from ramps.
  * TODO: Implement weapons?
@@ -28,8 +28,13 @@ import mysko.pilzhere.mode7racer.screens.GameScreen;
  * TODO: Redo assets. Same style?, new look.
  * TODO: Implement environment sprites.
  * Buildings, domes, futuristic stuff...
+ * TODO: Change license? Not MIT?
  * TODO: Sounds? Music?
  * Download samples and use them? Change/create new with Reaper and Akai MPK Mini MK2?
+ * RafaSKB said we should contact Barry Leitch for music to the game. He has made music for Top Gear game and many more!
+ * 
+ * DONE:
+ * * Implement sprite change from directon of camera.
  * 
  * @author pilzhere
  */
@@ -88,7 +93,7 @@ public class Mode7Racer extends Game {
 	}
 	
 	@Override
-	public void create () {
+	public void create () {		
 		System.out.println("Mode7Racer is running.");
 		System.out.println("STATUS: Setting up critical objects...");
 		updateCurrentTime();
@@ -173,6 +178,32 @@ public class Mode7Racer extends Game {
 		assMan.load("car01Size01Back01.png", Texture.class);
 		
 		assMan.load("car01Size09BackTurnRight02.png", Texture.class);
+		
+		assMan.load("car01Size09BackLeft01.png", Texture.class);
+		assMan.load("car01Size08BackLeft01.png", Texture.class);
+		assMan.load("car01Size07BackLeft01.png", Texture.class);
+		assMan.load("car01Size06BackLeft01.png", Texture.class);
+		assMan.load("car01Size05BackLeft01.png", Texture.class);
+		
+		assMan.load("car01Size09Left01.png", Texture.class);
+		assMan.load("car01Size08Left01.png", Texture.class);
+		assMan.load("car01Size07Left01.png", Texture.class);
+		assMan.load("car01Size06Left01.png", Texture.class);
+		assMan.load("car01Size05Left01.png", Texture.class);
+		assMan.load("car01Size04Left01.png", Texture.class);
+		
+		assMan.load("car01Size09Front01.png", Texture.class);
+		assMan.load("car01Size08Front01.png", Texture.class);
+		assMan.load("car01Size07Front01.png", Texture.class);
+		assMan.load("car01Size06Front01.png", Texture.class);
+		assMan.load("car01Size05Front01.png", Texture.class);
+		assMan.load("car01Size04Front01.png", Texture.class);
+		
+		assMan.load("car01Size09FrontLeft01.png", Texture.class);
+		assMan.load("car01Size08FrontLeft01.png", Texture.class);
+		assMan.load("car01Size07FrontLeft01.png", Texture.class);
+		assMan.load("car01Size06FrontLeft01.png", Texture.class);
+		assMan.load("car01Size05FrontLeft01.png", Texture.class);
 		
 		assMan.load("fonts/font01_16.fnt", BitmapFont.class);
 		

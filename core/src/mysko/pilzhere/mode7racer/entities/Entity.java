@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
-public class Entity implements Comparable<Entity>{
+public class Entity {
 //	public void setDistFromCam(float distFromCam) {
 //		this.distFromCam = distFromCam;
 //	}
@@ -63,11 +63,11 @@ public class Entity implements Comparable<Entity>{
 	public void destroy() {
 	}
 
-	@Override
-	public int compareTo(Entity o) {
-//		return (int) (screenPos.y - o.screenPos.y);
-		int compareQuantity = (int) ((Entity) o).screenPos.y;
-		
-		return (int) (this.screenPos.y - compareQuantity);
-	}
+//	@Override
+//	public int compareTo(Entity o) {
+////		return (int) (screenPos.y - o.screenPos.y);
+//		int compareQuantity = (int) ((Entity) o).screenPos.y;
+//		
+//		return (int) (this.screenPos.y - compareQuantity);
+//	}
 }

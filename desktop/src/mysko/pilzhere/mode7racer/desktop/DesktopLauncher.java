@@ -15,7 +15,7 @@ public class DesktopLauncher {
 		config.height = 224 * 4; // 224 // 720
 
 		config.allowSoftwareMode = true;
-		config.foregroundFPS = 0; // 60
+		config.foregroundFPS = 60; // 60
 		config.backgroundFPS = 60;
 		config.fullscreen = false;
 		config.resizable = true;
