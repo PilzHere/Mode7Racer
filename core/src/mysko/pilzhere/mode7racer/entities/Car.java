@@ -175,12 +175,14 @@ public class Car extends Entity {
 	
 	private boolean shiftLeft;
 	public void onInputShiftLeft(float delta) {
-		shiftLeft = true;
+		if (carCurrentSpeed > 0)
+			shiftLeft = true;
 	}
 	
 	private boolean shiftRight;
 	public void onInputShiftRight(float delta) {
-		shiftRight = true;
+		if (carCurrentSpeed > 0)
+			shiftRight = true;
 	}
 
 	private final float carTurboSpeedIncrement = 0.5f;
@@ -521,49 +523,40 @@ public class Car extends Entity {
 	private float sinAngle = angle;
 	private float cosAngle = angle;
 	
+	private final float slideAngle = 22.5f;
+	
 	/**
 	 * Move with speed in angle direction.
 	 * 
 	 * @param delta
 	 */
-	private void moveWithAngle(float delta) {
-//		if (carCurrentSpeed > 0) {
-		
+	private void moveWithAngle(float delta) {		
 		sinAngle = angle;
 		cosAngle = angle;
 		
-//		Add shift here?
 		if (shiftLeft) {
-			System.err.println("SHIFT LEFT");
-			sinAngle -= 45 * MathUtils.degreesToRadians;
-			cosAngle -= 45 * MathUtils.degreesToRadians;
-		} else if (shiftRight) {
-			System.err.println("SHIFT Right");
-			sinAngle += 45 * MathUtils.degreesToRadians;
-			cosAngle += 45 * MathUtils.degreesToRadians;
+//			System.err.println("SHIFT LEFT");
+			sinAngle -= slideAngle * MathUtils.degreesToRadians;
+			cosAngle -= slideAngle * MathUtils.degreesToRadians;
 		}
 		
-		
+		if (shiftRight) {
+//			System.err.println("SHIFT Right");
+			sinAngle += slideAngle * MathUtils.degreesToRadians;
+			cosAngle += slideAngle * MathUtils.degreesToRadians;
+		}
 		
 		if (!bounceX) {
 			newPosX += carCurrentSpeed * carSpeedIncrementBoost * MathUtils.sin(sinAngle) * delta;
 		} else {
 			newPosX -= carCurrentSpeed * currentBounceX * MathUtils.sin(sinAngle) * delta;
-		}
-		
-//		if (sinAngle != angle)
-//			newPosX += 20 * MathUtils.sin(sinAngle) * delta;
-		
+		}		
 
 		if (!bounceZ) {
 			newPosZ -= carCurrentSpeed * carSpeedIncrementBoost * MathUtils.cos(cosAngle) * delta;
 		} else {
 			newPosZ += carCurrentSpeed * currentBounceZ * MathUtils.cos(cosAngle) * delta;
-		}
-		
-//		if (cosAngle != angle)
-//			newPosZ -= 20 * MathUtils.cos(cosAngle) * delta;
-		
+		}		
 	}
 
 	/**

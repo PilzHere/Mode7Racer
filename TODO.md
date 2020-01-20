@@ -1,5 +1,3 @@
-TODO: L/R Shift with current rotation.
-
 TODO: Implement classic intro cam.
 TODO: Implement jumps
 Jump from ramps.
@@ -26,3 +24,5 @@ DONE:
 * TURBO "You got boost power!" - Turbo can only be used while throttle. Max Speed is 1.5* current max speed?
 
 * Rotation of cars should increase with speed.
+
+* L/R Shift with current rotation.
