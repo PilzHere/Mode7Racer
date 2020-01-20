@@ -130,11 +130,7 @@ public class Mode7Racer extends Game {
 		System.out.println("STATUS: Total time for loading and setting up everything: (" + timeEnd + " ms)");
 	}
 	
-	private void loadAssets() {
-		assMan.load("bg01.png", Texture.class);
-		assMan.load("sample256.png", Texture.class);
-		assMan.load("grassPlane.g3db", Model.class);
-		
+	private void loadAssets() {		
 		assMan.load("curb0101.png", Texture.class); // l
 		assMan.load("curb1010.png", Texture.class); // r
 		assMan.load("curb1100.png", Texture.class); // s

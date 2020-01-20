@@ -534,17 +534,7 @@ public class Car extends Entity {
 		sinAngle = angle;
 		cosAngle = angle;
 		
-		if (shiftLeft) {
-//			System.err.println("SHIFT LEFT");
-			sinAngle -= slideAngle * MathUtils.degreesToRadians;
-			cosAngle -= slideAngle * MathUtils.degreesToRadians;
-		}
-		
-		if (shiftRight) {
-//			System.err.println("SHIFT Right");
-			sinAngle += slideAngle * MathUtils.degreesToRadians;
-			cosAngle += slideAngle * MathUtils.degreesToRadians;
-		}
+		adjustAngleForShifting(shiftLeft, shiftRight, sinAngle, cosAngle);
 		
 		if (!bounceX) {
 			newPosX += carCurrentSpeed * carSpeedIncrementBoost * MathUtils.sin(sinAngle) * delta;
@@ -557,6 +547,23 @@ public class Car extends Entity {
 		} else {
 			newPosZ += carCurrentSpeed * currentBounceZ * MathUtils.cos(cosAngle) * delta;
 		}		
+	}
+	
+	private void adjustAngleForShifting(boolean shiftLeft, boolean shiftRight, float sinAngle, float cosAngle) {
+		if (shiftLeft) {
+//			System.err.println("SHIFT LEFT");
+			sinAngle -= slideAngle * MathUtils.degreesToRadians;
+			cosAngle -= slideAngle * MathUtils.degreesToRadians;
+		}
+		
+		if (shiftRight) {
+//			System.err.println("SHIFT Right");
+			sinAngle += slideAngle * MathUtils.degreesToRadians;
+			cosAngle += slideAngle * MathUtils.degreesToRadians;
+		}
+		
+		this.sinAngle = sinAngle;
+		this.cosAngle = cosAngle;
 	}
 
 	/**
