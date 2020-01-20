@@ -172,6 +172,16 @@ public class Car extends Entity {
 				rightTurn = true;
 		}
 	}
+	
+	private boolean shiftLeft;
+	public void onInputShiftLeft(float delta) {
+		shiftLeft = true;
+	}
+	
+	private boolean shiftRight;
+	public void onInputShiftRight(float delta) {
+		shiftRight = true;
+	}
 
 	private final float carTurboSpeedIncrement = 0.5f;
 	private final float carNormalSpeedIncrement = 0.33f; // was 2 should slow it
@@ -507,7 +517,10 @@ public class Car extends Entity {
 	private float newPosZ;
 
 	private final int carSpeedIncrementBoost = 40; // was 32
-
+	
+	private float sinAngle = angle;
+	private float cosAngle = angle;
+	
 	/**
 	 * Move with speed in angle direction.
 	 * 
@@ -515,18 +528,42 @@ public class Car extends Entity {
 	 */
 	private void moveWithAngle(float delta) {
 //		if (carCurrentSpeed > 0) {
-		if (!bounceX) {
-			newPosX += carCurrentSpeed * carSpeedIncrementBoost * delta * MathUtils.sin(angle);
-		} else {
-			newPosX -= carCurrentSpeed * currentBounceX * delta * MathUtils.sin(angle);
+		
+		sinAngle = angle;
+		cosAngle = angle;
+		
+//		Add shift here?
+		if (shiftLeft) {
+			System.err.println("SHIFT LEFT");
+			sinAngle -= 45 * MathUtils.degreesToRadians;
+			cosAngle -= 45 * MathUtils.degreesToRadians;
+		} else if (shiftRight) {
+			System.err.println("SHIFT Right");
+			sinAngle += 45 * MathUtils.degreesToRadians;
+			cosAngle += 45 * MathUtils.degreesToRadians;
 		}
+		
+		
+		
+		if (!bounceX) {
+			newPosX += carCurrentSpeed * carSpeedIncrementBoost * MathUtils.sin(sinAngle) * delta;
+		} else {
+			newPosX -= carCurrentSpeed * currentBounceX * MathUtils.sin(sinAngle) * delta;
+		}
+		
+//		if (sinAngle != angle)
+//			newPosX += 20 * MathUtils.sin(sinAngle) * delta;
+		
 
 		if (!bounceZ) {
-			newPosZ -= carCurrentSpeed * carSpeedIncrementBoost * delta * MathUtils.cos(angle);
+			newPosZ -= carCurrentSpeed * carSpeedIncrementBoost * MathUtils.cos(cosAngle) * delta;
 		} else {
-			newPosZ += carCurrentSpeed * currentBounceZ * delta * MathUtils.cos(angle);
+			newPosZ += carCurrentSpeed * currentBounceZ * MathUtils.cos(cosAngle) * delta;
 		}
-//		}
+		
+//		if (cosAngle != angle)
+//			newPosZ -= 20 * MathUtils.cos(cosAngle) * delta;
+		
 	}
 
 	/**
@@ -716,6 +753,8 @@ public class Car extends Entity {
 		currentTurnAmount = 0;
 		rightTurn = false;
 		leftTurn = false;
+		shiftLeft = false;
+		shiftRight = false;
 	}
 
 	/**

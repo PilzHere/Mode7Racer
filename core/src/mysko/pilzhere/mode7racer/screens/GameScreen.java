@@ -171,6 +171,15 @@ public class GameScreen implements Screen {
 			if (controller.isOn(PlayerCommand.RIGHT)) {
 				playerCar.onInputD(delta);
 			}
+			
+			if (controller.isOn(PlayerCommand.SHIFT_LEFT)) {
+				playerCar.onInputShiftLeft(delta);
+			}
+			
+			if (controller.isOn(PlayerCommand.SHIFT_RIGHT)) {
+				playerCar.onInputShiftRight(delta);
+			}
+			
 
 			if (!controller.isOn(PlayerCommand.THROTTLE))
 				playerCar.onNoInputW(delta);
