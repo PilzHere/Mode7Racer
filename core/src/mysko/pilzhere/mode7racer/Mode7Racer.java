@@ -230,6 +230,7 @@ public class Mode7Racer extends Game {
 		assMan.load("car01Size01FrontLeft01.png", Texture.class); // Not from F-zero.
 		
 		assMan.load("fonts/font01_16.fnt", BitmapFont.class);
+		assMan.load("fonts/font01_08.fnt", BitmapFont.class);
 		
 		assMan.load("skins/game-skin.json", Skin.class);
 		

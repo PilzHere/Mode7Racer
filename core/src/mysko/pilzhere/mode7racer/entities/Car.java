@@ -25,6 +25,10 @@ public class Car extends Entity {
 	private Sprite sprite;
 	
 	private boolean inAir;
+	
+	private final int maxTurbos = 3;
+	public int currentTurbos = maxTurbos; // get
+	public boolean hasTurbo; // get
 
 	public Car(GameScreen screen, Vector3 position, boolean isLocalPlayer, boolean isCPU) {
 		super(screen, position);
@@ -117,48 +121,99 @@ public class Car extends Entity {
 
 	public float angle = 0; // get?
 	private final float angleIncrement = 2.5f;
-	private float carCurrentSpeed;
+	public float carCurrentSpeed; // get
+	private float toKMpH = 440f;
+	public float carCurrentSpeedKMpH;
 	private boolean rightTurn; // For moving bg's.
 	private boolean leftTurn;
+	private final float minTurnAmount = 0.55f;
+	private final float maxTurnAmount = 1.0f;
+	private float currentTurnAmount = minTurnAmount;
 
 	public void onInputA(float delta) {
 		if (carCurrentSpeed > 0) {
-			angle -= angleIncrement * delta;
+			if (carCurrentSpeed < minTurnAmount) {
+				currentTurnAmount = angleIncrement * minTurnAmount * delta;
+				angle -= currentTurnAmount;
+			} else {
+				if (carCurrentSpeed > maxTurnAmount) {
+					currentTurnAmount = angleIncrement * maxTurnAmount * delta;
+					angle -= currentTurnAmount;
+				} else {
+					currentTurnAmount = angleIncrement * carCurrentSpeed * delta;
+					angle -= currentTurnAmount;
+				}
+			}
+			
 			if (!isCPU) // TESTING SPRITES
 				leftTurn = true;
+			
+//			set currentTurnAmount negative for left turns, dont use this for car after.
+			currentTurnAmount = -currentTurnAmount;
 		}
 	}
 
 	public void onInputD(float delta) {
 		if (carCurrentSpeed > 0) {
-			angle += angleIncrement * delta;
+			if (carCurrentSpeed < minTurnAmount) {
+				currentTurnAmount = angleIncrement * minTurnAmount * delta;
+				angle += currentTurnAmount;
+			} else {
+				if (carCurrentSpeed > maxTurnAmount) {
+					currentTurnAmount = angleIncrement * maxTurnAmount * delta;
+					angle += currentTurnAmount;
+				} else {
+					currentTurnAmount = angleIncrement * carCurrentSpeed * delta;
+					angle += currentTurnAmount;
+				}
+			}
+			
 			if (!isCPU) // TESTING SPRITES
 				rightTurn = true;
 		}
 	}
 
-	private final float carSpeedIncrement = 0.5f; // was 2 should slow it
+	private final float carTurboSpeedIncrement = 0.5f;
+	private final float carNormalSpeedIncrement = 0.33f; // was 2 should slow it
+	private float carCurrentSpeedIncrement = carNormalSpeedIncrement;
 	private final float motorBrakeStrength = 0.35f;
 	private final int bounceBrakesStrength = 16;
 
-	public void onNoInputW(float delta) {
-		if (bounceX || bounceZ)
-			carCurrentSpeed -= carSpeedIncrement * bounceBrakesStrength * motorBrakeStrength * delta; // Bounce brake.
-		else {
-			carCurrentSpeed -= carSpeedIncrement * motorBrakeStrength * delta; // Motor brake.
+	private final long turboCd = 2250L;
+	private boolean newTurboCdSet;
+	private long newTurboCdTime;
+	
+	public void onInputT(float delta) {
+		if (carCurrentSpeed > 0) {
+			if (!newTurboCdSet) {
+				if (currentTurbos > 0) {
+					hasTurbo = true;
+					currentTurbos--;
+				}
+			}
 		}
 	}
-
+	
+	public void onNoInputW(float delta) {
+		if (bounceX || bounceZ)
+			carCurrentSpeed -= carCurrentSpeedIncrement * bounceBrakesStrength * motorBrakeStrength * delta; // Bounce brake.
+		else {
+			carCurrentSpeed -= carCurrentSpeedIncrement * motorBrakeStrength * delta; // Motor brake.
+		}
+	}
+	
 	public void onInputW(float delta) {
-		carCurrentSpeed += carSpeedIncrement * delta;
+		carCurrentSpeed += carCurrentSpeedIncrement * delta;
 	}
 
 	private final float brakesStrength = 0.33f;
 
 	public void onInputS(float delta) {
-		carCurrentSpeed -= carSpeedIncrement * brakesStrength * delta;
+		carCurrentSpeed -= carCurrentSpeedIncrement * brakesStrength * delta;
 	}
 
+	
+	
 	private int hp = 100; // get
 	private boolean gotHitTimeSet;
 	private long hitNewTime;
@@ -197,13 +252,16 @@ public class Car extends Entity {
 
 	@Override
 	public void tick(float delta) {
+		resetData();
+		
 		if (isCPU) {
 			onInputA(delta); // turn left
 //			onInputD(delta); // turn right
 			onInputW(delta); // pedal to the metal
 		}
-
-		resetData();
+		
+		setCurrentSpeedAndSpeedLimit(delta);
+		updateTurboCooldown();
 
 		if (this == screen.playerCar)
 			updateCurbsBlink();
@@ -213,7 +271,7 @@ public class Car extends Entity {
 		updateBounceZ(delta);
 
 		clampAngle(delta);
-		clampSpeed();
+		clampSpeed(delta);
 		moveWithAngle(delta);
 
 		checkForCollision(delta);
@@ -224,12 +282,42 @@ public class Car extends Entity {
 
 		checkRightOrLeftTurn();
 
+		
 		if (this == screen.playerCar) {
 			moveBackgroundsWithTurn(delta);
 		}
+		
 		updateLastPosition();
+		
+		carCurrentSpeedKMpH = carCurrentSpeed * toKMpH;
 	}
 
+	private void updateTurboCooldown() {
+		if (hasTurbo) {
+			if (newTurboCdSet) {
+				if (screen.getCurrentTime() > newTurboCdTime) {
+					newTurboCdSet = false;
+					hasTurbo = false;
+				}
+			}
+		}
+	}
+	
+	private void setCurrentSpeedAndSpeedLimit(float delta) {
+		if (hasTurbo) {
+			carCurrentMaximumSpeed = carTurboMaximumSpeed;
+			carCurrentSpeedIncrement = carTurboSpeedIncrement;
+			
+			if (!newTurboCdSet) {
+				newTurboCdTime = screen.getCurrentTime() + turboCd;
+				newTurboCdSet = true;
+			}
+		} else {
+			carCurrentMaximumSpeed = carNormalMaximumSpeed;			
+			carCurrentSpeedIncrement = carNormalSpeedIncrement;
+		}
+	}
+	
 	private void updateGotHitTimeSet() {
 		if (gotHitTimeSet) {
 			if (screen.getCurrentTime() > hitNewTime) {
@@ -351,16 +439,24 @@ public class Car extends Entity {
 	 * 
 	 * @param delta
 	 */
+	
 	private void moveBackgroundsWithTurn(float delta) {
-		if (rightTurn) {
-			screen.getCurrentMap().setBgFrontPosX(
-					screen.getCurrentMap().getBgFrontPosX() + screen.bgMoveSpeed * screen.bgMoveSpeedBoost * delta);
-			screen.getCurrentMap().setBgBackPosX(screen.getCurrentMap().getBgBackPosX() + screen.bgMoveSpeed * delta);
-		} else if (leftTurn) {
-			screen.getCurrentMap().setBgFrontPosX(
-					screen.getCurrentMap().getBgFrontPosX() - screen.bgMoveSpeed * screen.bgMoveSpeedBoost * delta);
-			screen.getCurrentMap().setBgBackPosX(screen.getCurrentMap().getBgBackPosX() - screen.bgMoveSpeed * delta);
-		}
+//		Not perfect but works...
+		screen.getCurrentMap().setBgFrontPosX(
+				screen.getCurrentMap().getBgFrontPosX() + currentTurnAmount * 100 * 128 * delta);
+		screen.getCurrentMap().setBgBackPosX(screen.getCurrentMap().getBgBackPosX() + currentTurnAmount * 100 * 64 * delta);
+		
+//		Old
+//		if (rightTurn) {
+//			screen.getCurrentMap().setBgFrontPosX(
+//					screen.getCurrentMap().getBgFrontPosX() + screen.bgMoveSpeed * screen.bgMoveSpeedBoost * delta);
+//			screen.getCurrentMap().setBgBackPosX(screen.getCurrentMap().getBgBackPosX() + screen.bgMoveSpeed * delta);
+//			
+//		} else if (leftTurn) {
+//			screen.getCurrentMap().setBgFrontPosX(
+//					screen.getCurrentMap().getBgFrontPosX() - screen.bgMoveSpeed * screen.bgMoveSpeedBoost * delta);
+//			screen.getCurrentMap().setBgBackPosX(screen.getCurrentMap().getBgBackPosX() - screen.bgMoveSpeed * delta);
+//		}
 	}
 
 	/**
@@ -373,16 +469,38 @@ public class Car extends Entity {
 		}
 	}
 
-	private final float carMaximumSpeed = 1.0f;
-
+	private final float carNormalMaximumSpeed = 1.0f;
+	private final float carTurboMaximumSpeed = 1.5f;
+	public float carCurrentMaximumSpeed = carNormalMaximumSpeed; // get
+	
+//	private boolean breakFromTurbo;
+	
 	/**
 	 * Limit car speed.
 	 */
-	private void clampSpeed() {
-		if (carCurrentSpeed > carMaximumSpeed)
-			carCurrentSpeed = carMaximumSpeed;
-		else if (carCurrentSpeed < 0)
+	private void clampSpeed(float delta) {
+//		breakFromTurbo = false;
+		
+//		TODO: this code deosnt work properly, change it or do we even need it? (deaccelerate after turbo).
+//		if (!hasTurbo) {
+//			if (carCurrentSpeed > carCurrentMaximumSpeed) {
+//				System.err.println("Speed is above normal max speed! Brakeing!");
+//				carCurrentSpeed -= carCurrentSpeedIncrement * bounceBrakesStrength * motorBrakeStrength * delta; // Bounce brake.
+//				breakFromTurbo = true;
+//			}
+//		} else {
+//			if (!breakFromTurbo)
+//				carCurrentSpeed = carCurrentMaximumSpeed;
+//		}
+		
+		
+		if (carCurrentSpeed > carCurrentMaximumSpeed) {
+//			if (!breakFromTurbo) {
+				carCurrentSpeed = carCurrentMaximumSpeed;
+//			}
+		} else if (carCurrentSpeed < 0) {
 			carCurrentSpeed = 0;
+		}
 	}
 
 	private float newPosX;
@@ -425,7 +543,7 @@ public class Car extends Entity {
 				if (ent.rect.overlaps(this.rect)) {
 					if (ent.rect != this.rect) {
 						onHit(ent, delta);
-						if (ent instanceof Edge || ent instanceof Car) {
+						if (ent instanceof Edge) {
 							overlapX = true;
 						}
 					}
@@ -461,7 +579,7 @@ public class Car extends Entity {
 				if (ent.rect.overlaps(this.rect)) {
 					if (ent.rect != this.rect) {
 						onHit(ent, delta);
-						if (ent instanceof Edge || ent instanceof Car) {
+						if (ent instanceof Edge) {
 							overlapY = true;
 						}
 					}
@@ -513,7 +631,7 @@ public class Car extends Entity {
 	private boolean updateSpriteSize = true;
 	private float angleFromPlayerCar;
 
-	private SpriteSize spriteSize;
+	private SpriteSize spriteSize = SpriteSize.NINE;
 	private SpriteDirection spriteDirection = SpriteDirection.UP;
 
 	private boolean flipSpriteX;
@@ -595,6 +713,7 @@ public class Car extends Entity {
 //		}
 
 //		reset stuff
+		currentTurnAmount = 0;
 		rightTurn = false;
 		leftTurn = false;
 	}

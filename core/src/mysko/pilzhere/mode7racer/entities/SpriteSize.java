@@ -12,7 +12,7 @@ public enum SpriteSize {
 	NINE(9);
 	
 	private final int size;
-    private SpriteSize(int value) {
+    SpriteSize(int value) {
         this.size = value;
     }
 

@@ -95,7 +95,8 @@ public class GameScreen implements Screen {
 		this.mdlBatch = this.game.getModelBatch();
 		this.fbo = this.game.getFb01();
 
-		font01 = assMan.get("fonts/font01_16.fnt");
+//		font01 = assMan.get("fonts/font01_16.fnt");
+		font01 = assMan.get("fonts/font01_08.fnt");
 
 		final int fOV = 78; // 33 or 80
 		cam = new PerspectiveCamera(fOV, 256, 224);
@@ -159,6 +160,10 @@ public class GameScreen implements Screen {
 		}
 
 		if (playerCar != null) {
+			if (controller.isOn(PlayerCommand.TURBO)) {
+				playerCar.onInputT(delta);
+			}
+			
 			if (controller.isOn(PlayerCommand.LEFT)) {
 				playerCar.onInputA(delta);
 			}
@@ -192,6 +197,8 @@ public class GameScreen implements Screen {
 
 	int carCount; // test
 
+	public float oldCamDirX;
+	
 	private void tick(float delta) {
 		currentMap.tick(delta);
 
@@ -206,6 +213,8 @@ public class GameScreen implements Screen {
 		cam.position.y = 3.14f; // Keep same height.
 		cam.direction.y = -0.63f; // Keep same y-direction. Old: -0.59f
 		cam.update();
+		
+		oldCamDirX = cam.direction.x;
 	}
 
 	private final int renderHeightLimit = 186; // Screen height limit for rendering when in window scale of 1. This is a
@@ -385,6 +394,9 @@ public class GameScreen implements Screen {
 		if (playerCar != null) {
 			batch.begin();
 			font01.draw(batch, "HP: " + playerCar.getHp(), 0, 224);
+			font01.draw(batch, "SPEED: " + playerCar.carCurrentSpeed + " | MAX: " + playerCar.carCurrentMaximumSpeed, 0, 224 - 8);
+			font01.draw(batch, "TURBO: " + playerCar.currentTurbos + " | " + playerCar.hasTurbo, 0, 224 - 16);
+			font01.draw(batch, playerCar.carCurrentSpeedKMpH + " km/h", 0, 224 - 24);
 			batch.end();
 		}
 	}
