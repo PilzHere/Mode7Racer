@@ -2,7 +2,6 @@ package mysko.pilzhere.mode7racer.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
@@ -19,8 +18,8 @@ import com.badlogic.gdx.utils.Array;
 
 import mysko.pilzhere.mode7racer.entities.colliders.Curb;
 import mysko.pilzhere.mode7racer.entities.colliders.Edge;
-import mysko.pilzhere.mode7racer.entities.colliders.Jump;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
+import mysko.pilzhere.mode7racer.utils.MapDrawer;
 
 public class Map extends Entity {
 	public Array<ModelInstanceBB> getMdlInstances() {
@@ -127,17 +126,6 @@ public class Map extends Entity {
 
 	private final int tileSize = 16;
 
-	private Pixmap createWorldPixmap(Pixmap pix, Pixmap loadedLevelPix) {
-		pix = new Pixmap(loadedLevelPix.getWidth() * tileSize, loadedLevelPix.getHeight() * tileSize, Format.RGB888);
-		loadedlevelTextureWidth = loadedLevelPix.getWidth();
-		loadedlevelTextureHeight = loadedLevelPix.getHeight();
-
-		return pix;
-	}
-
-	private int loadedlevelTextureWidth;
-	private int loadedlevelTextureHeight;
-
 	private Model mdlLevel;
 	private ModelInstanceBB mdlInstLevel;
 	private Array<ModelInstanceBB> mdlInstances = new Array<ModelInstanceBB>();
@@ -149,83 +137,14 @@ public class Map extends Entity {
 //		Texture levelLevelMap = screen.assMan.get("level02.png", Texture.class);
 //		Texture levelLevelMap = screen.assMan.get("level04.png", Texture.class);
 		Texture levelLevelMap = screen.assMan.get("level03.png", Texture.class);
-		TextureData loadedlevelMapData = levelLevelMap.getTextureData();
-
-		Pixmap loadedLevelPixmap = null, generatedLevelPixmap = null, pixTileCurbL = null, pixTileCurbR = null,
-				pixTileCurbN = null, pixTileCurbS = null, pixTileRoad01 = null, pixTileRoad02 = null,
-				pixTileVoid = null, pixTileCurbOuterCornerNL = null, pixTileCurbOuterCornerNR = null,
-				pixTileCurbOuterCornerSL = null, pixTileCurbOuterCornerSR = null, pixTileCurbInnerCornerNL = null,
-				pixTileCurbInnerCornerNR = null, pixTileCurbInnerCornerSL = null, pixTileCurbInnerCornerSR = null,
-				pixTileCurbNone = null, pixTileCurbFull = null;
 
 //		Load level texture
-		loadedLevelPixmap = prepareTextureData(loadedlevelMapData, levelLevelMap, loadedLevelPixmap);
+		Pixmap loadedLevelPixmap = prepareTextureData(levelLevelMap);
 
 //		Generate world level texture
-		generatedLevelPixmap = createWorldPixmap(generatedLevelPixmap, loadedLevelPixmap);
-
-		TextureData tileCurbLData = null, tileCurbRData = null, tileCurbSData = null, tileCurbNData = null,
-				tileRoad01Data = null, tileRoad02Data = null, tileVoidData = null, tileCurbOuterCornerNLData = null,
-				tileCurbOuterCornerNRData = null, tileCurbOuterCornerSLData = null, tileCurbOuterCornerSRData = null,
-				tileCurbInnerCornerNLData = null, tileCurbInnerCornerNRData = null, tileCurbInnerCornerSLData = null,
-				tileCurbInnerCornerSRData = null, tileCurbNoneData = null, tileCurbFullData = null;
-
-//		Setup tiles
-		pixTileVoid = prepareTextureData(tileVoidData, texTileVoid, pixTileVoid);
-
-		pixTileRoad01 = prepareTextureData(tileRoad01Data, texTileRoad01, pixTileRoad01);
-		pixTileRoad02 = prepareTextureData(tileRoad02Data, texTileRoad02, pixTileRoad02);
-
-		pixTileCurbL = prepareTextureData(tileCurbLData, texTileCurbL, pixTileCurbL);
-		pixTileCurbR = prepareTextureData(tileCurbRData, texTileCurbR, pixTileCurbR);
-		pixTileCurbS = prepareTextureData(tileCurbSData, texTileCurbS, pixTileCurbS);
-		pixTileCurbN = prepareTextureData(tileCurbNData, texTileCurbN, pixTileCurbN);
-
-		pixTileCurbOuterCornerNL = prepareTextureData(tileCurbOuterCornerNLData, texTileCurbOuterCornerNL,
-				pixTileCurbOuterCornerNL);
-		pixTileCurbOuterCornerNR = prepareTextureData(tileCurbOuterCornerNRData, texTileCurbOuterCornerNR,
-				pixTileCurbOuterCornerNR);
-		pixTileCurbOuterCornerSL = prepareTextureData(tileCurbOuterCornerSLData, texTileCurbOuterCornerSL,
-				pixTileCurbOuterCornerSL);
-		pixTileCurbOuterCornerSR = prepareTextureData(tileCurbOuterCornerSRData, texTileCurbOuterCornerSR,
-				pixTileCurbOuterCornerSR);
-
-		pixTileCurbInnerCornerNL = prepareTextureData(tileCurbInnerCornerNLData, texTileCurbInnerCornerNL,
-				pixTileCurbInnerCornerNL);
-		pixTileCurbInnerCornerNR = prepareTextureData(tileCurbInnerCornerNRData, texTileCurbInnerCornerNR,
-				pixTileCurbInnerCornerNR);
-		pixTileCurbInnerCornerSL = prepareTextureData(tileCurbInnerCornerSLData, texTileCurbInnerCornerSL,
-				pixTileCurbInnerCornerSL);
-		pixTileCurbInnerCornerSR = prepareTextureData(tileCurbInnerCornerSRData, texTileCurbInnerCornerSR,
-				pixTileCurbInnerCornerSR);
-
-		pixTileCurbFull = prepareTextureData(tileCurbFullData, texTileCurbFull, pixTileCurbFull);
-		pixTileCurbNone = prepareTextureData(tileCurbNoneData, texTileCurbNone, pixTileCurbNone);
-
-		colors2d = new int[loadedlevelTextureWidth + 1][loadedlevelTextureHeight + 1];
-
-//		Place colors to 2dArray for each pixel from texture loaded.
-		int loadedMapPixelX = -1;
-		int loadedMapPixelY = -1;
-
-		int noName = 0;
-		switch (loadedLevelPixmap.getWidth()) {
-		case 128:
-			noName = 8;
-			break;
-		case 256:
-			noName = 16;
-			break;
-		case 512:
-			noName = 32;
-			break;
-		case 1024:
-			noName = 64;
-			break;
-		}
-
-		System.out.println("New map is: " + generatedLevelPixmap.getWidth() + " x " + generatedLevelPixmap.getHeight());
 		
+//		Place colors to 2dArray for each pixel from texture loaded.
+
 		/**
 		 * Need to read custom objects before painting map: As some objects such as jumps will have tiles on the floor.
 		 */
@@ -236,54 +155,31 @@ public class Map extends Entity {
 //		screen.getEntities().add(new Jump(screen, new Vector3(xo, 0, zo), 0 - loadedLevelPixmap.getWidth() / 2, 0 - loadedLevelPixmap.getHeight() / 2, 1, 1));
 ////		test end
 
-		for (int x = 0; x < generatedLevelPixmap.getWidth(); x++) {
-			if (x % loadedlevelTextureWidth / noName == 0) { // noName was (tileSize / 2) when loading 128x128.
-				loadedMapPixelX++;
-			}
-
-			for (int y = 0; y < generatedLevelPixmap.getHeight(); y++) {
-				if (loadedlevelTextureHeight % tileSize == 0) {
-					loadedMapPixelY++;
-					if (loadedMapPixelY > loadedlevelTextureHeight) {
-						loadedMapPixelY = 0;
-					}
-				}
-
-				final int currentColor = loadedLevelPixmap.getPixel(loadedMapPixelX, loadedMapPixelY);
-				colors2d[loadedMapPixelX][loadedMapPixelY] = currentColor;
+		int srcWidth = loadedLevelPixmap.getWidth();
+		int srcHeight = loadedLevelPixmap.getHeight();
+		
+		colors2d = new int[srcWidth + 1][srcHeight + 1];
+		for(int y=0 ; y<srcHeight ; y++){
+			for(int x=0 ; x<srcWidth ; x++){
+				colors2d[x][y] = loadedLevelPixmap.getPixel(x, y);
 			}
 		}
 
 //		Paint tiles to generated world pixmap.
-		int tileX = -1;
-		int tileY = -1;
 
-		for (int i = 0; i < loadedLevelPixmap.getWidth() * tileSize; i++) {
-			tileX++;
-			if (tileX > tileSize - 1) {
-				tileX = 0;
-			}
+		MapDrawer mapDrawer = new MapDrawer();
+		
+		mapDrawer.begin(srcWidth, srcHeight, tileSize, tileSize);
+		
+		for (int x = 0; x < srcWidth; x++) {
 
-			for (int j = 0; j < loadedLevelPixmap.getHeight() * tileSize; j++) {
-				tileY++;
-				if (tileY > tileSize - 1) {
-					tileY = 0;
-				}
+			for (int y = 0; y < srcHeight ; y++) {
 
-				final int color = colors2d[(i / tileSize)][(j / tileSize)];
-				final int colorAbove = colors2d[i / tileSize][(j / tileSize) + 1];
-
-				int colorUnder = 0;
-				if ((j / tileSize) - 1 >= 0) {
-					colorUnder = colors2d[i / tileSize][(j / tileSize) - 1];
-				}
-
-				int colorLeft = 0;
-				if ((i / tileSize) - 1 >= 0) {
-					colorLeft = colors2d[(i / tileSize) - 1][j / tileSize];
-				}
-
-				final int colorRight = colors2d[(i / tileSize) + 1][j / tileSize];
+				final int color = colors2d[x][y];
+				final int colorAbove = colors2d[x][y+1];
+				final int colorUnder = y > 0 ? colors2d[x][y-1] : 0;
+				final int colorLeft  = x > 0 ? colors2d[x-1][y] : 0;
+				final int colorRight = colors2d[x+1][y];
 
 				boolean roadUp = false;
 				boolean roadDown = false;
@@ -296,7 +192,7 @@ public class Map extends Entity {
 				boolean curbRight = false;
 
 				if (color == redVoid) {
-					generatedLevelPixmap.drawPixel(i, j, pixTileVoid.getPixel(tileX, tileY));
+					mapDrawer.drawTile(x, y, texTileVoid);
 				} else if (color == greenCurb) {
 //					Determine neighbour color
 					if (colorAbove == greyRoad || colorAbove == lightGreyRoad) {
@@ -326,58 +222,58 @@ public class Map extends Entity {
 //					Paint correct tile
 					if (!roadUp && !roadDown && !roadLeft && !roadRight && !curbUp && !curbDown && !curbLeft
 							&& !curbRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbFull.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbFull);
 					} else if (roadUp && roadDown && roadLeft && roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbNone.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbNone);
 					} else if (roadUp && roadDown) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbNone.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbNone);
 					} else if (roadLeft && roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbNone.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbNone);
 					}
 
 					else if (!roadUp && curbDown && !roadLeft && curbRight) { // Outer corners
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbOuterCornerSL.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerSL);
 					} else if (!roadUp && curbDown && curbLeft && !roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbOuterCornerSR.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerSR);
 					} else if (curbUp && !roadDown && !roadLeft && curbRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbOuterCornerNL.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerNL);
 					} else if (curbUp && !roadDown && curbLeft && !roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbOuterCornerNR.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerNR);
 					}
 
 					else if (!roadUp && roadDown && !roadLeft && roadRight) { // Inner corners
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbInnerCornerSL.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerSL);
 					} else if (!roadUp && roadDown && roadLeft && !roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbInnerCornerSR.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerSR);
 					} else if (roadUp && !roadDown && !roadLeft && roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbInnerCornerNL.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerNL);
 					} else if (roadUp && !roadDown && roadLeft && !roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbInnerCornerNR.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerNR);
 					}
 
 					else if (roadUp && !roadDown && !roadLeft && !roadRight) { // Next to road
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbN.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbN);
 					} else if (roadDown && !roadUp && !roadLeft && !roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbS.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbS);
 					} else if (roadLeft && !roadUp && !roadDown && !roadRight) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbR.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbR);
 					} else if (roadRight && !roadUp && !roadDown && !roadLeft) {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbL.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbL);
 					} else {
-						generatedLevelPixmap.drawPixel(i, j, pixTileCurbFull.getPixel(tileX, tileY));
+						mapDrawer.drawTile(x, y, texTileCurbFull);
 					}
 				} else if (color == greyRoad) {
-//					System.out.println("GREY");
-					generatedLevelPixmap.drawPixel(i, j, pixTileRoad01.getPixel(tileX, tileY));
+					mapDrawer.drawTile(x, y, texTileRoad01);
 				} else if (color == lightGreyRoad) {
-					generatedLevelPixmap.drawPixel(i, j, pixTileRoad02.getPixel(tileX, tileY));
+					mapDrawer.drawTile(x, y, texTileRoad02);
 				}
-//				else {
-//					generatedLevelPixmap.drawPixel(i, j, Color.YELLOW.toIntBits());
-//					System.out.println("OTHER");
-//				}
 			}
 		}
+		
+		Texture levelTextureGenerated = mapDrawer.end();
+		levelTextureGenerated.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		System.out.println("New map is: " + levelTextureGenerated.getWidth() + " x " + levelTextureGenerated.getHeight());
 
 //		Place objects
 		for (int x = 0; x < loadedLevelPixmap.getWidth(); x++) {
@@ -394,9 +290,6 @@ public class Map extends Entity {
 				}
 			}
 		}
-
-		Texture levelTextureGenerated = new Texture(generatedLevelPixmap);
-		levelTextureGenerated.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		ModelBuilder modelBuilder = new ModelBuilder();
 		mdlLevel = modelBuilder.createBox(loadedLevelPixmap.getWidth(), 0, loadedLevelPixmap.getHeight(),
@@ -422,41 +315,18 @@ public class Map extends Entity {
 
 //		Dispose
 		loadedLevelPixmap.dispose();
-		generatedLevelPixmap.dispose();
-
-		pixTileCurbL.dispose();
-		pixTileCurbR.dispose();
-		pixTileCurbS.dispose();
-		pixTileCurbN.dispose();
-		pixTileRoad01.dispose();
-		pixTileRoad02.dispose();
-		pixTileVoid.dispose();
-
-		pixTileCurbOuterCornerNL.dispose();
-		pixTileCurbOuterCornerNR.dispose();
-		pixTileCurbOuterCornerSL.dispose();
-		pixTileCurbOuterCornerSR.dispose();
-
-		pixTileCurbInnerCornerNL.dispose();
-		pixTileCurbInnerCornerNR.dispose();
-		pixTileCurbInnerCornerSL.dispose();
-		pixTileCurbInnerCornerSR.dispose();
-
-		pixTileCurbFull.dispose();
-		pixTileCurbNone.dispose();
 
 //		Load status
 		long endTime = System.currentTimeMillis();
 		System.out.println("STATUS: Building level finished. (" + (endTime - startTime) + " ms)");
 	}
 
-	private Pixmap prepareTextureData(TextureData td, Texture tex, Pixmap pix) {
-		td = tex.getTextureData();
+	private Pixmap prepareTextureData(Texture tex) {
+		TextureData td = tex.getTextureData();
 		if (!td.isPrepared()) {
 			td.prepare();
 		}
-
-		return pix = td.consumePixmap();
+		return td.consumePixmap();
 	}
 
 	private void setupWorldEdgeTiles(float x, float y) {
