@@ -45,4 +45,15 @@ public abstract class ControllerBase {
 		return false;
 	}
 	
+	public boolean isJustOn(Object command){
+		for(Entry<TriggerBase, Command> e : triggers){
+			if(e.value.cmd == command){
+				if(e.key.isOn(this) && !e.key.wasOn){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 }
