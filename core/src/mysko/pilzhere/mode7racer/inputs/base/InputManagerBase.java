@@ -75,6 +75,17 @@ public abstract class InputManagerBase {
 			keyboard.triggers.put(new KeyboardTrigger(key), cm);
 		}
 	}
+	
+	/**
+	 * Swap input states in order to use isJustOn states
+	 */
+	public void swap(){
+		for(ControllerBase c : activeControllers){
+			for(Entry<TriggerBase, Command> trigger : c.triggers){
+				trigger.key.wasOn = trigger.key.isOn(c);
+			}
+		}
+	}
 
 	public void load(InputsData data) {
 		
