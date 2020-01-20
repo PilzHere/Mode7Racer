@@ -35,7 +35,7 @@ public class Map extends Entity {
 		this.blink = blink;
 	}
 
-	private float bgFrontPosX, bgBackPosX;
+	private float bgFrontPosX = 0, bgBackPosX = 0;
 
 	public float getBgFrontPosX() {
 		return bgFrontPosX;

@@ -314,10 +314,10 @@ public class GameScreen implements Screen {
 
 	private void renderMapBackgrounds() {
 		batch.begin();
-		batch.draw(currentMap.getLevelBgBack(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgBackPosX(), 17,
-				viewportWidthStretched, 64);
-		batch.draw(currentMap.getLevelBgFront(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgFrontPosX(), 17,
-				viewportWidthStretched, 64);
+		batch.draw(currentMap.getLevelBgBack(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgBackPosX() + 192, 17,
+				viewportWidthStretched, 64); // bgCurrentX +192 to center city on start.
+		batch.draw(currentMap.getLevelBgFront(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgFrontPosX() + 192, 17,
+				viewportWidthStretched, 64); // bgCurrentX +192 to center city on start.
 		batch.end();
 	}
 
@@ -332,7 +332,7 @@ public class GameScreen implements Screen {
 		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidth, viewportHeight);
 		batch.begin();
 		batch.setColor(Color.WHITE); // Use to tint color of fog for loaded level.
-		batch.draw(currentMap.getTexFog(), 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 40);
+		batch.draw(currentMap.getTexFog(), 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 64);
 		batch.setColor(Color.WHITE);
 		batch.end();
 	}
