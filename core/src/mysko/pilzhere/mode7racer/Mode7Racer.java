@@ -9,10 +9,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import mysko.pilzhere.mode7racer.inputs.GameInputManager;
@@ -106,6 +107,7 @@ public class Mode7Racer extends Game {
 		mdlBatch = new ModelBatch();
 		
 		assMan = new AssetManager();
+		assMan.setLoader(TiledMap.class, new TmxMapLoader());
 		
 		updateTimeEnd(timePro);
 		System.out.println("STATUS: Finished setting up critical objects. (" + timeEnd + " ms)");
@@ -166,6 +168,8 @@ public class Mode7Racer extends Game {
 		assMan.load("level03.png", Texture.class);
 		assMan.load("level04.png", Texture.class);
 		assMan.load("levelMuteCity.png", Texture.class);
+		
+		assMan.load("maps/silence.tmx", TiledMap.class);
 		
 		assMan.load("jumpHorizontal01.png", Texture.class);
 		assMan.load("jumpHorizontalRight01.png", Texture.class);

@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.Array;
 import mysko.pilzhere.mode7racer.entities.colliders.Curb;
 import mysko.pilzhere.mode7racer.entities.colliders.Edge;
 import mysko.pilzhere.mode7racer.entities.colliders.Jump;
+import mysko.pilzhere.mode7racer.loaders.MapData;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 import mysko.pilzhere.mode7racer.utils.MapDrawer;
 
@@ -145,14 +146,23 @@ public class Map extends Entity {
 //	boolean entityDrawn;
 
 	public void loadLevelFromTexture() {
-		long startTime = System.currentTimeMillis();
-		System.out.println("STATUS: Building level.");
-
 //		Texture levelLevelMap = screen.assMan.get("level02.png", Texture.class);
 //		Texture levelLevelMap = screen.assMan.get("level04.png", Texture.class);
 //		Texture levelLevelMap = screen.assMan.get("level03.png", Texture.class);
 		Texture levelLevelMap = screen.assMan.get("levelMuteCity.png", Texture.class);
+		
+		final MapData mapData = new MapData();
+		mapData.mapTexture = levelLevelMap;
+		
+		loadLevelFromTexture(mapData);
+	}
+	
+	public void loadLevelFromTexture(final MapData mapData) {
+		long startTime = System.currentTimeMillis();
+		System.out.println("STATUS: Building level.");
 
+		final Texture levelLevelMap = mapData.mapTexture;
+		
 //		Load level texture
 		Pixmap loadedLevelPixmap = prepareTextureData(levelLevelMap);
 
