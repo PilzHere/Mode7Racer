@@ -89,13 +89,13 @@ public class Mode7Racer extends Game {
 	
 	@Override
 	public void create () {		
+		System.out.println("Mode7Racer is running.");
+		updateCurrentTime();
+		System.out.println("STATUS: Setting up critical objects...");
 		
 		storage = new GameStorage(this);
-		storage.load();
+		storage.load();		
 		
-		System.out.println("Mode7Racer is running.");
-		System.out.println("STATUS: Setting up critical objects...");
-		updateCurrentTime();
 		updateTimePro();
 		
 		fb01 = new FrameBuffer(Format.RGB888, 256, 224, true);
@@ -130,7 +130,15 @@ public class Mode7Racer extends Game {
 		System.out.println("STATUS: Total time for loading and setting up everything: (" + timeEnd + " ms)");
 	}
 	
-	private void loadAssets() {		
+	private void loadAssets() {
+		assMan.load("road01.png", Texture.class);
+		assMan.load("road02.png", Texture.class);
+		assMan.load("void.png", Texture.class);
+		
+		assMan.load("jumpHorizontal01.png", Texture.class);
+		assMan.load("jumpHorizontalLeft01.png", Texture.class);
+		assMan.load("jumpHorizontalRight01.png", Texture.class);
+		
 		assMan.load("curb0101.png", Texture.class); // l
 		assMan.load("curb1010.png", Texture.class); // r
 		assMan.load("curb1100.png", Texture.class); // s
@@ -149,10 +157,6 @@ public class Mode7Racer extends Game {
 		assMan.load("curb0000.png", Texture.class); // none
 		assMan.load("curb1111.png", Texture.class); // full
 		
-		assMan.load("road01.png", Texture.class);
-		assMan.load("road02.png", Texture.class);
-		assMan.load("void.png", Texture.class);
-		
 		assMan.load("levelBg01Back.png", Texture.class);
 		assMan.load("levelBg01Front.png", Texture.class);
 		
@@ -161,6 +165,7 @@ public class Mode7Racer extends Game {
 		assMan.load("level02.png", Texture.class);
 		assMan.load("level03.png", Texture.class);
 		assMan.load("level04.png", Texture.class);
+		assMan.load("levelMuteCity.png", Texture.class);
 		
 		assMan.load("jumpHorizontal01.png", Texture.class);
 		assMan.load("jumpHorizontalRight01.png", Texture.class);

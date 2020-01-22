@@ -1,3 +1,5 @@
+TODO: Implement placing objects before reading pixels from map so that map can check if objects exist at current pixel.
+
 TODO: Implement classic intro cam.
 TODO: Implement jumps
 Jump from ramps.
@@ -15,6 +17,8 @@ Buildings, domes, futuristic stuff...
 TODO: Sounds? Music?
 Download samples and use them? Change/create new with Reaper and Akai MPK Mini MK2?
 RafaSKB said we should contact Barry Leitch for music to the game. He has made music for Top Gear game and many more!
+
+TODO: Give credits to MGSX for awesome FBO map rendering @github AND in game!
 
 MAYBE: Fix background position x to scroll correctly with camera.
 

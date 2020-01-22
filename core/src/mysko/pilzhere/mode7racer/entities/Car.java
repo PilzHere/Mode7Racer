@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import mysko.pilzhere.mode7racer.entities.colliders.Curb;
 import mysko.pilzhere.mode7racer.entities.colliders.Edge;
+import mysko.pilzhere.mode7racer.entities.colliders.Jump;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
 public class Car extends Entity {
@@ -23,9 +24,9 @@ public class Car extends Entity {
 	private final float rectSize = 0.25f;
 
 	private Sprite sprite;
-	
+
 	private boolean inAir;
-	
+
 	private final int maxTurbos = 3;
 	public int currentTurbos = maxTurbos; // get
 	public boolean hasTurbo; // get
@@ -48,16 +49,20 @@ public class Car extends Entity {
 	private Texture texCar01BigBackTurnRight02;
 
 	private Texture texCar01Size09BackLeft01, texCar01Size08BackLeft01, texCar01Size07BackLeft01,
-			texCar01Size06BackLeft01, texCar01Size05BackLeft01, texCar01Size04BackLeft01, texCar01Size03BackLeft01, texCar01Size02BackLeft01, texCar01Size01BackLeft01;
+			texCar01Size06BackLeft01, texCar01Size05BackLeft01, texCar01Size04BackLeft01, texCar01Size03BackLeft01,
+			texCar01Size02BackLeft01, texCar01Size01BackLeft01;
 
 	private Texture texCar01Size09Left01, texCar01Size08Left01, texCar01Size07Left01, texCar01Size06Left01,
-			texCar01Size05Left01, texCar01Size04Left01, texCar01Size03Left01, texCar01Size02Left01, texCar01Size01Left01;
+			texCar01Size05Left01, texCar01Size04Left01, texCar01Size03Left01, texCar01Size02Left01,
+			texCar01Size01Left01;
 
 	private Texture texCar01Size09Front01, texCar01Size08Front01, texCar01Size07Front01, texCar01Size06Front01,
-			texCar01Size05Front01, texCar01Size04Front01, texCar01Size03Front01, texCar01Size02Front01, texCar01Size01Front01;
+			texCar01Size05Front01, texCar01Size04Front01, texCar01Size03Front01, texCar01Size02Front01,
+			texCar01Size01Front01;
 
 	private Texture texCar01Size09FrontLeft01, texCar01Size08FrontLeft01, texCar01Size07FrontLeft01,
-			texCar01Size06FrontLeft01, texCar01Size05FrontLeft01, texCar01Size04FrontLeft01, texCar01Size03FrontLeft01, texCar01Size02FrontLeft01, texCar01Size01FrontLeft01;
+			texCar01Size06FrontLeft01, texCar01Size05FrontLeft01, texCar01Size04FrontLeft01, texCar01Size03FrontLeft01,
+			texCar01Size02FrontLeft01, texCar01Size01FrontLeft01;
 
 	private void getTextures() {
 //		Back
@@ -144,10 +149,10 @@ public class Car extends Entity {
 					angle -= currentTurnAmount;
 				}
 			}
-			
+
 			if (!isCPU) // TESTING SPRITES
 				leftTurn = true;
-			
+
 //			set currentTurnAmount negative for left turns, dont use this for car after.
 			currentTurnAmount = -currentTurnAmount;
 		}
@@ -167,19 +172,21 @@ public class Car extends Entity {
 					angle += currentTurnAmount;
 				}
 			}
-			
+
 			if (!isCPU) // TESTING SPRITES
 				rightTurn = true;
 		}
 	}
-	
+
 	private boolean shiftLeft;
+
 	public void onInputShiftLeft(float delta) {
 		if (carCurrentSpeed > 0)
 			shiftLeft = true;
 	}
-	
+
 	private boolean shiftRight;
+
 	public void onInputShiftRight(float delta) {
 		if (carCurrentSpeed > 0)
 			shiftRight = true;
@@ -194,7 +201,7 @@ public class Car extends Entity {
 	private final long turboCd = 2250L;
 	private boolean newTurboCdSet;
 	private long newTurboCdTime;
-	
+
 	public void onInputT(float delta) {
 		if (carCurrentSpeed > 0) {
 			if (!newTurboCdSet) {
@@ -205,15 +212,16 @@ public class Car extends Entity {
 			}
 		}
 	}
-	
+
 	public void onNoInputW(float delta) {
 		if (bounceX || bounceZ)
-			carCurrentSpeed -= carCurrentSpeedIncrement * bounceBrakesStrength * motorBrakeStrength * delta; // Bounce brake.
+//			Bounce brake.
+			carCurrentSpeed -= carCurrentSpeedIncrement * bounceBrakesStrength * motorBrakeStrength * delta;
 		else {
 			carCurrentSpeed -= carCurrentSpeedIncrement * motorBrakeStrength * delta; // Motor brake.
 		}
 	}
-	
+
 	public void onInputW(float delta) {
 		carCurrentSpeed += carCurrentSpeedIncrement * delta;
 	}
@@ -224,8 +232,6 @@ public class Car extends Entity {
 		carCurrentSpeed -= carCurrentSpeedIncrement * brakesStrength * delta;
 	}
 
-	
-	
 	private int hp = 100; // get
 	private boolean gotHitTimeSet;
 	private long hitNewTime;
@@ -248,13 +254,15 @@ public class Car extends Entity {
 			}
 		} else if (object instanceof Edge) {
 //			System.out.println("Car edge hit!");
+		} else if (object instanceof Jump) {
+			System.err.println("Jump HIT");
 		}
 	}
 
 	public void moveUp(float delta) {
 		position.y += 1 * delta;
 	}
-	
+
 	private long bounceXTotalTime;
 	private long bounceZTotalTime;
 	private boolean bounceTimerXSet;
@@ -265,13 +273,13 @@ public class Car extends Entity {
 	@Override
 	public void tick(float delta) {
 		resetData();
-		
+
 		if (isCPU) {
 			onInputA(delta); // turn left
 //			onInputD(delta); // turn right
 			onInputW(delta); // pedal to the metal
 		}
-		
+
 		setCurrentSpeedAndSpeedLimit(delta);
 		updateTurboCooldown();
 
@@ -294,13 +302,12 @@ public class Car extends Entity {
 
 		checkRightOrLeftTurn();
 
-		
 		if (this == screen.playerCar) {
 			moveBackgroundsWithTurn(delta);
 		}
-		
+
 		updateLastPosition();
-		
+
 		carCurrentSpeedKMpH = carCurrentSpeed * toKMpH;
 	}
 
@@ -314,22 +321,22 @@ public class Car extends Entity {
 			}
 		}
 	}
-	
+
 	private void setCurrentSpeedAndSpeedLimit(float delta) {
 		if (hasTurbo) {
 			carCurrentMaximumSpeed = carTurboMaximumSpeed;
 			carCurrentSpeedIncrement = carTurboSpeedIncrement;
-			
+
 			if (!newTurboCdSet) {
 				newTurboCdTime = screen.getCurrentTime() + turboCd;
 				newTurboCdSet = true;
 			}
 		} else {
-			carCurrentMaximumSpeed = carNormalMaximumSpeed;			
+			carCurrentMaximumSpeed = carNormalMaximumSpeed;
 			carCurrentSpeedIncrement = carNormalSpeedIncrement;
 		}
 	}
-	
+
 	private void updateGotHitTimeSet() {
 		if (gotHitTimeSet) {
 			if (screen.getCurrentTime() > hitNewTime) {
@@ -451,13 +458,14 @@ public class Car extends Entity {
 	 * 
 	 * @param delta
 	 */
-	
+
 	private void moveBackgroundsWithTurn(float delta) {
 //		Not perfect but works...
-		screen.getCurrentMap().setBgFrontPosX(
-				screen.getCurrentMap().getBgFrontPosX() + currentTurnAmount * 100 * 128 * delta);
-		screen.getCurrentMap().setBgBackPosX(screen.getCurrentMap().getBgBackPosX() + currentTurnAmount * 100 * 64 * delta);
-		
+		screen.getCurrentMap()
+				.setBgFrontPosX(screen.getCurrentMap().getBgFrontPosX() + currentTurnAmount * 100 * 128 * delta);
+		screen.getCurrentMap()
+				.setBgBackPosX(screen.getCurrentMap().getBgBackPosX() + currentTurnAmount * 100 * 64 * delta);
+
 //		Old
 //		if (rightTurn) {
 //			screen.getCurrentMap().setBgFrontPosX(
@@ -481,18 +489,18 @@ public class Car extends Entity {
 		}
 	}
 
-	private final float carNormalMaximumSpeed = 1.0f;
-	private final float carTurboMaximumSpeed = 1.5f;
+	private final float carNormalMaximumSpeed = 0.75f; // was 1
+	private final float carTurboMaximumSpeed = 1.0f; // was 1.5
 	public float carCurrentMaximumSpeed = carNormalMaximumSpeed; // get
-	
+
 //	private boolean breakFromTurbo;
-	
+
 	/**
 	 * Limit car speed.
 	 */
 	private void clampSpeed(float delta) {
 //		breakFromTurbo = false;
-		
+
 //		TODO: this code deosnt work properly, change it or do we even need it? (deaccelerate after turbo).
 //		if (!hasTurbo) {
 //			if (carCurrentSpeed > carCurrentMaximumSpeed) {
@@ -504,11 +512,10 @@ public class Car extends Entity {
 //			if (!breakFromTurbo)
 //				carCurrentSpeed = carCurrentMaximumSpeed;
 //		}
-		
-		
+
 		if (carCurrentSpeed > carCurrentMaximumSpeed) {
 //			if (!breakFromTurbo) {
-				carCurrentSpeed = carCurrentMaximumSpeed;
+			carCurrentSpeed = carCurrentMaximumSpeed;
 //			}
 		} else if (carCurrentSpeed < 0) {
 			carCurrentSpeed = 0;
@@ -518,50 +525,50 @@ public class Car extends Entity {
 	private float newPosX;
 	private float newPosZ;
 
-	private final int carSpeedIncrementBoost = 40; // was 32
-	
+	private final int carSpeedIncrementBoost = 40; // was 40 was 32
+
 	private float sinAngle = angle;
 	private float cosAngle = angle;
-	
-	private final float slideAngle = 22.5f;
-	
+
+	private final float slideAngle = 22.5f * MathUtils.degreesToRadians;
+
 	/**
 	 * Move with speed in angle direction.
 	 * 
 	 * @param delta
 	 */
-	private void moveWithAngle(float delta) {		
+	private void moveWithAngle(float delta) {
 		sinAngle = angle;
 		cosAngle = angle;
-		
+
 		adjustAngleForShifting(shiftLeft, shiftRight, sinAngle, cosAngle);
-		
+
 		if (!bounceX) {
 			newPosX += carCurrentSpeed * carSpeedIncrementBoost * MathUtils.sin(sinAngle) * delta;
 		} else {
 			newPosX -= carCurrentSpeed * currentBounceX * MathUtils.sin(sinAngle) * delta;
-		}		
+		}
 
 		if (!bounceZ) {
 			newPosZ -= carCurrentSpeed * carSpeedIncrementBoost * MathUtils.cos(cosAngle) * delta;
 		} else {
 			newPosZ += carCurrentSpeed * currentBounceZ * MathUtils.cos(cosAngle) * delta;
-		}		
+		}
 	}
-	
+
 	private void adjustAngleForShifting(boolean shiftLeft, boolean shiftRight, float sinAngle, float cosAngle) {
 		if (shiftLeft) {
 //			System.err.println("SHIFT LEFT");
-			sinAngle -= slideAngle * MathUtils.degreesToRadians;
-			cosAngle -= slideAngle * MathUtils.degreesToRadians;
+			sinAngle -= slideAngle;
+			cosAngle -= slideAngle;
 		}
-		
+
 		if (shiftRight) {
 //			System.err.println("SHIFT Right");
-			sinAngle += slideAngle * MathUtils.degreesToRadians;
-			cosAngle += slideAngle * MathUtils.degreesToRadians;
+			sinAngle += slideAngle;
+			cosAngle += slideAngle;
 		}
-		
+
 		this.sinAngle = sinAngle;
 		this.cosAngle = cosAngle;
 	}
@@ -587,7 +594,7 @@ public class Car extends Entity {
 				}
 			}
 		}
-		
+
 		for (Car car : screen.cars.values()) {
 			if (car.rect != null) {
 				if (car.rect.overlaps(this.rect)) {
@@ -623,7 +630,7 @@ public class Car extends Entity {
 				}
 			}
 		}
-		
+
 		for (Car car : screen.cars.values()) {
 			if (car.rect != null) {
 				if (car.rect.overlaps(this.rect)) {
@@ -707,7 +714,7 @@ public class Car extends Entity {
 			setSpriteSizeWithDistanceFromCam(distFromCam, distChangeSprite);
 		else
 			spriteSize = SpriteSize.ONE;
-		setSpriteTextureWithSizeAndDirection(spriteSize, spriteDirection, flipSpriteX);		
+		setSpriteTextureWithSizeAndDirection(spriteSize, spriteDirection, flipSpriteX);
 
 //		temp?
 		if (this == screen.playerCar) {
@@ -720,7 +727,7 @@ public class Car extends Entity {
 			} else {
 				sprite.setTexture(texCar01Size09Back01);
 			}
-		}	
+		}
 
 		sprite.setSize(
 				MathUtils.round(
@@ -737,7 +744,7 @@ public class Car extends Entity {
 
 //		if (!overlapY)
 //			rect.setY(position.z - rectSize / 2);
-		
+
 		render = screen.spriteFitsInScreen(screenPos.cpy(), sprite);
 
 		if (render) {
@@ -759,6 +766,7 @@ public class Car extends Entity {
 
 	/**
 	 * Calculate sprite direction by the angle to player car.
+	 * 
 	 * @param angleFromPlayerCar
 	 */
 	private void calculateSpriteDirection(float angleFromPlayerCar) {
@@ -807,9 +815,10 @@ public class Car extends Entity {
 			}
 		}
 	}
-	
+
 	/**
 	 * Update sprite size depending on distance from player camera.
+	 * 
 	 * @param distance
 	 * @param distanceMultiplier
 	 */
@@ -834,9 +843,10 @@ public class Car extends Entity {
 			spriteSize = SpriteSize.NINE;
 		}
 	}
-	
+
 	/**
 	 * Upates sprite texture depending on size and direction.
+	 * 
 	 * @param size
 	 * @param dir
 	 * @param flipX
@@ -1168,9 +1178,9 @@ public class Car extends Entity {
 			}
 			break;
 		case SEVEN:
-			
+
 //			TODO: THESE SPRITES DO NOT EXIST. MAYBE IMPLEMENT LATER?
-			
+
 			switch (dir) {
 			case DOWN:
 				sprite.setTexture(texCar01Size03Front01);
