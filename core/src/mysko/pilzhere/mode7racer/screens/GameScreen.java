@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -31,6 +31,8 @@ import mysko.pilzhere.mode7racer.entities.Map;
 import mysko.pilzhere.mode7racer.entities.ModelInstanceBB;
 import mysko.pilzhere.mode7racer.inputs.GameInputManager.PlayerCommand;
 import mysko.pilzhere.mode7racer.inputs.base.ControllerBase;
+import mysko.pilzhere.mode7racer.loaders.MapData;
+import mysko.pilzhere.mode7racer.loaders.MapLoader;
 import mysko.pilzhere.mode7racer.ui.GameHUD;
 
 public class GameScreen implements Screen {
@@ -108,8 +110,14 @@ public class GameScreen implements Screen {
 		viewport = new FitViewport(viewportWidthStretched, viewportHeight, cam);
 
 		currentMap = new Map(this, new Vector3());
-		currentMap.loadLevelFromTexture();
 
+		// old map loading
+//		currentMap.loadLevelFromTexture();
+
+		// new map loading
+		final MapData mapData = new MapLoader().load(assMan.get("maps/silence.tmx", TiledMap.class));
+		currentMap.loadLevelFromTexture(mapData);
+		
 		cars.put(0, new Car(this, new Vector3(0, 0, 0), true, false));
 		cars.put(1, new Car(this, new Vector3(0, 0, -2), false, true));
 

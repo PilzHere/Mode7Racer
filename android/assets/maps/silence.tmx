@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="350" height="350" tilewidth="1" tileheight="1" nextobjectid="40">
+ <tileset firstgid="1" source="tileset-alt.tsx"/>
+ <imagelayer name="map">
+  <image source="level-silence.png" width="350" height="350"/>
+ </imagelayer>
+ <objectgroup name="objects">
+  <object id="13" gid="1" x="109" y="257" width="1" height="8" rotation="-360"/>
+  <object id="30" gid="9" x="305" y="91" width="1" height="1"/>
+  <object id="31" gid="9" x="301" y="91" width="1" height="1"/>
+  <object id="32" gid="9" x="301" y="99" width="1" height="1"/>
+  <object id="33" gid="9" x="305" y="99" width="1" height="1"/>
+  <object id="34" gid="9" x="301" y="107" width="1" height="1"/>
+  <object id="35" gid="9" x="305" y="107" width="1" height="1"/>
+  <object id="36" gid="9" x="301" y="115" width="1" height="1"/>
+  <object id="37" gid="9" x="305" y="115" width="1" height="1"/>
+  <object id="38" gid="10" x="130" y="261" width="73" height="3"/>
+  <object id="39" gid="2" x="295" y="77" width="1" height="4" rotation="-180"/>
+ </objectgroup>
+</map>
