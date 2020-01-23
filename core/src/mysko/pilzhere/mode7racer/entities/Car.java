@@ -26,8 +26,6 @@ public class Car extends Entity {
 
 	private Sprite sprite;
 
-	private boolean inAir;
-
 	private final int maxTurbos = 3;
 	public int currentTurbos = maxTurbos; // get
 	public boolean hasTurbo; // get
@@ -67,7 +65,7 @@ public class Car extends Entity {
 
 	private void getTextures() {
 		final AssetsManager assMan = screen.assMan;
-		
+
 //		Back
 		texCar01Size09Back01 = assMan.get(assMan.car01Size09Back01);
 		texCar01Size08Back01 = assMan.get(assMan.car01Size08Back01);
@@ -240,31 +238,37 @@ public class Car extends Entity {
 	private long hitNewTime;
 	private final long hitCd = 420L;
 
+	private boolean jump;
+	public boolean isInAir; // get
+
 	@Override
 	public void onHit(Object object, float delta) {
 		if (object instanceof Car) {
 			System.err.println("Hit a car!");
 		} else if (object instanceof Curb) {
-			// limit speed here?
+			if (!isInAir) {
+				curbsBlink = true;
 
-			curbsBlink = true;
-
-			if (!gotHitTimeSet) {
-				hp = hp - 5;
-				hitNewTime = screen.getCurrentTime() + hitCd;
-//				System.err.println("Car damage taken!");
-				gotHitTimeSet = true;
+				if (!gotHitTimeSet) {
+					hp = hp - 5;
+					hitNewTime = screen.getCurrentTime() + hitCd;
+//					System.err.println("Car damage taken!");
+					gotHitTimeSet = true;
+				}
 			}
 		} else if (object instanceof Edge) {
 //			System.out.println("Car edge hit!");
 		} else if (object instanceof Jump) {
-			System.err.println("Jump HIT");
+			if (!isInAir) {
+//				System.err.println("Jump HIT");
+				jump = true;
+			}
 		}
 	}
 
-	public void moveUp(float delta) {
-		position.y += 1 * delta;
-	}
+//	public void resetPosition() {
+//		position.set(Vector3.Zero);
+//	}
 
 	private long bounceXTotalTime;
 	private long bounceZTotalTime;
@@ -275,8 +279,14 @@ public class Car extends Entity {
 
 	@Override
 	public void tick(float delta) {
-		resetData();
+		resetOverlaps();
 
+		updateJump(delta);
+		updatePositionYIfNegative();
+		updateInAirState();
+		updateVelocityInAir(delta);
+
+//		Mini AI
 		if (isCPU) {
 			onInputA(delta); // turn left
 //			onInputD(delta); // turn right
@@ -312,6 +322,44 @@ public class Car extends Entity {
 		updateLastPosition();
 
 		carCurrentSpeedKMpH = carCurrentSpeed * toKMpH;
+	}
+
+	private final float gravityY = -12.5f;
+	private float velocityY;
+
+	private void updateVelocityInAir(float delta) {
+		if (isInAir) {
+			velocityY += gravityY * delta;
+			position.y += velocityY * delta;
+		}
+	}
+
+	private void updateInAirState() {
+		if (position.y > 0) {
+			isInAir = true;
+		} else {
+			isInAir = false;
+		}
+	}
+
+	private void updatePositionYIfNegative() {
+		if (position.y < 0) {
+			position.y = 0;
+		}
+	}
+
+	private float currentJumpForce;
+	private final float jumpForceBoost = 8f;
+
+	private void updateJump(float delta) {
+		if (jump) {
+			currentJumpForce = carCurrentSpeed / carCurrentMaximumSpeed;
+
+			velocityY = currentJumpForce * jumpForceBoost;
+			position.y += velocityY * delta;
+
+			jump = false;
+		}
 	}
 
 	private void updateTurboCooldown() {
@@ -427,7 +475,7 @@ public class Car extends Entity {
 	private boolean overlapX;
 	private boolean overlapY;
 
-	private void resetData() {
+	private void resetOverlaps() {
 		overlapX = false;
 		overlapY = false;
 	}
@@ -587,11 +635,13 @@ public class Car extends Entity {
 
 		for (Entity ent : screen.getEntities()) {
 			if (ent.rect != null) {
-				if (ent.rect.overlaps(this.rect)) {
-					if (ent.rect != this.rect) {
+				if (ent.rect != this.rect) {
+					if (ent.rect.overlaps(this.rect)) {
 						onHit(ent, delta);
-						if (ent instanceof Edge) {
-							overlapX = true;
+						if (!isInAir) {
+							if (ent instanceof Edge) {
+								overlapX = true;
+							}
 						}
 					}
 				}
@@ -600,10 +650,12 @@ public class Car extends Entity {
 
 		for (Car car : screen.cars.values()) {
 			if (car.rect != null) {
-				if (car.rect.overlaps(this.rect)) {
-					if (car.rect != this.rect) {
-						onHit(car, delta);
-						overlapX = true;
+				if (car.rect != this.rect) {
+					if (car.rect.overlaps(this.rect)) {
+						if (isInAir == car.isInAir) {
+							onHit(car, delta);
+							overlapX = true;
+						}
 					}
 				}
 			}
@@ -623,11 +675,13 @@ public class Car extends Entity {
 
 		for (Entity ent : screen.getEntities()) {
 			if (ent.rect != null) {
-				if (ent.rect.overlaps(this.rect)) {
-					if (ent.rect != this.rect) {
+				if (ent.rect != this.rect) {
+					if (ent.rect.overlaps(this.rect)) {
 						onHit(ent, delta);
-						if (ent instanceof Edge) {
-							overlapY = true;
+						if (!isInAir) {
+							if (ent instanceof Edge) {
+								overlapY = true;
+							}
 						}
 					}
 				}
@@ -636,10 +690,12 @@ public class Car extends Entity {
 
 		for (Car car : screen.cars.values()) {
 			if (car.rect != null) {
-				if (car.rect.overlaps(this.rect)) {
-					if (car.rect != this.rect) {
-						onHit(car, delta);
-						overlapY = true;
+				if (car.rect != this.rect) {
+					if (car.rect.overlaps(this.rect)) {
+						if (isInAir == car.isInAir) {
+							onHit(car, delta);
+							overlapY = true;
+						}
 					}
 				}
 			}

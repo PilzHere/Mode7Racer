@@ -24,7 +24,7 @@ import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 import mysko.pilzhere.mode7racer.utils.MapDrawer;
 
-public class Map extends Entity {
+public class MapMaker extends Entity {
 	public Array<ModelInstanceBB> getMdlInstances() {
 		return mdlInstances;
 	}
@@ -69,8 +69,8 @@ public class Map extends Entity {
 
 	private final AssetsManager assMan;
 	
-	public Map(GameScreen screen, Vector3 position) {
-		super(screen, position);
+	public MapMaker(GameScreen screen) {
+		super(screen, Vector3.Zero);
 		
 		 assMan = screen.assMan;
 		
@@ -94,8 +94,6 @@ public class Map extends Entity {
 	private Texture levelBgFront, levelBgBack;
 
 	private void setupTextures() {
-		
-		
 		texTileCurbL = assMan.get(assMan.curb0101); // L
 		texTileCurbR = assMan.get(assMan.curb1010); // R
 		texTileCurbS = assMan.get(assMan.curb1100); // S

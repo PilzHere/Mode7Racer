@@ -27,7 +27,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import mysko.pilzhere.mode7racer.Mode7Racer;
 import mysko.pilzhere.mode7racer.entities.Car;
 import mysko.pilzhere.mode7racer.entities.Entity;
-import mysko.pilzhere.mode7racer.entities.Map;
+import mysko.pilzhere.mode7racer.entities.MapMaker;
 import mysko.pilzhere.mode7racer.entities.ModelInstanceBB;
 import mysko.pilzhere.mode7racer.inputs.GameInputManager.PlayerCommand;
 import mysko.pilzhere.mode7racer.inputs.base.ControllerBase;
@@ -41,8 +41,8 @@ public class GameScreen implements Screen {
 		return ents;
 	}
 
-	public Map getCurrentMap() {
-		return currentMap;
+	public MapMaker getCurrentMap() {
+		return mapMaker;
 	}
 
 	public PerspectiveCamera getCam() {
@@ -80,7 +80,7 @@ public class GameScreen implements Screen {
 	public final int viewportWidthStretched = 299; // As displayed stretched from SNES output.
 
 	public Car playerCar; // test
-	private Map currentMap;
+	private MapMaker mapMaker;
 	private Array<Entity> ents = new Array<Entity>();
 	public Array<Sprite> sprites = new Array<Sprite>(); // get
 	public HashMap<Integer, Car> cars = new HashMap<Integer, Car>();
@@ -99,7 +99,7 @@ public class GameScreen implements Screen {
 		this.fbo = this.game.getFb01();
 
 //		font01 = assMan.get("fonts/font01_16.fnt");
-		font01 = assMan.get("fonts/font01_08.fnt");
+		font01 = assMan.get(assMan.font01_08);
 
 		final int fOV = 78; // 33 or 80
 		cam = new PerspectiveCamera(fOV, 256, 224);
@@ -110,14 +110,14 @@ public class GameScreen implements Screen {
 
 		viewport = new FitViewport(viewportWidthStretched, viewportHeight, cam);
 
-		currentMap = new Map(this, new Vector3());
+		mapMaker = new MapMaker(this);
 
 		// old map loading
 //		currentMap.loadLevelFromTexture();
 
 		// new map loading
-		final MapData mapData = new MapLoader().load(assMan.get("maps/silence.tmx", TiledMap.class));
-		currentMap.loadLevelFromTexture(mapData);
+		final MapData mapData = new MapLoader().load(assMan.get(assMan.mapSilence, TiledMap.class));
+		mapMaker.loadLevelFromTexture(mapData);
 		
 		cars.put(0, new Car(this, new Vector3(0, 0, 0), true, false));
 		cars.put(1, new Car(this, new Vector3(0, 0, -2), false, true));
@@ -169,6 +169,10 @@ public class GameScreen implements Screen {
 		}
 
 		if (playerCar != null) {
+//			if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+//				playerCar.resetPosition();
+//			}
+			
 			if (controller.isOn(PlayerCommand.TURBO)) {
 				playerCar.onInputT(delta);
 			}
@@ -218,7 +222,7 @@ public class GameScreen implements Screen {
 	public float oldCamDirX;
 	
 	private void tick(float delta) {
-		currentMap.tick(delta);
+		mapMaker.tick(delta);
 
 		for (Car car : cars.values()) {
 			car.tick(delta);
@@ -323,9 +327,9 @@ public class GameScreen implements Screen {
 
 	private void renderMapBackgrounds() {
 		batch.begin();
-		batch.draw(currentMap.getLevelBgBack(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgBackPosX() + 192, 17,
+		batch.draw(mapMaker.getLevelBgBack(), 0, viewportHeight - 64 + 5, (int) mapMaker.getBgBackPosX() + 192, 17,
 				viewportWidthStretched, 64); // bgCurrentX +192 to center city on start.
-		batch.draw(currentMap.getLevelBgFront(), 0, viewportHeight - 64 + 5, (int) currentMap.getBgFrontPosX() + 192, 17,
+		batch.draw(mapMaker.getLevelBgFront(), 0, viewportHeight - 64 + 5, (int) mapMaker.getBgFrontPosX() + 192, 17,
 				viewportWidthStretched, 64); // bgCurrentX +192 to center city on start.
 		batch.end();
 	}
@@ -333,7 +337,7 @@ public class GameScreen implements Screen {
 	private void render3D(float delta) {
 //		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidthStretched, viewportHeight); // not needed?
 		mdlBatch.begin(cam);
-		currentMap.render3D(mdlBatch, delta);
+		mapMaker.render3D(mdlBatch, delta);
 		mdlBatch.end();
 	}
 
@@ -341,7 +345,7 @@ public class GameScreen implements Screen {
 		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidth, viewportHeight);
 		batch.begin();
 		batch.setColor(Color.WHITE); // Use to tint color of fog for loaded level.
-		batch.draw(currentMap.getTexFog(), 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 64);
+		batch.draw(mapMaker.getTexFog(), 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 64);
 		batch.setColor(Color.WHITE);
 		batch.end();
 	}
@@ -392,9 +396,9 @@ public class GameScreen implements Screen {
 
 		shapeRenderer.setColor(Color.WHITE);
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-		for (int x = 0; x < currentMap.colors2d.length; x++) {
-			for (int y = 0; y < currentMap.colors2d.length; y++) {
-				if (currentMap.colors2d[x][y] == currentMap.greenCurb) {
+		for (int x = 0; x < mapMaker.colors2d.length; x++) {
+			for (int y = 0; y < mapMaker.colors2d.length; y++) {
+				if (mapMaker.colors2d[x][y] == mapMaker.greenCurb) {
 					shapeRenderer.box(-((viewportWidth / 2) - x) + 128 + 64, (viewportHeight / 2) - y + 64, 0, 1, 1, 0);
 				}
 			}
