@@ -33,6 +33,7 @@ import mysko.pilzhere.mode7racer.inputs.GameInputManager.PlayerCommand;
 import mysko.pilzhere.mode7racer.inputs.base.ControllerBase;
 import mysko.pilzhere.mode7racer.loaders.MapData;
 import mysko.pilzhere.mode7racer.loaders.MapLoader;
+import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.ui.GameHUD;
 
 public class GameScreen implements Screen {
@@ -65,7 +66,7 @@ public class GameScreen implements Screen {
 	public final float camDesiredDistFromCar = 2.3f;
 
 	private final Mode7Racer game;
-	public final AssetManager assMan; // get
+	public final AssetsManager assMan; // get
 	private final SpriteBatch batch;
 	private final ShapeRenderer shapeRenderer;
 	private final ModelBatch mdlBatch;

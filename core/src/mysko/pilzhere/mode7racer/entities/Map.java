@@ -20,6 +20,7 @@ import mysko.pilzhere.mode7racer.entities.colliders.Curb;
 import mysko.pilzhere.mode7racer.entities.colliders.Edge;
 import mysko.pilzhere.mode7racer.entities.colliders.Jump;
 import mysko.pilzhere.mode7racer.loaders.MapData;
+import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 import mysko.pilzhere.mode7racer.utils.MapDrawer;
 
@@ -66,8 +67,13 @@ public class Map extends Entity {
 		return texFog;
 	}
 
+	private final AssetsManager assMan;
+	
 	public Map(GameScreen screen, Vector3 position) {
 		super(screen, position);
+		
+		 assMan = screen.assMan;
+		
 		setupTextures();
 	}
 
@@ -88,37 +94,39 @@ public class Map extends Entity {
 	private Texture levelBgFront, levelBgBack;
 
 	private void setupTextures() {
-		texTileCurbL = screen.assMan.get("curb0101.png"); // L
-		texTileCurbR = screen.assMan.get("curb1010.png"); // R
-		texTileCurbS = screen.assMan.get("curb1100.png"); // S
-		texTileCurbN = screen.assMan.get("curb0011.png"); // N
+		
+		
+		texTileCurbL = assMan.get(assMan.curb0101); // L
+		texTileCurbR = assMan.get(assMan.curb1010); // R
+		texTileCurbS = assMan.get(assMan.curb1100); // S
+		texTileCurbN = assMan.get(assMan.curb0011); // N
 
-		texTileCurbOuterCornerNL = screen.assMan.get("curb1110.png"); // NL
-		texTileCurbOuterCornerNR = screen.assMan.get("curb1101.png"); // NR
-		texTileCurbOuterCornerSL = screen.assMan.get("curb1011.png"); // SL
-		texTileCurbOuterCornerSR = screen.assMan.get("curb0111.png"); // SR
+		texTileCurbOuterCornerNL = assMan.get(assMan.curb1110); // NL
+		texTileCurbOuterCornerNR = assMan.get(assMan.curb1101); // NR
+		texTileCurbOuterCornerSL = assMan.get(assMan.curb1011); // SL
+		texTileCurbOuterCornerSR = assMan.get(assMan.curb0111); // SR
 
-		texTileCurbInnerCornerNL = screen.assMan.get("curb1000.png"); // black is NL
-		texTileCurbInnerCornerNR = screen.assMan.get("curb0100.png"); // black is NR
-		texTileCurbInnerCornerSL = screen.assMan.get("curb0010.png"); // black is SL
-		texTileCurbInnerCornerSR = screen.assMan.get("curb0001.png"); // black is SR
+		texTileCurbInnerCornerNL = assMan.get(assMan.curb1000); // black is NL
+		texTileCurbInnerCornerNR = assMan.get(assMan.curb0100); // black is NR
+		texTileCurbInnerCornerSL = assMan.get(assMan.curb0010); // black is SL
+		texTileCurbInnerCornerSR = assMan.get(assMan.curb0001); // black is SR
 
-		texTileCurbNone = screen.assMan.get("curb0000.png");
-		texTileCurbFull = screen.assMan.get("curb1111.png");
+		texTileCurbNone = assMan.get(assMan.curb0000);
+		texTileCurbFull = assMan.get(assMan.curb1111);
 
-		texTileRoad01 = screen.assMan.get("road01.png");
-		texTileRoad02 = screen.assMan.get("road02.png");
-		texTileVoid = screen.assMan.get("void.png");
+		texTileRoad01 = assMan.get(assMan.road01);
+		texTileRoad02 = assMan.get(assMan.road02);
+		texTileVoid = assMan.get(assMan.void01);
 
-		texTileJumpHori01 = screen.assMan.get("jumpHorizontal01.png");
-		texTileJumpHoriLeft01 = screen.assMan.get("jumpHorizontalLeft01.png");
-		texTileJumpHoriRight01 = screen.assMan.get("jumpHorizontalRight01.png");
+		texTileJumpHori01 = assMan.get(assMan.jumpHori01);
+		texTileJumpHoriLeft01 = assMan.get(assMan.jumpHoriLeft01);
+		texTileJumpHoriRight01 = assMan.get(assMan.jumpHoriRight01);
 
-		texFog = screen.assMan.get("fog01.png");
+		texFog = assMan.get(assMan.bgFog);
 		texFog.setWrap(TextureWrap.Repeat, TextureWrap.ClampToEdge);
 
-		levelBgBack = screen.assMan.get("levelBg01Back.png");
-		levelBgFront = screen.assMan.get("levelBg01Front.png");
+		levelBgBack = assMan.get(assMan.bg01Back);
+		levelBgFront = assMan.get(assMan.bg01Front);
 		levelBgBack.setWrap(TextureWrap.Repeat, TextureWrap.ClampToEdge);
 		levelBgFront.setWrap(TextureWrap.Repeat, TextureWrap.ClampToEdge);
 	}
@@ -146,10 +154,10 @@ public class Map extends Entity {
 //	boolean entityDrawn;
 
 	public void loadLevelFromTexture() {
-//		Texture levelLevelMap = screen.assMan.get("level02.png", Texture.class);
-//		Texture levelLevelMap = screen.assMan.get("level04.png", Texture.class);
-//		Texture levelLevelMap = screen.assMan.get("level03.png", Texture.class);
-		Texture levelLevelMap = screen.assMan.get("levelMuteCity.png", Texture.class);
+//		Texture levelLevelMap = assMan.get("level02.png", Texture.class);
+//		Texture levelLevelMap = assMan.get("level04.png", Texture.class);
+//		Texture levelLevelMap = assMan.get("level03.png", Texture.class);
+		Texture levelLevelMap = assMan.get(assMan.mapMuteCity, Texture.class);
 		
 		final MapData mapData = new MapData();
 		mapData.mapTexture = levelLevelMap;

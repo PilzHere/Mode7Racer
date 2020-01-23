@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import mysko.pilzhere.mode7racer.entities.colliders.Curb;
 import mysko.pilzhere.mode7racer.entities.colliders.Edge;
 import mysko.pilzhere.mode7racer.entities.colliders.Jump;
+import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
 public class Car extends Entity {
@@ -65,63 +66,65 @@ public class Car extends Entity {
 			texCar01Size02FrontLeft01, texCar01Size01FrontLeft01;
 
 	private void getTextures() {
+		final AssetsManager assMan = screen.assMan;
+		
 //		Back
-		texCar01Size09Back01 = screen.assMan.get("car01Size09Back01.png");
-		texCar01Size08Back01 = screen.assMan.get("car01Size08Back01.png");
-		texCar01Size07Back01 = screen.assMan.get("car01Size07Back01.png");
-		texCar01Size06Back01 = screen.assMan.get("car01Size06Back01.png");
-		texCar01Size05Back01 = screen.assMan.get("car01Size05Back01.png");
-		texCar01Size04Back01 = screen.assMan.get("car01Size04Back01.png");
-		texCar01Size03Back01 = screen.assMan.get("car01Size03Back01.png");
-		texCar01Size02Back01 = screen.assMan.get("car01Size02Back01.png");
-		texCar01Size01Back01 = screen.assMan.get("car01Size01Back01.png");
+		texCar01Size09Back01 = assMan.get(assMan.car01Size09Back01);
+		texCar01Size08Back01 = assMan.get(assMan.car01Size08Back01);
+		texCar01Size07Back01 = assMan.get(assMan.car01Size07Back01);
+		texCar01Size06Back01 = assMan.get(assMan.car01Size06Back01);
+		texCar01Size05Back01 = assMan.get(assMan.car01Size05Back01);
+		texCar01Size04Back01 = assMan.get(assMan.car01Size04Back01);
+		texCar01Size03Back01 = assMan.get(assMan.car01Size03Back01);
+		texCar01Size02Back01 = assMan.get(assMan.car01Size02Back01);
+		texCar01Size01Back01 = assMan.get(assMan.car01Size01Back01);
 
 //		Back - Turn
-		texCar01BigBackTurnRight02 = screen.assMan.get("car01Size09BackTurnRight02.png");
+		texCar01BigBackTurnRight02 = assMan.get(assMan.car01Size09BackTurnRight02);
 
 //		BackLeft
-		texCar01Size09BackLeft01 = screen.assMan.get("car01Size09BackLeft01.png");
-		texCar01Size08BackLeft01 = screen.assMan.get("car01Size08BackLeft01.png");
-		texCar01Size07BackLeft01 = screen.assMan.get("car01Size07BackLeft01.png");
-		texCar01Size06BackLeft01 = screen.assMan.get("car01Size06BackLeft01.png");
-		texCar01Size05BackLeft01 = screen.assMan.get("car01Size05BackLeft01.png");
-		texCar01Size04BackLeft01 = screen.assMan.get("car01Size04BackLeft01.png");
-		texCar01Size03BackLeft01 = screen.assMan.get("car01Size03BackLeft01.png");
-		texCar01Size02BackLeft01 = screen.assMan.get("car01Size02BackLeft01.png");
-		texCar01Size01BackLeft01 = screen.assMan.get("car01Size01BackLeft01.png");
+		texCar01Size09BackLeft01 = assMan.get(assMan.car01Size09BackLeft01);
+		texCar01Size08BackLeft01 = assMan.get(assMan.car01Size08BackLeft01);
+		texCar01Size07BackLeft01 = assMan.get(assMan.car01Size07BackLeft01);
+		texCar01Size06BackLeft01 = assMan.get(assMan.car01Size06BackLeft01);
+		texCar01Size05BackLeft01 = assMan.get(assMan.car01Size05BackLeft01);
+		texCar01Size04BackLeft01 = assMan.get(assMan.car01Size04BackLeft01);
+		texCar01Size03BackLeft01 = assMan.get(assMan.car01Size03BackLeft01);
+		texCar01Size02BackLeft01 = assMan.get(assMan.car01Size02BackLeft01);
+		texCar01Size01BackLeft01 = assMan.get(assMan.car01Size01BackLeft01);
 
 //		Left
-		texCar01Size09Left01 = screen.assMan.get("car01Size09Left01.png");
-		texCar01Size08Left01 = screen.assMan.get("car01Size08Left01.png");
-		texCar01Size07Left01 = screen.assMan.get("car01Size07Left01.png");
-		texCar01Size06Left01 = screen.assMan.get("car01Size06Left01.png");
-		texCar01Size05Left01 = screen.assMan.get("car01Size05Left01.png");
-		texCar01Size04Left01 = screen.assMan.get("car01Size04Left01.png");
-		texCar01Size03Left01 = screen.assMan.get("car01Size03Left01.png");
-		texCar01Size02Left01 = screen.assMan.get("car01Size02Left01.png");
-		texCar01Size01Left01 = screen.assMan.get("car01Size01Left01.png");
+		texCar01Size09Left01 = assMan.get(assMan.car01Size09Left01);
+		texCar01Size08Left01 = assMan.get(assMan.car01Size08Left01);
+		texCar01Size07Left01 = assMan.get(assMan.car01Size07Left01);
+		texCar01Size06Left01 = assMan.get(assMan.car01Size06Left01);
+		texCar01Size05Left01 = assMan.get(assMan.car01Size05Left01);
+		texCar01Size04Left01 = assMan.get(assMan.car01Size04Left01);
+		texCar01Size03Left01 = assMan.get(assMan.car01Size03Left01);
+		texCar01Size02Left01 = assMan.get(assMan.car01Size02Left01);
+		texCar01Size01Left01 = assMan.get(assMan.car01Size01Left01);
 
 //		Front
-		texCar01Size09Front01 = screen.assMan.get("car01Size09Front01.png");
-		texCar01Size08Front01 = screen.assMan.get("car01Size08Front01.png");
-		texCar01Size07Front01 = screen.assMan.get("car01Size07Front01.png");
-		texCar01Size06Front01 = screen.assMan.get("car01Size06Front01.png");
-		texCar01Size05Front01 = screen.assMan.get("car01Size05Front01.png");
-		texCar01Size04Front01 = screen.assMan.get("car01Size04Front01.png");
-		texCar01Size03Front01 = screen.assMan.get("car01Size03Front01.png");
-		texCar01Size02Front01 = screen.assMan.get("car01Size02Front01.png");
-		texCar01Size01Front01 = screen.assMan.get("car01Size01Front01.png");
+		texCar01Size09Front01 = assMan.get(assMan.car01Size09Front01);
+		texCar01Size08Front01 = assMan.get(assMan.car01Size08Front01);
+		texCar01Size07Front01 = assMan.get(assMan.car01Size07Front01);
+		texCar01Size06Front01 = assMan.get(assMan.car01Size06Front01);
+		texCar01Size05Front01 = assMan.get(assMan.car01Size05Front01);
+		texCar01Size04Front01 = assMan.get(assMan.car01Size04Front01);
+		texCar01Size03Front01 = assMan.get(assMan.car01Size03Front01);
+		texCar01Size02Front01 = assMan.get(assMan.car01Size02Front01);
+		texCar01Size01Front01 = assMan.get(assMan.car01Size01Front01);
 
 //		FrontLeft
-		texCar01Size09FrontLeft01 = screen.assMan.get("car01Size09FrontLeft01.png");
-		texCar01Size08FrontLeft01 = screen.assMan.get("car01Size08FrontLeft01.png");
-		texCar01Size07FrontLeft01 = screen.assMan.get("car01Size07FrontLeft01.png");
-		texCar01Size06FrontLeft01 = screen.assMan.get("car01Size06FrontLeft01.png");
-		texCar01Size05FrontLeft01 = screen.assMan.get("car01Size05FrontLeft01.png");
-		texCar01Size04FrontLeft01 = screen.assMan.get("car01Size04FrontLeft01.png");
-		texCar01Size03FrontLeft01 = screen.assMan.get("car01Size03FrontLeft01.png");
-		texCar01Size02FrontLeft01 = screen.assMan.get("car01Size02FrontLeft01.png");
-		texCar01Size01FrontLeft01 = screen.assMan.get("car01Size01FrontLeft01.png");
+		texCar01Size09FrontLeft01 = assMan.get(assMan.car01Size09FrontLeft01);
+		texCar01Size08FrontLeft01 = assMan.get(assMan.car01Size08FrontLeft01);
+		texCar01Size07FrontLeft01 = assMan.get(assMan.car01Size07FrontLeft01);
+		texCar01Size06FrontLeft01 = assMan.get(assMan.car01Size06FrontLeft01);
+		texCar01Size05FrontLeft01 = assMan.get(assMan.car01Size05FrontLeft01);
+		texCar01Size04FrontLeft01 = assMan.get(assMan.car01Size04FrontLeft01);
+		texCar01Size03FrontLeft01 = assMan.get(assMan.car01Size03FrontLeft01);
+		texCar01Size02FrontLeft01 = assMan.get(assMan.car01Size02FrontLeft01);
+		texCar01Size01FrontLeft01 = assMan.get(assMan.car01Size01FrontLeft01);
 	}
 
 	public float angle = 0; // get?

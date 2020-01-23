@@ -17,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import mysko.pilzhere.mode7racer.inputs.GameInputManager;
+import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 import mysko.pilzhere.mode7racer.storage.GameStorage;
 
@@ -41,7 +42,7 @@ public class Mode7Racer extends Game {
 		return batch;
 	}
 	
-	public AssetManager getAssMan() {
+	public AssetsManager getAssMan() {
 		return assMan;
 	}
 	
@@ -50,14 +51,14 @@ public class Mode7Racer extends Game {
 	}
 	
 	public Skin getSkin(){
-		return assMan.get("skins/game-skin.json");
+		return assMan.get(assMan.gameSkin);
 	}
 	
 	public GameStorage getStorage(){
 		return storage;
 	}
 	
-	private AssetManager assMan;
+	private AssetsManager assMan;
 	
 	private SpriteBatch batch;
 	private ModelBatch mdlBatch;
@@ -106,7 +107,7 @@ public class Mode7Racer extends Game {
 		shapeRenderer = new ShapeRenderer();
 		mdlBatch = new ModelBatch();
 		
-		assMan = new AssetManager();
+		assMan = new AssetsManager();
 		assMan.setLoader(TiledMap.class, new TmxMapLoader());
 		
 		updateTimeEnd(timePro);
@@ -133,113 +134,7 @@ public class Mode7Racer extends Game {
 	}
 	
 	private void loadAssets() {
-		assMan.load("road01.png", Texture.class);
-		assMan.load("road02.png", Texture.class);
-		assMan.load("void.png", Texture.class);
-		
-		assMan.load("jumpHorizontal01.png", Texture.class);
-		assMan.load("jumpHorizontalLeft01.png", Texture.class);
-		assMan.load("jumpHorizontalRight01.png", Texture.class);
-		
-		assMan.load("curb0101.png", Texture.class); // l
-		assMan.load("curb1010.png", Texture.class); // r
-		assMan.load("curb1100.png", Texture.class); // s
-		assMan.load("curb0011.png", Texture.class); // n
-		
-		assMan.load("curb1110.png", Texture.class); // Outer corner nl
-		assMan.load("curb1101.png", Texture.class); // Outer corner nr
-		assMan.load("curb0111.png", Texture.class); // Outer corner sr
-		assMan.load("curb1011.png", Texture.class); // Outer corner sl
-		
-		assMan.load("curb1000.png", Texture.class); // Inner corner nl
-		assMan.load("curb0100.png", Texture.class); // Inner corner nr
-		assMan.load("curb0010.png", Texture.class); // Inner corner sl
-		assMan.load("curb0001.png", Texture.class); // Inner corner sr
-		
-		assMan.load("curb0000.png", Texture.class); // none
-		assMan.load("curb1111.png", Texture.class); // full
-		
-		assMan.load("levelBg01Back.png", Texture.class);
-		assMan.load("levelBg01Front.png", Texture.class);
-		
-		assMan.load("fog01.png", Texture.class);
-		
-		assMan.load("level02.png", Texture.class);
-		assMan.load("level03.png", Texture.class);
-		assMan.load("level04.png", Texture.class);
-		assMan.load("levelMuteCity.png", Texture.class);
-		
-		assMan.load("maps/silence.tmx", TiledMap.class);
-		
-		assMan.load("jumpHorizontal01.png", Texture.class);
-		assMan.load("jumpHorizontalRight01.png", Texture.class);
-		assMan.load("jumpHorizontalLeft01.png", Texture.class);
-		
-		assMan.load("jumpVertical01.png", Texture.class);
-		assMan.load("jumpVerticalTop01.png", Texture.class);
-		assMan.load("jumpVerticalBottom01.png", Texture.class);
-		
-		assMan.load("goalVertical01.png", Texture.class);
-		assMan.load("goalHorizontal01.png", Texture.class);
-		
-		assMan.load("car01Size09Back01.png", Texture.class);
-		assMan.load("car01Size08Back01.png", Texture.class);
-		assMan.load("car01Size07Back01.png", Texture.class);
-		assMan.load("car01Size06Back01.png", Texture.class);
-		assMan.load("car01Size05Back01.png", Texture.class);
-		assMan.load("car01Size04Back01.png", Texture.class);
-		assMan.load("car01Size03Back01.png", Texture.class);
-		assMan.load("car01Size02Back01.png", Texture.class);
-		assMan.load("car01Size01Back01.png", Texture.class);
-		
-		assMan.load("car01Size09BackTurnRight02.png", Texture.class);
-		
-		assMan.load("car01Size09BackLeft01.png", Texture.class);
-		assMan.load("car01Size08BackLeft01.png", Texture.class);
-		assMan.load("car01Size07BackLeft01.png", Texture.class);
-		assMan.load("car01Size06BackLeft01.png", Texture.class);
-		assMan.load("car01Size05BackLeft01.png", Texture.class);
-		assMan.load("car01Size04BackLeft01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size03BackLeft01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size02BackLeft01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size01BackLeft01.png", Texture.class); // Not from F-zero.
-		
-		assMan.load("car01Size09Left01.png", Texture.class);
-		assMan.load("car01Size08Left01.png", Texture.class);
-		assMan.load("car01Size07Left01.png", Texture.class);
-		assMan.load("car01Size06Left01.png", Texture.class);
-		assMan.load("car01Size05Left01.png", Texture.class);
-		assMan.load("car01Size04Left01.png", Texture.class);
-		assMan.load("car01Size03Left01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size02Left01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size01Left01.png", Texture.class); // Not from F-zero.
-		
-		assMan.load("car01Size09Front01.png", Texture.class);
-		assMan.load("car01Size08Front01.png", Texture.class);
-		assMan.load("car01Size07Front01.png", Texture.class);
-		assMan.load("car01Size06Front01.png", Texture.class);
-		assMan.load("car01Size05Front01.png", Texture.class);
-		assMan.load("car01Size04Front01.png", Texture.class);
-		assMan.load("car01Size03Front01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size02Front01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size01Front01.png", Texture.class); // Not from F-zero.
-		
-		assMan.load("car01Size09FrontLeft01.png", Texture.class);
-		assMan.load("car01Size08FrontLeft01.png", Texture.class);
-		assMan.load("car01Size07FrontLeft01.png", Texture.class);
-		assMan.load("car01Size06FrontLeft01.png", Texture.class);
-		assMan.load("car01Size05FrontLeft01.png", Texture.class);
-		assMan.load("car01Size04FrontLeft01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size03FrontLeft01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size02FrontLeft01.png", Texture.class); // Not from F-zero.
-		assMan.load("car01Size01FrontLeft01.png", Texture.class); // Not from F-zero.
-		
-		assMan.load("fonts/font01_16.fnt", BitmapFont.class);
-		assMan.load("fonts/font01_08.fnt", BitmapFont.class);
-		
-		assMan.load("skins/game-skin.json", Skin.class);
-		
-		assMan.finishLoading();
+		assMan.loadAssets();
 	}
 
 	@Override
