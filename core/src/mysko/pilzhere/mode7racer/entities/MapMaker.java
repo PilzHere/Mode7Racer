@@ -196,10 +196,6 @@ public class MapMaker extends Entity {
 		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
 				0 + pos.z, 1, 1));
 		
-//		pos.set(-1, 0, 1);
-//		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
-//				0 + pos.z, 1, 1));
-//		
 		pos.set(0, 0, -1);
 		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
 				0 + pos.z, 1, 1));
@@ -216,7 +212,7 @@ public class MapMaker extends Entity {
 			}
 		}
 
-//		Paint tiles to generated world pixmap.
+//		Paint tiles to generated world fbo.
 
 		MapDrawer mapDrawer = new MapDrawer();
 

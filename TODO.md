@@ -1,8 +1,7 @@
 TODO: Implement placing objects before reading pixels from map so that map can check if objects exist at current pixel.
+Kinda done...
 
-TODO: Implement classic intro cam.
-TODO: Implement jumps
-Jump from ramps.
+TODO: Implement working finish lines.
 
 TODO: Implement weapons?
 F-zero X Mario kart?
@@ -11,7 +10,7 @@ Homing missiles? Lasers? Mines? Shield?
 TODO: Implement more micro/macro gameplay.
  ...
 TODO: Redo assets. Same style?, new look.
-TODO: Implement environment sprites.
+TODO: Implement environment sprites for objects.
 Buildings, domes, futuristic stuff...
 
 TODO: Sounds? Music?
@@ -30,3 +29,7 @@ DONE:
 * Rotation of cars should increase with speed.
 
 * L/R Shift with current rotation.
+
+* Implement jumps. Jump from ramps.
+
+* Implement classic intro cam.

@@ -30,7 +30,7 @@ public class Car extends Entity {
 	public int currentTurbos = maxTurbos; // get
 	public boolean hasTurbo; // get
 
-	public Car(GameScreen screen, Vector3 position, boolean isLocalPlayer, boolean isCPU) {
+	public Car(GameScreen screen, Vector3 position, boolean isCPU) {
 		super(screen, position);
 //		this.isLocalPlayer = isLocalPlayer;
 		this.isCPU = isCPU;
@@ -513,9 +513,9 @@ public class Car extends Entity {
 	private void moveBackgroundsWithTurn(float delta) {
 //		Not perfect but works...
 		screen.getCurrentMap()
-				.setBgFrontPosX(screen.getCurrentMap().getBgFrontPosX() + currentTurnAmount * 100 * 128 * delta);
+				.setBgFrontPosX(screen.getCurrentMap().getBgFrontPosX() + currentTurnAmount * 128); // currentTurnAmount has delta.
 		screen.getCurrentMap()
-				.setBgBackPosX(screen.getCurrentMap().getBgBackPosX() + currentTurnAmount * 100 * 64 * delta);
+				.setBgBackPosX(screen.getCurrentMap().getBgBackPosX() + currentTurnAmount * 64); // currentTurnAmount has delta.
 
 //		Old
 //		if (rightTurn) {
