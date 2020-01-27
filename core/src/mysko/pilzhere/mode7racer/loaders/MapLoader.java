@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapImageLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 public class MapLoader {
@@ -83,8 +84,21 @@ public class MapLoader {
 		def.bounds.set(object.getX() - mapWidth/2f, mapHeight/2f - (object.getY() + h), w, h);
 		
 		// parse orientation
-		float angle = (object.getRotation() % 360 + 360) % 360; // TODO doc in radians, value in degrees...
-		def.angleDegrees = (angle + 90) % 360;
+		float angle = (object.getRotation() % 360 + 360) % 360;
+		
+		// flip bounding box based on rotation
+		int rot = MathUtils.round(angle / 90);
+		if(rot == 1){
+			def.bounds.set(def.bounds.x, def.bounds.y + def.bounds.height, def.bounds.height, def.bounds.width);
+		}else if(rot == 2){
+			def.bounds.set(def.bounds.x - def.bounds.width, def.bounds.y + def.bounds.height, def.bounds.width, def.bounds.height);
+		}else if(rot == 3){
+			def.bounds.set(def.bounds.x - def.bounds.height, def.bounds.y + def.bounds.height - def.bounds.width, def.bounds.height, def.bounds.width);
+		}
+		
+		// convert to X/Z plan
+		def.orientation = (rot + 1) % 4;
+		
 		return def;
 	}
 

@@ -12,10 +12,8 @@ import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
-import com.badlogic.gdx.graphics.g3d.attributes.FloatAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
@@ -205,19 +203,11 @@ public class MapMaker extends Entity {
 		
 //		USING MAPDATA
 		for (MapObjectDef mapObjDef : mapData.recoveries) {
-			for (int x = 0; x < mapObjDef.bounds.getWidth(); x++) {
-				for (int y = 0; y < mapObjDef.bounds.getHeight(); y++) {
-					screen.getEntities().add(new Recovery(screen, new Vector3(mapObjDef.bounds.x + x, 0 ,mapObjDef.bounds.y + y), mapObjDef.bounds.x + x, mapObjDef.bounds.y + y, 1, 1));
-				}
-			}
+			screen.getEntities().add(new Recovery(screen, new Vector3(mapObjDef.bounds.x, 0 ,mapObjDef.bounds.y), mapObjDef.bounds.x, mapObjDef.bounds.y, mapObjDef.bounds.width, mapObjDef.bounds.height));
 		}
 		
 		for (MapObjectDef mapObjDef : mapData.ramps) {
-			for (int x = 0; x < mapObjDef.bounds.getWidth(); x++) {
-				for (int y = 0; y < mapObjDef.bounds.getHeight(); y++) {
-					screen.getEntities().add(new Jump(screen, new Vector3(mapObjDef.bounds.x + x, 0 ,mapObjDef.bounds.y + y), mapObjDef.bounds.x + x, mapObjDef.bounds.y + y, 1, 1));
-				}
-			}
+			screen.getEntities().add(new Jump(screen, new Vector3(mapObjDef.bounds.x, 0 ,mapObjDef.bounds.y), mapObjDef.bounds.x, mapObjDef.bounds.y, mapObjDef.bounds.width, mapObjDef.bounds.height));
 		}
 
 //		test end
@@ -258,109 +248,99 @@ public class MapMaker extends Entity {
 				boolean curbRight = false;
 
 //				Check if objects exists at current pixel.
-				boolean entityDrawn = false;
-				for (Entity ent : screen.getEntities()) {
-					if (ent instanceof Jump) {
-						if (ent.position.x + (loadedLevelPixmap.getWidth() / 2) == x
-								&& ent.position.z + (loadedLevelPixmap.getHeight() / 2) == y) {
-//							System.out.println("Drawing jump tile at X: " + x + " | Y: " + y);
-							mapDrawer.drawTile(x, y, texTileJumpHori01);
-							entityDrawn = true;
-						}
-					} else if (ent instanceof Recovery) {
-						if (ent.position.x + (loadedLevelPixmap.getWidth() / 2) == x
-								&& ent.position.z + (loadedLevelPixmap.getHeight() / 2) == y) {
-//							System.out.println("Drawing revocery tile at X: " + x + " | Y: " + y);
-							mapDrawer.drawTile(x, y, texTileJumpHori01);
-							entityDrawn = true;
-						}
-					}
-				}
 
-				if (!entityDrawn) {
-					if (color == redVoid) {
-						mapDrawer.drawTile(x, y, texTileVoid);
-					} else if (color == greenCurb) {
+				if (color == redVoid) {
+					mapDrawer.drawTile(x, y, texTileVoid);
+				} else if (color == greenCurb) {
 //					Determine neighbour color
-						if (colorAbove == greyRoad || colorAbove == lightGreyRoad) {
-							roadUp = true;
-						} else if (colorAbove == greenCurb) {
-							curbUp = true;
-						}
+					if (colorAbove == greyRoad || colorAbove == lightGreyRoad) {
+						roadUp = true;
+					} else if (colorAbove == greenCurb) {
+						curbUp = true;
+					}
 
-						if (colorUnder == greyRoad || colorUnder == lightGreyRoad) {
-							roadDown = true;
-						} else if (colorUnder == greenCurb) {
-							curbDown = true;
-						}
+					if (colorUnder == greyRoad || colorUnder == lightGreyRoad) {
+						roadDown = true;
+					} else if (colorUnder == greenCurb) {
+						curbDown = true;
+					}
 
-						if (colorLeft == greyRoad || colorLeft == lightGreyRoad) {
-							roadLeft = true;
-						} else if (colorLeft == greenCurb) {
-							curbLeft = true;
-						}
+					if (colorLeft == greyRoad || colorLeft == lightGreyRoad) {
+						roadLeft = true;
+					} else if (colorLeft == greenCurb) {
+						curbLeft = true;
+					}
 
-						if (colorRight == greyRoad || colorRight == lightGreyRoad) {
-							roadRight = true;
-						} else if (colorRight == greenCurb) {
-							curbRight = true;
-						}
+					if (colorRight == greyRoad || colorRight == lightGreyRoad) {
+						roadRight = true;
+					} else if (colorRight == greenCurb) {
+						curbRight = true;
+					}
 
 //					Paint correct tile
-						if (!roadUp && !roadDown && !roadLeft && !roadRight && !curbUp && !curbDown && !curbLeft
-								&& !curbRight) {
-							mapDrawer.drawTile(x, y, texTileCurbFull);
-						} else if (roadUp && roadDown && roadLeft && roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbNone);
-						} else if (roadUp && roadDown) {
-							mapDrawer.drawTile(x, y, texTileCurbNone);
-						} else if (roadLeft && roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbNone);
-						}
-
-						else if (!roadUp && curbDown && !roadLeft && curbRight) { // Outer corners
-							mapDrawer.drawTile(x, y, texTileCurbOuterCornerSL);
-						} else if (!roadUp && curbDown && curbLeft && !roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbOuterCornerSR);
-						} else if (curbUp && !roadDown && !roadLeft && curbRight) {
-							mapDrawer.drawTile(x, y, texTileCurbOuterCornerNL);
-						} else if (curbUp && !roadDown && curbLeft && !roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbOuterCornerNR);
-						}
-
-						else if (!roadUp && roadDown && !roadLeft && roadRight) { // Inner corners
-							mapDrawer.drawTile(x, y, texTileCurbInnerCornerSL);
-						} else if (!roadUp && roadDown && roadLeft && !roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbInnerCornerSR);
-						} else if (roadUp && !roadDown && !roadLeft && roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbInnerCornerNL);
-						} else if (roadUp && !roadDown && roadLeft && !roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbInnerCornerNR);
-						}
-
-						else if (roadUp && !roadDown && !roadLeft && !roadRight) { // Next to road
-							mapDrawer.drawTile(x, y, texTileCurbN);
-						} else if (roadDown && !roadUp && !roadLeft && !roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbS);
-						} else if (roadLeft && !roadUp && !roadDown && !roadRight) {
-							mapDrawer.drawTile(x, y, texTileCurbR);
-						} else if (roadRight && !roadUp && !roadDown && !roadLeft) {
-							mapDrawer.drawTile(x, y, texTileCurbL);
-						} else {
-							mapDrawer.drawTile(x, y, texTileCurbFull);
-						}
-					} else if (color == greyRoad) {
-						mapDrawer.drawTile(x, y, texTileRoad01);
-					} else if (color == lightGreyRoad) {
-						mapDrawer.drawTile(x, y, texTileRoad02);
+					if (!roadUp && !roadDown && !roadLeft && !roadRight && !curbUp && !curbDown && !curbLeft
+							&& !curbRight) {
+						mapDrawer.drawTile(x, y, texTileCurbFull);
+					} else if (roadUp && roadDown && roadLeft && roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbNone);
+					} else if (roadUp && roadDown) {
+						mapDrawer.drawTile(x, y, texTileCurbNone);
+					} else if (roadLeft && roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbNone);
 					}
+
+					else if (!roadUp && curbDown && !roadLeft && curbRight) { // Outer corners
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerSL);
+					} else if (!roadUp && curbDown && curbLeft && !roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerSR);
+					} else if (curbUp && !roadDown && !roadLeft && curbRight) {
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerNL);
+					} else if (curbUp && !roadDown && curbLeft && !roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbOuterCornerNR);
+					}
+
+					else if (!roadUp && roadDown && !roadLeft && roadRight) { // Inner corners
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerSL);
+					} else if (!roadUp && roadDown && roadLeft && !roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerSR);
+					} else if (roadUp && !roadDown && !roadLeft && roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerNL);
+					} else if (roadUp && !roadDown && roadLeft && !roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbInnerCornerNR);
+					}
+
+					else if (roadUp && !roadDown && !roadLeft && !roadRight) { // Next to road
+						mapDrawer.drawTile(x, y, texTileCurbN);
+					} else if (roadDown && !roadUp && !roadLeft && !roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbS);
+					} else if (roadLeft && !roadUp && !roadDown && !roadRight) {
+						mapDrawer.drawTile(x, y, texTileCurbR);
+					} else if (roadRight && !roadUp && !roadDown && !roadLeft) {
+						mapDrawer.drawTile(x, y, texTileCurbL);
+					} else {
+						mapDrawer.drawTile(x, y, texTileCurbFull);
+					}
+				} else if (color == greyRoad) {
+					mapDrawer.drawTile(x, y, texTileRoad01);
+				} else if (color == lightGreyRoad) {
+					mapDrawer.drawTile(x, y, texTileRoad02);
+				}
 //				else if (color == yellowJump) {
 //					mapDrawer.drawTile(x, y, texTileJumpHori01);
 //				}
 
-				}
-
 			}
+		}
+		
+		// Draw entities
+		final float mapCenterX = loadedLevelPixmap.getWidth() / 2f;
+		final float mapCenterY = loadedLevelPixmap.getHeight() / 2f;
+		
+		for (MapObjectDef mapObjDef : mapData.ramps) {
+			mapDrawer.drawTiles(mapObjDef.bounds.x + mapCenterX, mapObjDef.bounds.y + mapCenterY, mapObjDef.bounds.width, mapObjDef.bounds.height, mapObjDef.orientation, texTileJumpHori01, texTileJumpHoriLeft01, texTileJumpHoriRight01);
+		}
+		for (MapObjectDef mapObjDef : mapData.recoveries) {
+			mapDrawer.drawTiles(mapObjDef.bounds.x + mapCenterX, mapObjDef.bounds.y + mapCenterY, mapObjDef.bounds.width, mapObjDef.bounds.height, mapObjDef.orientation, texTileJumpHori01);
 		}
 
 		Texture levelTextureGenerated = mapDrawer.end();
