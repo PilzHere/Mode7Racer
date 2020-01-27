@@ -26,6 +26,7 @@ public class AssetsManager extends AssetManager {
 	public final String road01 = "textures/tiles/road01.png";
 	public final String road02 = "textures/tiles/road02.png";
 	public final String void01 = "textures/tiles/void.png";
+	public final String voidAlpha01 = "textures/tiles/voidAlpha.png";
 	
 	public final String jumpHori01 = "textures/tiles/jumpHorizontal01.png";
 	public final String jumpHoriLeft01 = "textures/tiles/jumpHorizontalLeft01.png";
@@ -60,6 +61,7 @@ public class AssetsManager extends AssetManager {
 		load(road01, Texture.class);
 		load(road02, Texture.class);
 		load(void01, Texture.class);
+		load(voidAlpha01, Texture.class);
 		
 		load(jumpHori01, Texture.class);
 		load(jumpHoriLeft01, Texture.class);
@@ -96,10 +98,16 @@ public class AssetsManager extends AssetManager {
 	public final String bg01Front = "textures/backgrounds/levelBg01Front.png";
 	public final String bgFog = "textures/backgrounds/fog01.png";
 	
+	public final String bgUndergroundCity01 = "textures/backgrounds/mapUnderlayCity01_512.png";
+	public final String bgUndergroundCity02 = "textures/backgrounds/mapUnderlayCity01_1024.png";
+	
 	private void loadBackgrounds() {
 		load(bg01Back, Texture.class);
 		load(bg01Front, Texture.class);
 		load(bgFog, Texture.class);
+		
+		load(bgUndergroundCity01, Texture.class);
+		load(bgUndergroundCity02, Texture.class);
 	}
 	
 //	Sprites
@@ -230,6 +238,7 @@ public class AssetsManager extends AssetManager {
 	public final String map02 = "maps/level03.png";
 	public final String map03 = "maps/level04.png";
 	public final String mapMuteCity = "maps/levelMuteCity.png";
+	public final String mapTest = "maps/levelTest.png";
 	
 	public final String mapSilence = "maps/silence.tmx";
 	
@@ -238,6 +247,7 @@ public class AssetsManager extends AssetManager {
 		load(map02, Texture.class);
 		load(map03, Texture.class);
 		load(mapMuteCity, Texture.class);
+		load(mapTest, Texture.class);
 		
 		load(mapSilence, TiledMap.class);
 	}

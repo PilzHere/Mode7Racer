@@ -13,6 +13,7 @@ import mysko.pilzhere.mode7racer.entities.colliders.Edge;
 import mysko.pilzhere.mode7racer.entities.colliders.Jump;
 import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
+import mysko.pilzhere.mode7racer.screens.Recovery;
 
 public class Car extends Entity {
 	public int getHp() {
@@ -233,10 +234,15 @@ public class Car extends Entity {
 		carCurrentSpeed -= carCurrentSpeedIncrement * brakesStrength * delta;
 	}
 
-	private int hp = 100; // get
+	private final int maxHP = 100;
+	private int hp = maxHP;
 	private boolean gotHitTimeSet;
 	private long hitNewTime;
 	private final long hitCd = 420L;
+	
+	private boolean gotHealedTimeSet;
+	private long healNewTime;
+	private final long healCd = 420L;
 
 	private boolean jump;
 	public boolean isInAir; // get
@@ -250,7 +256,9 @@ public class Car extends Entity {
 				curbsBlink = true;
 
 				if (!gotHitTimeSet) {
-					hp = hp - 5;
+					if (hp > 0) {
+						hp = hp - 5;
+					}
 					hitNewTime = screen.getCurrentTime() + hitCd;
 //					System.err.println("Car damage taken!");
 					gotHitTimeSet = true;
@@ -260,9 +268,19 @@ public class Car extends Entity {
 //			System.out.println("Car edge hit!");
 		} else if (object instanceof Jump) {
 			if (!isInAir) {
-//				System.err.println("Jump HIT");
+				System.err.println("Jump HIT");
 				jump = true;
 			}
+		} else if (object instanceof Recovery) {
+			if (hp < 100) {
+				if (!gotHealedTimeSet) {
+					hp += 10;
+					healNewTime = screen.getCurrentTime() + healCd;
+//					System.err.println("Car damage taken!");
+					gotHealedTimeSet = true;
+				}
+			}
+			
 		}
 	}
 
@@ -299,6 +317,7 @@ public class Car extends Entity {
 		if (this == screen.playerCar)
 			updateCurbsBlink();
 		updateGotHitTimeSet();
+		updateGotHealedTimeSet();
 
 		updateBounceX(delta);
 		updateBounceZ(delta);
@@ -322,6 +341,11 @@ public class Car extends Entity {
 		updateLastPosition();
 
 		carCurrentSpeedKMpH = carCurrentSpeed * toKMpH;
+		
+		if (hp > maxHP)
+			hp = maxHP;
+		else if (hp < 0)
+			hp = 0;
 	}
 
 	private final float gravityY = -12.5f;
@@ -392,6 +416,14 @@ public class Car extends Entity {
 		if (gotHitTimeSet) {
 			if (screen.getCurrentTime() > hitNewTime) {
 				gotHitTimeSet = false;
+			}
+		}
+	}
+	
+	private void updateGotHealedTimeSet() {
+		if (gotHealedTimeSet) {
+			if (screen.getCurrentTime() > healNewTime) {
+				gotHealedTimeSet = false;
 			}
 		}
 	}

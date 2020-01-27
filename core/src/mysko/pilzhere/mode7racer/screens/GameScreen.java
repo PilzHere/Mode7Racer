@@ -3,6 +3,8 @@ package mysko.pilzhere.mode7racer.screens;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import javax.swing.text.StyledEditorKit.UnderlineAction;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -86,11 +89,9 @@ public class GameScreen implements Screen {
 	public HashMap<Integer, Car> cars = new HashMap<Integer, Car>();
 
 	private BitmapFont font01;
-	
+
 	private Stage stage;
 	private GameHUD hud;
-	
-	
 
 	public GameScreen(Mode7Racer game) {
 		this.game = game;
@@ -119,8 +120,8 @@ public class GameScreen implements Screen {
 
 		// new map loading
 		final MapData mapData = new MapLoader().load(assMan.get(assMan.mapSilence, TiledMap.class));
-		mapMaker.loadLevelFromTexture(mapData);
-		
+		mapMaker.loadLevelFromTexture(mapData, true);
+
 //		cars.put(0, new Car(this, new Vector3(0, 0, 0), true, false));
 //		cars.put(1, new Car(this, new Vector3(0, 0, -2), false, true));
 //
@@ -147,9 +148,9 @@ public class GameScreen implements Screen {
 	private boolean dbgDisplayMap = false;
 
 	private void input(float delta) {
-		
+
 		final ControllerBase controller = game.inputs.getController(0);
-		
+
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
@@ -161,9 +162,10 @@ public class GameScreen implements Screen {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
 			dbgDisplayMap = !dbgDisplayMap;
 		}
-		
-		if(hud.isSettingsOpened()) return;
-		
+
+		if (hud.isSettingsOpened())
+			return;
+
 		if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
 			hud.showSettings();
 		}
@@ -172,11 +174,11 @@ public class GameScreen implements Screen {
 //			if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
 //				playerCar.resetPosition();
 //			}
-			
+
 			if (controller.isOn(PlayerCommand.TURBO)) {
 				playerCar.onInputT(delta);
 			}
-			
+
 			if (controller.isOn(PlayerCommand.LEFT)) {
 				playerCar.onInputA(delta);
 			}
@@ -184,15 +186,14 @@ public class GameScreen implements Screen {
 			if (controller.isOn(PlayerCommand.RIGHT)) {
 				playerCar.onInputD(delta);
 			}
-			
+
 			if (controller.isOn(PlayerCommand.SHIFT_LEFT)) {
 				playerCar.onInputShiftLeft(delta);
 			}
-			
+
 			if (controller.isOn(PlayerCommand.SHIFT_RIGHT)) {
 				playerCar.onInputShiftRight(delta);
 			}
-			
 
 			if (!controller.isOn(PlayerCommand.THROTTLE))
 				playerCar.onNoInputW(delta);
@@ -216,7 +217,7 @@ public class GameScreen implements Screen {
 		 * delta)); }
 		 **/
 	}
-	
+
 	private boolean havePlacedVehicles;
 	private Vector3 camStartPosition = new Vector3();
 	private boolean leftStartPosition;
@@ -228,7 +229,7 @@ public class GameScreen implements Screen {
 	private boolean camShowIntro = true;
 	private boolean camIntroPosYReached;
 	private boolean camIntroDirectionZReached;
-	
+
 	private void tick(float delta) {
 		mapMaker.tick(delta);
 
@@ -244,9 +245,9 @@ public class GameScreen implements Screen {
 			if (!havePlacedVehicles) {
 				placeVehicles();
 			}
-			
+
 			cam.position.y = camPosYPlay; // Keep same height.
-			
+
 			if (!leftStartPosition) {
 				if (!cam.position.idt(camStartPosition.cpy())) { // Adjust only if NOT in start position at spawn.
 					cam.direction.y = camDirYPlay; // Keep same y-direction.
@@ -259,31 +260,32 @@ public class GameScreen implements Screen {
 			if (!camIntroPosYReached) {
 				camIntroMoveCamToDestinationY(delta);
 			} else {
-				if (!camIntroDirectionZReached) {	
+				if (!camIntroDirectionZReached) {
 					camIntroMoveCamToDirectionZ(delta);
 				}
 			}
-			
+
 			if (camIntroPosYReached && camIntroDirectionZReached) {
+				renderFog = true;
 				camShowIntro = false;
-			}				
+			}
 		}
-		
-		cam.update();
+
+//		cam.update();
 	}
 
 	private void camIntroMoveCamToDirectionZ(float delta) {
 		if (cam.direction.z > camIntroDirZDest) {
 			cam.direction.z -= camIntroDirZSpeed * delta;
-		} else if (cam.direction.z < camIntroDirZDest){
+		} else if (cam.direction.z < camIntroDirZDest) {
 			cam.direction.z = camIntroDirZDest;
-			
+
 			camStartPosition.set(cam.position.cpy());
-			
+
 			camIntroDirectionZReached = true;
 		}
 	}
-	
+
 	private void camIntroMoveCamToDestinationY(float delta) {
 		if (cam.position.y > camPosYPlay) {
 			cam.position.y -= camIntroMoveDownSpeed * delta;
@@ -292,16 +294,16 @@ public class GameScreen implements Screen {
 			camIntroPosYReached = true;
 		}
 	}
-	
+
 	private void placeVehicles() {
 		cars.put(0, new Car(this, new Vector3(0, 0, 0), false));
 		cars.put(1, new Car(this, new Vector3(0, 0, -2), true));
 
 		playerCar = cars.get(0);
-		
+
 		havePlacedVehicles = true;
 	}
-	
+
 	private final int renderHeightLimit = 186; // Screen height limit for rendering when in window scale of 1. This is a
 												// fix for cars that are behind camera, they might render in the
 												// background above player.
@@ -384,7 +386,7 @@ public class GameScreen implements Screen {
 		stage.act();
 		stage.draw();
 		viewport.apply();
-		
+
 		updateWndowTitle();
 	}
 
@@ -397,20 +399,55 @@ public class GameScreen implements Screen {
 		batch.end();
 	}
 
+	TextureAttribute ta;
+
 	private void render3D(float delta) {
 //		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidthStretched, viewportHeight); // not needed?
+
+		if (playerCar != null && mapMaker.mdlInstUG != null) {
+			mapMaker.mdlInstUG.transform.setToTranslation(
+					(playerCar.getPosition().cpy().sub(0, playerCar.getPosition().y, 0).sub(0, 4, 0)));
+
+			ta = (TextureAttribute) mapMaker.mdlInstUG.materials.first().get(TextureAttribute.Diffuse);
+			ta.offsetU = playerCar.getPosition().z / 64; // Should be 48 but 32 makes it feel faster.
+			ta.offsetV = -playerCar.getPosition().x / 64; // Should be 48 but 32 makes it feel faster.
+		}
+
+		if (mapMaker.mdlInstUG != null) {
+			if (camShowIntro) {
+				if (cam.direction.z < 0) { // Else face-fighting modelbatches.
+					cam.far = 90;
+				}
+			} else {
+				cam.far = 90;
+			}
+				
+			cam.update();
+
+			mdlBatch.begin(cam);
+			mapMaker.renderUndergroundLayer(mdlBatch);
+			mdlBatch.end();
+
+		}
+
+		cam.far = 40;
+		cam.update();
+
 		mdlBatch.begin(cam);
 		mapMaker.render3D(mdlBatch, delta);
 		mdlBatch.end();
 	}
 
+	private boolean renderFog;
+
 	private void renderFog() {
-		batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidth, viewportHeight);
-		batch.begin();
-		batch.setColor(Color.WHITE); // Use to tint color of fog for loaded level.
-		batch.draw(mapMaker.getTexFog(), 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 64);
-		batch.setColor(Color.WHITE);
-		batch.end();
+		if (renderFog) {
+			batch.getProjectionMatrix().setToOrtho2D(0, 0, viewportWidth, viewportHeight);
+			batch.begin();
+			batch.setColor(Color.WHITE); // Use to tint color of fog for loaded level.
+			batch.draw(mapMaker.getTexFog(), 0, viewportHeight - 75, 0, 0, viewportWidthStretched, 64);
+			batch.end();
+		}
 	}
 
 	Comparator<Sprite> spriteComparator = new Comparator<Sprite>() {
@@ -428,26 +465,32 @@ public class GameScreen implements Screen {
 	private void renderEnts(float delta) {
 		batch.setProjectionMatrix(cam.projection.setToOrtho2D(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-		for (Car car : cars.values()) {
-			car.render2D(batch, delta);
+		if (!cars.isEmpty()) {
+			for (Car car : cars.values()) {
+				car.render2D(batch, delta);
+			}
+		}
+		
+		if (ents.notEmpty()) {
+			for (Entity ent : ents) {
+				ent.render2D(batch, delta);
+			}
 		}
 
-		for (Entity ent : ents) {
-			ent.render2D(batch, delta);
+		if (sprites.notEmpty()) {
+//			Sort render order from y position.
+			sprites.sort(spriteComparator);
+
+			batch.begin();
+			for (Sprite spr : sprites) {
+				spr.draw(batch);
+				renderedSprites++;
+			}
+
+			batch.end();
+
+			sprites.clear();
 		}
-
-//		Sort render order from y position.
-		sprites.sort(spriteComparator);
-
-		batch.begin();
-		for (Sprite spr : sprites) {
-			spr.draw(batch);
-			renderedSprites++;
-		}
-
-		batch.end();
-
-		sprites.clear();
 	}
 
 //	DONT USE SHAPERENDERER WHEN SHIPPING, DECREASES FPS A LOT.
@@ -477,7 +520,8 @@ public class GameScreen implements Screen {
 		if (playerCar != null) {
 			batch.begin();
 			font01.draw(batch, "HP: " + playerCar.getHp(), 0, 224);
-			font01.draw(batch, "SPEED: " + playerCar.carCurrentSpeed + " | MAX: " + playerCar.carCurrentMaximumSpeed, 0, 224 - 8);
+			font01.draw(batch, "SPEED: " + playerCar.carCurrentSpeed + " | MAX: " + playerCar.carCurrentMaximumSpeed, 0,
+					224 - 8);
 			font01.draw(batch, "TURBO: " + playerCar.currentTurbos + " | " + playerCar.hasTurbo, 0, 224 - 16);
 			font01.draw(batch, playerCar.carCurrentSpeedKMpH + " km/h", 0, 224 - 24);
 			batch.end();

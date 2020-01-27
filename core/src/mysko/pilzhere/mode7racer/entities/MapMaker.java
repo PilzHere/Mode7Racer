@@ -10,9 +10,12 @@ import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
+import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.attributes.FloatAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
@@ -20,8 +23,10 @@ import mysko.pilzhere.mode7racer.entities.colliders.Curb;
 import mysko.pilzhere.mode7racer.entities.colliders.Edge;
 import mysko.pilzhere.mode7racer.entities.colliders.Jump;
 import mysko.pilzhere.mode7racer.loaders.MapData;
+import mysko.pilzhere.mode7racer.loaders.MapObjectDef;
 import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
+import mysko.pilzhere.mode7racer.screens.Recovery;
 import mysko.pilzhere.mode7racer.utils.MapDrawer;
 
 public class MapMaker extends Entity {
@@ -68,12 +73,12 @@ public class MapMaker extends Entity {
 	}
 
 	private final AssetsManager assMan;
-	
+
 	public MapMaker(GameScreen screen) {
 		super(screen, Vector3.Zero);
-		
-		 assMan = screen.assMan;
-		
+
+		assMan = screen.assMan;
+
 		setupTextures();
 	}
 
@@ -114,7 +119,8 @@ public class MapMaker extends Entity {
 
 		texTileRoad01 = assMan.get(assMan.road01);
 		texTileRoad02 = assMan.get(assMan.road02);
-		texTileVoid = assMan.get(assMan.void01);
+//		texTileVoid = assMan.get(assMan.void01);
+		texTileVoid = assMan.get(assMan.voidAlpha01);
 
 		texTileJumpHori01 = assMan.get(assMan.jumpHori01);
 		texTileJumpHoriLeft01 = assMan.get(assMan.jumpHoriLeft01);
@@ -146,8 +152,10 @@ public class MapMaker extends Entity {
 	private final int tileSize = 16;
 
 	private Model mdlLevel;
+	private Model mdlLevelUG;
 	private ModelInstanceBB mdlInstLevel;
 	private Array<ModelInstanceBB> mdlInstances = new Array<ModelInstanceBB>();
+	public ModelInstanceBB mdlInstUG; // get
 
 //	boolean entityDrawn;
 
@@ -156,19 +164,19 @@ public class MapMaker extends Entity {
 //		Texture levelLevelMap = assMan.get("level04.png", Texture.class);
 //		Texture levelLevelMap = assMan.get("level03.png", Texture.class);
 		Texture levelLevelMap = assMan.get(assMan.mapMuteCity, Texture.class);
-		
+
 		final MapData mapData = new MapData();
 		mapData.mapTexture = levelLevelMap;
-		
-		loadLevelFromTexture(mapData);
+
+		loadLevelFromTexture(mapData, true);
 	}
-	
-	public void loadLevelFromTexture(final MapData mapData) {
+
+	public void loadLevelFromTexture(final MapData mapData, boolean useUnderground) {
 		long startTime = System.currentTimeMillis();
 		System.out.println("STATUS: Building level.");
 
 		final Texture levelLevelMap = mapData.mapTexture;
-		
+
 //		Load level texture
 		Pixmap loadedLevelPixmap = prepareTextureData(levelLevelMap);
 
@@ -182,24 +190,36 @@ public class MapMaker extends Entity {
 		 */
 
 //		TEST ADDING NEW OBJECTS
-		Vector3 pos = new Vector3();
-		pos.set(0, 0, 0);
-		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
-				0 + pos.z, 1, 1));
-		pos.set(0, 0, 1);
-		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
-				0 + pos.z, 1, 1));
-		pos.set(1, 0, 0);
-		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
-				0 + pos.z, 1, 1));
-		pos.set(1, 0, 1);
-		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
-				0 + pos.z, 1, 1));
+//		Vector3 pos = new Vector3();
+//		pos.set(0, 0, 0);
+//		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x, 0 + pos.z, 1, 1));
+//		pos.set(0, 0, 1);
+//		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x, 0 + pos.z, 1, 1));
+//		pos.set(1, 0, 0);
+//		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x, 0 + pos.z, 1, 1));
+//		pos.set(1, 0, 1);
+//		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x, 0 + pos.z, 1, 1));
+//
+//		pos.set(0, 0, -1);
+//		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x, 0 + pos.z, 1, 1));
 		
-		pos.set(0, 0, -1);
-		screen.getEntities().add(new Jump(screen, pos.cpy(), 0 + pos.x,
-				0 + pos.z, 1, 1));
+//		USING MAPDATA
+		for (MapObjectDef mapObjDef : mapData.recoveries) {
+			for (int x = 0; x < mapObjDef.bounds.getWidth(); x++) {
+				for (int y = 0; y < mapObjDef.bounds.getHeight(); y++) {
+					screen.getEntities().add(new Recovery(screen, new Vector3(mapObjDef.bounds.x + x, 0 ,mapObjDef.bounds.y + y), mapObjDef.bounds.x + x, mapObjDef.bounds.y + y, 1, 1));
+				}
+			}
+		}
 		
+		for (MapObjectDef mapObjDef : mapData.ramps) {
+			for (int x = 0; x < mapObjDef.bounds.getWidth(); x++) {
+				for (int y = 0; y < mapObjDef.bounds.getHeight(); y++) {
+					screen.getEntities().add(new Jump(screen, new Vector3(mapObjDef.bounds.x + x, 0 ,mapObjDef.bounds.y + y), mapObjDef.bounds.x + x, mapObjDef.bounds.y + y, 1, 1));
+				}
+			}
+		}
+
 //		test end
 
 		final int srcWidth = loadedLevelPixmap.getWidth();
@@ -236,13 +256,21 @@ public class MapMaker extends Entity {
 				boolean curbDown = false;
 				boolean curbLeft = false;
 				boolean curbRight = false;
-				
+
 //				Check if objects exists at current pixel.
 				boolean entityDrawn = false;
 				for (Entity ent : screen.getEntities()) {
-					if (ent instanceof Jump) {						
-						if (ent.position.x + (loadedLevelPixmap.getWidth() / 2) == x && ent.position.z + (loadedLevelPixmap.getHeight() / 2) == y) {
-							System.out.println("Drawing jump tile at X: " + x + " | Y: " + y);
+					if (ent instanceof Jump) {
+						if (ent.position.x + (loadedLevelPixmap.getWidth() / 2) == x
+								&& ent.position.z + (loadedLevelPixmap.getHeight() / 2) == y) {
+//							System.out.println("Drawing jump tile at X: " + x + " | Y: " + y);
+							mapDrawer.drawTile(x, y, texTileJumpHori01);
+							entityDrawn = true;
+						}
+					} else if (ent instanceof Recovery) {
+						if (ent.position.x + (loadedLevelPixmap.getWidth() / 2) == x
+								&& ent.position.z + (loadedLevelPixmap.getHeight() / 2) == y) {
+//							System.out.println("Drawing revocery tile at X: " + x + " | Y: " + y);
 							mapDrawer.drawTile(x, y, texTileJumpHori01);
 							entityDrawn = true;
 						}
@@ -361,23 +389,47 @@ public class MapMaker extends Entity {
 		mdlLevel = modelBuilder.createBox(loadedLevelPixmap.getWidth(), 0, loadedLevelPixmap.getHeight(),
 				new Material(TextureAttribute.createDiffuse(levelTextureGenerated)),
 				Usage.Position | Usage.TextureCoordinates);
+
+		Material mat = mdlLevel.materials.first();
+		mat.set(new BlendingAttribute(1.0f));
+//		mat.set(new FloatAttribute(FloatAttribute.AlphaTest));
+
 		mdlInstances.add(mdlInstLevel = new ModelInstanceBB(mdlLevel));
 		mdlInstLevel.transform.rotate(Vector3.Y, 90);
 
+		if (!useUnderground) { // underground will be same layer as road. Make sure world edge tiles don't
+								// dontain road tiles.
 //		World edges
 //		Top
-		setupWorldEdgeTiles(-loadedLevelPixmap.getWidth(), loadedLevelPixmap.getHeight());
-		setupWorldEdgeTiles(0, loadedLevelPixmap.getHeight());
-		setupWorldEdgeTiles(loadedLevelPixmap.getWidth(), loadedLevelPixmap.getHeight());
+			setupWorldEdgeTiles(-loadedLevelPixmap.getWidth(), loadedLevelPixmap.getHeight());
+			setupWorldEdgeTiles(0, loadedLevelPixmap.getHeight());
+			setupWorldEdgeTiles(loadedLevelPixmap.getWidth(), loadedLevelPixmap.getHeight());
 
 //		Left - right
-		setupWorldEdgeTiles(-loadedLevelPixmap.getWidth(), 0);
-		setupWorldEdgeTiles(loadedLevelPixmap.getWidth(), 0);
+			setupWorldEdgeTiles(-loadedLevelPixmap.getWidth(), 0);
+			setupWorldEdgeTiles(loadedLevelPixmap.getWidth(), 0);
 
 //		Bottom
-		setupWorldEdgeTiles(-loadedLevelPixmap.getWidth(), -loadedLevelPixmap.getHeight());
-		setupWorldEdgeTiles(0, -loadedLevelPixmap.getHeight());
-		setupWorldEdgeTiles(loadedLevelPixmap.getWidth(), -loadedLevelPixmap.getHeight());
+			setupWorldEdgeTiles(-loadedLevelPixmap.getWidth(), -loadedLevelPixmap.getHeight());
+			setupWorldEdgeTiles(0, -loadedLevelPixmap.getHeight());
+			setupWorldEdgeTiles(loadedLevelPixmap.getWidth(), -loadedLevelPixmap.getHeight());
+		} else {
+			final Texture tex = assMan.get(assMan.bgUndergroundCity02);
+			tex.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+
+			mdlLevelUG = modelBuilder.createBox(256, 0, 256, // 2048/16
+					new Material(TextureAttribute.createDiffuse(tex)), Usage.Position | Usage.TextureCoordinates);
+
+			mdlInstUG = new ModelInstanceBB(mdlLevelUG);
+			mdlInstUG.transform.setToTranslation(new Vector3(0, -4, 0));
+			mdlInstUG.transform.rotate(Vector3.Y, 90); // Have to rotate after positioning for some reason...
+			
+			final TextureAttribute ta = (TextureAttribute) mdlInstUG.materials.first().get(TextureAttribute.Diffuse);
+			ta.scaleU = 2;
+			ta.scaleV = 2;
+
+//			mdlInstances.add(mdlInstUG);
+		}
 
 //		Dispose
 		loadedLevelPixmap.dispose();
@@ -421,6 +473,16 @@ public class MapMaker extends Entity {
 	}
 //	}
 
+	public void renderUndergroundLayer(ModelBatch batch) {
+		if (screen.isVisible(screen.getCam(), mdlInstUG)) {
+//			screen.getCam().far = 75;
+//			screen.getCam().update();
+
+			batch.render(mdlInstUG);
+			screen.renderedModels++;
+		}
+	}
+
 	@Override
 	public void render3D(ModelBatch batch, float delta) {
 		for (ModelInstanceBB mdlInstBB : mdlInstances) {
@@ -433,6 +495,6 @@ public class MapMaker extends Entity {
 
 	@Override
 	public void destroy() {
-		
+
 	}
 }

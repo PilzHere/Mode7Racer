@@ -16,14 +16,14 @@ public class MapDrawer {
 		final int width = gridWidth * tileWidth;
 		final int height = gridHeight * tileHeight;
 		
-		generatedFBO = new FrameBuffer(Format.RGB888, width, height, false){
+		generatedFBO = new FrameBuffer(Format.RGBA8888, width, height, false){ // was RGB888
 			@Override
 			protected void disposeColorTexture(Texture colorTexture) {
 				// don't dispose color texture when disposing FBO
 			}
 		};
-		batch = new SpriteBatch();
 		
+		batch = new SpriteBatch();		
 		generatedFBO.begin();
 		batch.getProjectionMatrix().setToOrtho2D(0, 0, gridWidth, gridHeight);
 		batch.begin();

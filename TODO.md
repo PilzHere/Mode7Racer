@@ -1,5 +1,5 @@
 TODO: Implement placing objects before reading pixels from map so that map can check if objects exist at current pixel.
-Kinda done...
+Kinda done with Tiled maps?...
 
 TODO: Implement working finish lines.
 
