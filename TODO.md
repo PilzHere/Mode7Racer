@@ -12,11 +12,11 @@ Buildings, domes, futuristic stuff...
 Download samples and use them? Change/create new with Reaper and Akai MPK Mini MK2?
 RafaSKB said we should contact Barry Leitch for music to the game. He has made music for Top Gear game and many more!
 
-- [ ] Give credits to MGSX for awesome FBO map rendering IN game.
+- [ ] Give credits to contributors IN game.
 - [ ] Fix background position x to scroll correctly with camera.
 
 ### Done
-- [x] Give credits to MGSX for awesome FBO map rendering @github.
+- [x] Give credits to MGSX @github.
 - [x] Implement sprite change from directon of camera.
 - [x] TURBO "You got boost power!" - Turbo can only be used while throttle. Max Speed is 1.5* current max speed?
 - [x] Rotation of cars should increase with speed.
