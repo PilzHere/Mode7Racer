@@ -6,13 +6,13 @@ A (soon to be) racing game with the looks of the 90's and Mode7 graphics.
 Made with <b>libGDX</b>.
 
 ## Contributors
-### PilzHere
+### [PilzHere](https://github.com/PilzHere)
 #### Main game developer
-[github](https://github.com/PilzHere) | [christianpilz.com](https://www.christianpilz.com)
+[christianpilz.com](https://www.christianpilz.com)
 
-### MGSX
+### [MGSX](https://github.com/mgsx-dev)
 #### Loading time optimizer, controller support and additional vehicles and courses.
-[github](https://github.com/mgsx-dev) | [mgsx.net](https://www.mgsx.net)
+[mgsx.net](https://www.mgsx.net)
 
  ## What's next?
  Check out the [ToDo list](TODO.md).
