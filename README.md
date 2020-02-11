@@ -5,8 +5,11 @@
 A (soon to be) racing game with the looks of the 90's and Mode7 graphics.
 
 ## Contributors
-#### PilzHere - Main game developer
+Main game developer
+#### PilzHere
 [christianpilz.com](https://www.christianpilz.com)
 
-#### MGSX - Loading time optimizer, controller support and additional vehicles and courses.
+
+Loading time optimizer, controller support and additional vehicles and courses.
+#### MGSX
 [mgsx.net](https://www.mgsx.net)
