@@ -3,6 +3,7 @@
 
 ## About
 A (soon to be) racing game with the looks of the 90's and Mode7 graphics.
+Made with <b>libGDX</b>.
 
 ## Contributors
 ### PilzHere
