@@ -6,9 +6,9 @@ import com.badlogic.gdx.math.Vector3;
 import mysko.pilzhere.mode7racer.entities.Entity;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
-public class Curb extends Entity{
+public class FinishLine extends Entity{
 	
-	public Curb(final GameScreen screen, final Vector3 position, final float posX, final float posZ, final float width, final float height) {
+	public FinishLine(final GameScreen screen, final Vector3 position, final float posX, final float posZ, final float width, final float height) {
 		super(screen, position);
 		
 		rect = new Rectangle(posX, posZ, width, height);

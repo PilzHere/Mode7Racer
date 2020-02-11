@@ -39,7 +39,7 @@ public class InputsUI extends Table
 		this.game = game;
 		this.playerID = playerID;
 		
-		final GameInputManager inputs = game.inputs;
+		final GameInputManager inputs = game.INPUTS;
 		
 		setBackground("default-rect");
 		defaults().pad(10);
@@ -73,7 +73,7 @@ public class InputsUI extends Table
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				cancelLearn();
-				InputsUI.this.game.inputs.setController(playerID, controllerSelector.getSelected());
+				InputsUI.this.game.INPUTS.setController(playerID, controllerSelector.getSelected());
 				displayController(controllerSelector.getSelected());
 			}
 		});
@@ -87,7 +87,7 @@ public class InputsUI extends Table
 		
 		buttons.clear();
 		
-		for(final Command cmd : game.inputs.commands){
+		for(final Command cmd : game.INPUTS.commands){
 			cmdTable.add(cmd.label);
 			
 			final Label keysLabel = cmdTable.add(triggersToText(ce, cmd)).getActor();
@@ -153,7 +153,7 @@ public class InputsUI extends Table
 	}
 
 	public void cancelLearn() {
-		InputsUI.this.game.inputs.getController(playerID).learnStop();
+		InputsUI.this.game.INPUTS.getController(playerID).learnStop();
 	}
 
 }

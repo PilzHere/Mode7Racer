@@ -5,17 +5,18 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 
 import mysko.pilzhere.mode7racer.Mode7Racer;
+import mysko.pilzhere.mode7racer.constants.GameConstants;
 
 public class DesktopLauncher {
 	public static void main(String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-		config.title = "Mode7Racer";
-		config.width = 299 * 4; // 4 is scale // 299 // 1280
-		config.height = 224 * 4; // 224 // 720
+		config.title = GameConstants.GAME_TITLE;
+		config.width = GameConstants.SCREEN_WIDTH_STRETCHED * 4;
+		config.height = GameConstants.SCREEN_HEIGHT * 4;
 
 		config.allowSoftwareMode = true;
-		config.foregroundFPS = 0; // 60
+		config.foregroundFPS = 60; // 60
 		config.backgroundFPS = 60;
 		config.fullscreen = false;
 		config.resizable = true;

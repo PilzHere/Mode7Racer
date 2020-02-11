@@ -8,7 +8,7 @@ import mysko.pilzhere.mode7racer.screens.GameScreen;
 
 public class Edge extends Entity{
 	
-	public Edge(GameScreen screen, Vector3 position, float posX, float posZ, float width, float height) {
+	public Edge(final GameScreen screen, final Vector3 position, final float posX, final float posZ, final float width, final float height) {
 		super(screen, position);
 		
 		rect = new Rectangle(posX, posZ, width, height);

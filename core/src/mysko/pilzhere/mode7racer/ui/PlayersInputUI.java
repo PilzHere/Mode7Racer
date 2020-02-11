@@ -31,7 +31,7 @@ public class PlayersInputUI extends Table
 		for(int i=0 ; i<numPlayers ; i++){
 			final TextButton bt = new TextButton("Player " + (i+1), skin, "toggle");
 			menu.add(bt);
-			if(i >= game.inputs.getMaxPlayers()){
+			if(i >= game.INPUTS.getMaxPlayers()){
 				bt.setDisabled(true);
 			}
 			btGroup.add(bt);

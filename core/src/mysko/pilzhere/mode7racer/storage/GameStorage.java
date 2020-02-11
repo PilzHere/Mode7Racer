@@ -39,16 +39,16 @@ public class GameStorage {
 		}else{
 			inputs = new InputsData();
 		}
-		game.inputs.load(inputs);
+		game.INPUTS.load(inputs);
 	}
 	
 	private void saveInputs(){
-		game.inputs.save(inputs);
+		game.INPUTS.save(inputs);
 		preferences.putString(KEY_INPUTS, new Json().toJson(inputs));
 	}
 
 	public void reloadInputs() {
-		game.inputs.load(inputs);
+		game.INPUTS.load(inputs);
 	}
 	
 }

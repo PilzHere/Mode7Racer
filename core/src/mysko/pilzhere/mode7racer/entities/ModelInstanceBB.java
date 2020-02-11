@@ -13,7 +13,7 @@ public class ModelInstanceBB extends ModelInstance {
 
 	public final BoundingBox bounds = new BoundingBox();
 
-	public ModelInstanceBB(Model model) {
+	public ModelInstanceBB(final Model model) {
 		super(model);
 		calculateBoundingBox(bounds);
 		bounds.getCenter(center);

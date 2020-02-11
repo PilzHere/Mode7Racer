@@ -2,12 +2,9 @@ package mysko.pilzhere.mode7racer;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -16,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import mysko.pilzhere.mode7racer.constants.GameConstants;
 import mysko.pilzhere.mode7racer.inputs.GameInputManager;
 import mysko.pilzhere.mode7racer.managers.AssetsManager;
 import mysko.pilzhere.mode7racer.screens.GameScreen;
@@ -26,6 +24,17 @@ import mysko.pilzhere.mode7racer.storage.GameStorage;
  */
 
 public class Mode7Racer extends Game {
+	
+	public float getGameVolume() {
+		return gameVolume;
+	}
+
+	public void setGameVolume(float gameVolume) {		
+		gameVolume = gameVolume > 1 ? 1 : gameVolume;
+		gameVolume = gameVolume < 0 ? 0 : gameVolume;
+		this.gameVolume = gameVolume;
+	}
+
 	public long getCurrentTime() {
 		return currentTime;
 	}
@@ -51,7 +60,7 @@ public class Mode7Racer extends Game {
 	}
 	
 	public Skin getSkin(){
-		return assMan.get(assMan.gameSkin);
+		return assMan.get(assMan.GAME_SKIN);
 	}
 	
 	public GameStorage getStorage(){
@@ -65,8 +74,10 @@ public class Mode7Racer extends Game {
 	private ShapeRenderer shapeRenderer;
 	
 	private FrameBuffer fb01;
+	
+	private float gameVolume = GameConstants.GAME_MUSIC_VOLUME_DEFAULT;
 
-	public final long timeStarted = System.currentTimeMillis();
+	public final long TIME_STARTED = System.currentTimeMillis();
 	
 	private long timePro;
 	
@@ -83,7 +94,7 @@ public class Mode7Racer extends Game {
 	private long currentTime;
 
 	private GameStorage storage;
-	public final GameInputManager inputs = new GameInputManager();
+	public final GameInputManager INPUTS = new GameInputManager();
 	
 	private void updateCurrentTime() {
 		currentTime = System.currentTimeMillis();
@@ -100,7 +111,7 @@ public class Mode7Racer extends Game {
 		
 		updateTimePro();
 		
-		fb01 = new FrameBuffer(Format.RGB888, 256, 224, true);
+		fb01 = new FrameBuffer(Format.RGB888, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT, true);
 		fb01.getColorBufferTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		batch = new SpriteBatch();
@@ -129,7 +140,7 @@ public class Mode7Racer extends Game {
 		updateTimeEnd(timePro);
 		System.out.println("STATUS: Screen done. (" + timeEnd + " ms");
 		
-		updateTimeEnd(timeStarted);
+		updateTimeEnd(TIME_STARTED);
 		System.out.println("STATUS: Total time for loading and setting up everything: (" + timeEnd + " ms)");
 	}
 	
@@ -146,7 +157,7 @@ public class Mode7Racer extends Game {
 		
 		getScreen().render(Gdx.graphics.getDeltaTime());
 
-		inputs.swap();
+		INPUTS.swap();
 	}
 	
 	@Override

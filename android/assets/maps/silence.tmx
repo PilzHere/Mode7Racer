@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="350" height="350" tilewidth="1" tileheight="1" nextobjectid="40">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="left-down" compressionlevel="0" width="350" height="350" tilewidth="1" tileheight="1" infinite="0" nextlayerid="3" nextobjectid="65">
  <tileset firstgid="1" source="tileset-alt.tsx"/>
- <imagelayer name="map">
+ <imagelayer id="1" name="map">
   <image source="level-silence.png" width="350" height="350"/>
  </imagelayer>
- <objectgroup name="objects">
+ <objectgroup id="2" name="objects">
   <object id="13" gid="1" x="109" y="257" width="1" height="8" rotation="-360"/>
   <object id="30" gid="9" x="305" y="91" width="1" height="1"/>
   <object id="31" gid="9" x="301" y="91" width="1" height="1"/>
@@ -14,7 +14,122 @@
   <object id="35" gid="9" x="305" y="107" width="1" height="1"/>
   <object id="36" gid="9" x="301" y="115" width="1" height="1"/>
   <object id="37" gid="9" x="305" y="115" width="1" height="1"/>
-  <object id="38" gid="10" x="130" y="261" width="73" height="3"/>
-  <object id="39" gid="2" x="295" y="77" width="1" height="4" rotation="-180"/>
+  <object id="38" gid="10" x="127" y="261" width="79" height="4"/>
+  <object id="39" gid="2147483650" x="262" y="73" width="1" height="8" rotation="-180"/>
+  <object id="40" gid="2" x="295" y="73" width="1" height="8" rotation="-180"/>
+  <object id="45" x="110" y="247" width="121" height="16">
+   <properties>
+    <property name="checkpointnumber" type="int" value="0"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="47" x="231" y="212" width="13" height="47">
+   <properties>
+    <property name="checkpointnumber" type="int" value="1"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="48" x="231" y="144" width="81" height="68">
+   <properties>
+    <property name="checkpointnumber" type="int" value="2"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="49" x="297" y="71" width="45" height="73">
+   <properties>
+    <property name="checkpointnumber" type="int" value="3"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="50" x="245" y="71" width="52" height="12">
+   <properties>
+    <property name="checkpointnumber" type="int" value="4"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="51" x="231" y="71" width="14" height="56">
+   <properties>
+    <property name="checkpointnumber" type="int" value="5"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="52" x="227" y="127" width="18" height="14">
+   <properties>
+    <property name="checkpointnumber" type="int" value="6"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="53" x="214" y="127" width="13" height="43">
+   <properties>
+    <property name="checkpointnumber" type="int" value="7"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="54" x="152" y="170" width="75" height="12">
+   <properties>
+    <property name="checkpointnumber" type="int" value="8"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="55" x="136" y="170" width="16" height="16">
+   <properties>
+    <property name="checkpointnumber" type="int" value="9"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="56" x="136" y="186" width="30" height="12">
+   <properties>
+    <property name="checkpointnumber" type="int" value="10"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="57" x="150" y="198" width="16" height="16">
+   <properties>
+    <property name="checkpointnumber" type="int" value="11"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="58" x="28" y="202" width="122" height="12">
+   <properties>
+    <property name="checkpointnumber" type="int" value="12"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="59" x="16" y="202" width="12" height="16">
+   <properties>
+    <property name="checkpointnumber" type="int" value="13"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="60" x="7" y="218" width="21" height="12">
+   <properties>
+    <property name="checkpointnumber" type="int" value="14"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="61" x="7" y="230" width="12" height="16">
+   <properties>
+    <property name="checkpointnumber" type="int" value="15"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="62" x="19" y="234" width="33" height="12">
+   <properties>
+    <property name="checkpointnumber" type="int" value="16"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="63" x="40" y="246" width="12" height="13">
+   <properties>
+    <property name="checkpointnumber" type="int" value="17"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
+  <object id="64" x="52" y="247" width="58" height="12">
+   <properties>
+    <property name="checkpointnumber" type="int" value="18"/>
+    <property name="type" value="checkpoint"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

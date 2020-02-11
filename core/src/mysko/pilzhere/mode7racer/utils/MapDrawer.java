@@ -35,7 +35,7 @@ public class MapDrawer {
 		batch.draw(tile, x, y, 1f, 1f, 0f, 0f, 1f, 1f);
 	}
 
-	public void drawTiles(float x, float y, float w, float h, int orientation, Texture tile) {
+	public void drawTiles(final float x, final float y, final float w, final float h, final int orientation, final Texture tile) {
 		sprite.setSize(1, 1);
 		sprite.setOriginCenter();
 		sprite.setRotation(orientation * 90);
@@ -49,7 +49,7 @@ public class MapDrawer {
 		sprite.setTexture(null);
 	}
 	
-	public void drawTiles(float x, float y, float width, float height, int orientation, Texture tile, Texture tileStart, Texture tileEnd) {
+	public void drawTiles(final float x, final float y, final float width, final float height, final int orientation, final Texture tile, final Texture tileStart, final Texture tileEnd) {
 		sprite.setSize(1, 1);
 		sprite.setOriginCenter();
 		sprite.setRotation(orientation * 90);
