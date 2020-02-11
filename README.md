@@ -13,5 +13,5 @@ A (soon to be) racing game with the looks of the 90's and Mode7 graphics.
 #### Loading time optimizer, controller support and additional vehicles and courses.
 [mgsx.net](https://www.mgsx.net)
 
- ## TODO
- Check out the ![TODO list](https://github.com/PilzHere/Mode7Racer/blob/master/TODO.md).
+ ## What's next?
+ Check out the [ToDo list](TODO.md).
