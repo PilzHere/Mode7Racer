@@ -1,5 +1,5 @@
 # Mode7Racer
-![WIP](https://github.com/PilzHere/Mode7Racer/blob/master/readmeScreenshot.png)
+![WIP](readmeScreenshot.png)
 
 ## About
 A (soon to be) racing game with the looks of the 90's and Mode7 graphics.
