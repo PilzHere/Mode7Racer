@@ -133,10 +133,7 @@ public class GameScreen implements Screen {
 		stage.addActor(hud = new GameHUD(game, this, game.getSkin()));
 		
 //		play intro music
-		backgroundMusic = assMan.get(assMan.MUSIC_ZOOM);
-		backgroundMusic.setVolume(game.getGameVolume());
-		backgroundMusic.setLooping(false);
-		backgroundMusic.play();
+		updateBackgroundMusic(assMan.MUSIC_ZOOM, false);
 	}
 
 	private final Vector3 currentModelPos = new Vector3();
@@ -167,8 +164,12 @@ public class GameScreen implements Screen {
 			debugUseFbo = !debugUseFbo;
 		}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
 			debugDisplayMap = !debugDisplayMap;
+		}
+		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+			game.setGameVolumeMute(!game.isGameVolumeMute());
 		}
 
 		if (hud.isSettingsOpened())
@@ -242,6 +243,8 @@ public class GameScreen implements Screen {
 	private boolean playFinishMusic = false;
 	
 	private void tick(float delta) {
+		backgroundMusic.setVolume(game.getGameVolume());
+		
 		mapMaker.tick(delta);
 
 		for (Car car : cars.values()) {
@@ -269,12 +272,7 @@ public class GameScreen implements Screen {
 			}
 			
 			if (!backgroundMusicSet && !playFinishMusic) {
-				backgroundMusic.stop();
-				
-				backgroundMusic = assMan.get(assMan.MUSIC_SILENCE);
-				backgroundMusic.setVolume(game.getGameVolume());
-				backgroundMusic.setLooping(true);
-				backgroundMusic.play();
+				updateBackgroundMusic(assMan.MUSIC_SILENCE, true);
 				
 				backgroundMusicSet = true;
 			}
@@ -296,19 +294,23 @@ public class GameScreen implements Screen {
 		if (!playFinishMusic) {
 			if (playerCar != null) {
 				if (playerCar.getLap() >= 3) {
-					backgroundMusic.stop();
-					
-					backgroundMusic = assMan.get(assMan.MUSIC_ENDING_THEME);
-					backgroundMusic.setVolume(game.getGameVolume());
-					backgroundMusic.setLooping(true);
-					backgroundMusic.play();
-					
+					updateBackgroundMusic(assMan.MUSIC_ENDING_THEME, true);
 					playFinishMusic = true;
 				}
 			}
 		}
 
 //		cam.update();
+	}
+	
+	private void updateBackgroundMusic(final String music, final boolean loop) {
+		if (backgroundMusic != null)
+			backgroundMusic.stop();
+		
+		backgroundMusic = assMan.get(music);
+		backgroundMusic.setVolume(game.getGameVolume());
+		backgroundMusic.setLooping(loop);
+		backgroundMusic.play();
 	}
 
 	private void camIntroMoveCamToDirectionZ(float delta) {

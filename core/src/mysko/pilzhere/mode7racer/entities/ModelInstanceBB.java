@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 
 public class ModelInstanceBB extends ModelInstance {
-
 	public final Vector3 center = new Vector3();
 	public final Vector3 dimensions = new Vector3();
 	public final float radius;
@@ -20,5 +19,4 @@ public class ModelInstanceBB extends ModelInstance {
 		bounds.getDimensions(dimensions);
 		radius = dimensions.len() / 2f;
 	}
-
 }

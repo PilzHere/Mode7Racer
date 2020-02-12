@@ -25,6 +25,25 @@ import mysko.pilzhere.mode7racer.storage.GameStorage;
 
 public class Mode7Racer extends Game {
 	
+	public boolean isGameVolumeMute() {
+		return gameVolumeMute;
+	}
+
+	private float lastGameVolume;
+	
+	public void setGameVolumeMute(final boolean gameVolumeMute) {
+		if (gameVolumeMute) {
+			lastGameVolume = gameVolume;
+			gameVolume = 0;
+			System.out.println("STATUS: Volume muted.");
+		} else {
+			gameVolume = lastGameVolume;
+			System.out.println("STATUS: Volume unmuted.");
+		}
+		
+		this.gameVolumeMute = gameVolumeMute;
+	}
+
 	public float getGameVolume() {
 		return gameVolume;
 	}
@@ -32,6 +51,7 @@ public class Mode7Racer extends Game {
 	public void setGameVolume(float gameVolume) {		
 		gameVolume = gameVolume > 1 ? 1 : gameVolume;
 		gameVolume = gameVolume < 0 ? 0 : gameVolume;
+		
 		this.gameVolume = gameVolume;
 	}
 
@@ -76,6 +96,7 @@ public class Mode7Racer extends Game {
 	private FrameBuffer fb01;
 	
 	private float gameVolume = GameConstants.GAME_MUSIC_VOLUME_DEFAULT;
+	private boolean gameVolumeMute;
 
 	public final long TIME_STARTED = System.currentTimeMillis();
 	
@@ -87,7 +108,7 @@ public class Mode7Racer extends Game {
 	
 	private long timeEnd;
 	
-	private void updateTimeEnd(long timeStart) {
+	private void updateTimeEnd(final long timeStart) {
 		timeEnd = System.currentTimeMillis() - timeStart;
 	}
 	
@@ -151,13 +172,16 @@ public class Mode7Racer extends Game {
 	@Override
 	public void render () {
 		updateCurrentTime();
-		
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		clearScreen();
 		
 		getScreen().render(Gdx.graphics.getDeltaTime());
 
 		INPUTS.swap();
+	}
+	
+	private void clearScreen() {
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 	}
 	
 	@Override

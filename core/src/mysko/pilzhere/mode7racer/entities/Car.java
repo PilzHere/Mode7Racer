@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -320,9 +321,9 @@ public class Car extends Entity {
 			shiftRight = true;
 	}
 
-	private final float CAR_TURBO_SPEED_INCREMENT = 0.5f;
-	private final float CAR_NORMAL_SPEED_INCREMENT = 0.33f; // was 2 should slow it
-	private float carCurrentSpeedIncrement = CAR_NORMAL_SPEED_INCREMENT;
+	private final float TURBO_SPEED_INCREMENT = 0.5f;
+	private final float NORMAL_SPEED_INCREMENT = 0.33f; // was 2 should slow it
+	private float currentSpeedIncrement = NORMAL_SPEED_INCREMENT;
 	private final float MOTOR_BRAKE_STRENGTH = 0.35f;
 	private final int BOUNCE_BRAKES_STRENGTH = 16;
 
@@ -344,20 +345,20 @@ public class Car extends Entity {
 	public void onNoInputW(final float delta) {
 		if (bounceX || bounceZ)
 //			Bounce brake.
-			currentSpeed -= carCurrentSpeedIncrement * BOUNCE_BRAKES_STRENGTH * MOTOR_BRAKE_STRENGTH * delta;
+			currentSpeed -= currentSpeedIncrement * BOUNCE_BRAKES_STRENGTH * MOTOR_BRAKE_STRENGTH * delta;
 		else {
-			currentSpeed -= carCurrentSpeedIncrement * MOTOR_BRAKE_STRENGTH * delta; // Motor brake.
+			currentSpeed -= currentSpeedIncrement * MOTOR_BRAKE_STRENGTH * delta; // Motor brake.
 		}
 	}
 
 	public void onInputW(final float delta) {
-		currentSpeed += carCurrentSpeedIncrement * delta;
+		currentSpeed += currentSpeedIncrement * delta;
 	}
 
 	private final float BRAKES_STRENGTH = 0.33f;
 
 	public void onInputS(final float delta) {
-		currentSpeed -= carCurrentSpeedIncrement * BRAKES_STRENGTH * delta;
+		currentSpeed -= currentSpeedIncrement * BRAKES_STRENGTH * delta;
 	}
 
 	private final int MAX_HP = 100;
@@ -568,7 +569,7 @@ public class Car extends Entity {
 	private void setCurrentSpeedAndSpeedLimit(final float delta) {
 		if (hasTurbo) {
 			currentMaximumSpeed = TURBO_MAXIMUM_SPEED;
-			carCurrentSpeedIncrement = CAR_TURBO_SPEED_INCREMENT;
+			currentSpeedIncrement = TURBO_SPEED_INCREMENT;
 
 			if (!newTurboCdSet) {
 				newTurboCdTime = screen.getCurrentTime() + TURBO_COOLDOWN;
@@ -576,7 +577,7 @@ public class Car extends Entity {
 			}
 		} else {
 			currentMaximumSpeed = NORMAL_MAXIMUM_SPEED;
-			carCurrentSpeedIncrement = CAR_NORMAL_SPEED_INCREMENT;
+			currentSpeedIncrement = NORMAL_SPEED_INCREMENT;
 		}
 	}
 
@@ -625,13 +626,13 @@ public class Car extends Entity {
 	private boolean bounceX;
 	private boolean bounceZ;
 	private final long BOUNCE_TIME = 175L; // time until bounce released.
-	private final int bounceAmount = 20;
+	private final int BOUNCE_AMOUNT = 20;
 
 	private void updateBounceX(final float delta) {
 		if (bounceX) {
 			if (!bounceTimerXSet) {
 				bounceXTotalTime = screen.getCurrentTime() + BOUNCE_TIME;
-				currentBounceX = bounceAmount;
+				currentBounceX = BOUNCE_AMOUNT;
 				currentSpeed = currentSpeed / 2;
 				bounceTimerXSet = true;
 			} else {
@@ -654,7 +655,7 @@ public class Car extends Entity {
 		if (bounceZ) {
 			if (!bounceTimerZSet) {
 				bounceZTotalTime = screen.getCurrentTime() + BOUNCE_TIME;
-				currentBounceZ = bounceAmount;
+				currentBounceZ = BOUNCE_AMOUNT;
 				currentSpeed = currentSpeed / 2;
 				bounceTimerZSet = true;
 			} else {
@@ -776,7 +777,7 @@ public class Car extends Entity {
 	private float newPosX;
 	private float newPosZ;
 
-	private final int CAR_SPEED_INCREMENT_BOOST = 40; // was 32
+	private final int SPEED_INCREMENT_BOOST = 40; // was 32
 
 	private float sinAngle = angle;
 	private float cosAngle = angle;
@@ -795,13 +796,13 @@ public class Car extends Entity {
 		adjustAngleForShifting(shiftLeft, shiftRight, sinAngle, cosAngle);
 
 		if (!bounceX) {
-			newPosX += currentSpeed * CAR_SPEED_INCREMENT_BOOST * MathUtils.sin(sinAngle) * delta;
+			newPosX += currentSpeed * SPEED_INCREMENT_BOOST * MathUtils.sin(sinAngle) * delta;
 		} else {
 			newPosX -= currentSpeed * currentBounceX * MathUtils.sin(sinAngle) * delta;
 		}
 
 		if (!bounceZ) {
-			newPosZ -= currentSpeed * CAR_SPEED_INCREMENT_BOOST * MathUtils.cos(cosAngle) * delta;
+			newPosZ -= currentSpeed * SPEED_INCREMENT_BOOST * MathUtils.cos(cosAngle) * delta;
 		} else {
 			newPosZ += currentSpeed * currentBounceZ * MathUtils.cos(cosAngle) * delta;
 		}
@@ -940,8 +941,8 @@ public class Car extends Entity {
 		if (!LAST_POSITION.idt(position.cpy())) {
 			screen.getCam().position.set(position.cpy());
 //			screen.cam.position.sub(position.cpy().sub(oldPosition.cpy()).nor().scl(screen.camDesiredDistFromCar)); // old one, works but not too good in rotations.
-			CAMERA_TEMPORARY_POSITION.x = -currentSpeed * CAR_SPEED_INCREMENT_BOOST * delta * MathUtils.sin(angle);
-			CAMERA_TEMPORARY_POSITION.z = currentSpeed * CAR_SPEED_INCREMENT_BOOST * delta * MathUtils.cos(angle);
+			CAMERA_TEMPORARY_POSITION.x = -currentSpeed * SPEED_INCREMENT_BOOST * delta * MathUtils.sin(angle);
+			CAMERA_TEMPORARY_POSITION.z = currentSpeed * SPEED_INCREMENT_BOOST * delta * MathUtils.cos(angle);
 			screen.getCam().position.add(CAMERA_TEMPORARY_POSITION.cpy().nor().scl(screen.camDesiredDistFromCar));
 
 			screen.getCam().lookAt(position.cpy());
@@ -970,8 +971,8 @@ public class Car extends Entity {
 		distFromCam = Vector3.dst(position.x, position.y, position.z, screen.getCam().position.x,
 				screen.getCam().position.y, screen.getCam().position.z);
 
-//		Get angle from playe car. Will this be correct if camera leaves playercar? // or just spawn hidden car that cam follows? ;)
-		angleFromPlayerCar = screen.cars.get(0).angle - angle; // compare with playercars angle.
+//		Get angle from playe car. Will this be correct if camera leaves playercar? or just spawn hidden car that cam follows? ;)
+		angleFromPlayerCar = screen.playerCar.angle - angle; // compare with playercars angle.
 
 //		FIXME: THIS IS NOT NEEDED IT SEEMS? Was used before flipping sprite...<
 //		if (screen.cars.get(0).angle < 0) {
@@ -1619,5 +1620,15 @@ public class Car extends Entity {
 			}
 			break;
 		}
+	}
+
+	@Override
+	public void render3D(ModelBatch batch, float delta) {
+		
+	}
+
+	@Override
+	public void destroy() {
+		
 	}
 }

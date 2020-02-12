@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import mysko.pilzhere.mode7racer.screens.GameScreen;
 
-public class Entity {
-	
+public abstract class Entity {
 	public Rectangle getRect() {
 		return rect;
 	}
@@ -31,23 +30,18 @@ public class Entity {
 	protected Rectangle rect;
 	protected boolean destroy;
 
-	public Entity(GameScreen screen, Vector3 position) {
+	public Entity(final GameScreen screen, final Vector3 position) {
 		this.screen = screen;
 		this.position = position;
 	}
 
-	public void tick(float delta) {
-	}
+	public abstract void tick(final float delta);
 
-	public void onHit(Object object, float delta) {
-	}
+	public abstract void onHit(final Object object, final float delta);
 
-	public void render3D(ModelBatch batch, float delta) {
-	}
+	public abstract void render3D(final ModelBatch batch, final float delta);
 
-	public void render2D(SpriteBatch batch, float delta) {
-	}
+	public abstract void render2D(final SpriteBatch batch, final float delta);
 
-	public void destroy() {
-	}
+	public abstract void destroy();
 }

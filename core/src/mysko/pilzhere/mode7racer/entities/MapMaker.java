@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
@@ -575,6 +576,13 @@ public class MapMaker extends Entity {
 
 	@Override
 	public void destroy() {
+	}
 
+	@Override
+	public void onHit(Object object, float delta) {
+	}
+
+	@Override
+	public void render2D(SpriteBatch batch, float delta) {
 	}
 }
