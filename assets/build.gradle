@@ -1,0 +1,24 @@
+buildscript {
+	repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
+    }
+	apply from: 'gradle/tiled.gradle'
+	apply from: 'gradle/hiero.gradle'
+	apply from: 'gradle/atlas.gradle'
+	apply from: 'gradle/raw.gradle'
+	apply from: 'gradle/gimp.gradle'
+	apply from: 'gradle/inkscape.gradle'
+	apply from: 'gradle/blender.gradle'
+	apply from: 'gradle/fbxconv.gradle'
+}
+
+apply plugin: 'base'
+
+// TODO automate skin generation
+
+eclipse.project {
+    name = appName + "-assets"
+}

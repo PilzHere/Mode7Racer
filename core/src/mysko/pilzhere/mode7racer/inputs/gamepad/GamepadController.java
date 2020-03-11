@@ -31,7 +31,11 @@ public class GamepadController extends ControllerBase
 	
 	@Override
 	public String toString() {
-		return controller.getName() + " #" + (index+1);
+		String name = controller.getName();
+		if(name.length() >= 16){
+			name = name.substring(0, 16);
+		}
+		return name + " #" + (index+1);
 	}
 	
 	@Override

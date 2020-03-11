@@ -1,0 +1,4213 @@
+{
+atlasData: {
+	atlasCurrent: true
+	drawables: [
+		{
+			file: E:/workspace/Slipstream UI/output/button-ok-over_01.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-ok-over_01
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-ok-up.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-ok-up
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-ok.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-ok
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-ok-dark.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-ok-dark
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-menu-over.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-menu-over
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-menu-up.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-menu-up
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-ok-over_00.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-ok-over_00
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-ok-over_00.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-ok-over-10
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 0, 13 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 6, 19, 25 ]
+					size: 4
+					ordered: true
+				}
+				contentLeft: 12
+				contentRight: 12
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.3
+				regionNames: [
+					button-ok-over_00
+					button-ok-over_01
+				]
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-ok-up.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-ok-up-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 0, 13 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 6, 19, 25 ]
+					size: 4
+					ordered: true
+				}
+				contentLeft: 12
+				contentRight: 12
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.3
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-ok.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-ok-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: []
+					size: 0
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: []
+					size: 0
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.1
+				regionNames: [
+					image-ok
+					image-ok-dark
+				]
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-menu-over.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-menu-over-10
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 21, 21 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 0, 23, 23 ]
+					size: 4
+					ordered: true
+				}
+				contentLeft: 21
+				contentRight: 22
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-menu-up.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-menu-up-10
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 21, 21 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 0, 23, 23 ]
+					size: 4
+					ordered: true
+				}
+				contentLeft: 21
+				contentRight: 22
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/ box.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: " box"
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/ box.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: box-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 10, 28 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 10, 27 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scene-marquee_00.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scene-marquee_00
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scene-marquee_01.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scene-marquee_01
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scene-marquee_02.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scene-marquee_02
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scene-marquee_03.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scene-marquee_03
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scene-marquee_04.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scene-marquee_04
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scene-marquee_05.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scene-marquee_05
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scene-marquee_00.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scene-marquee-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 1, 6 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 1, 6 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: true
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.1
+				regionNames: [
+					scene-marquee_00
+					scene-marquee_01
+					scene-marquee_02
+					scene-marquee_03
+					scene-marquee_04
+					scene-marquee_05
+				]
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/list.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: list
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/select-box.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: select-box
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/select-box-selected.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: select-box-selected
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/select-box.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: select-box-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 2, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 9, 13, 9, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 6
+				contentRight: 16
+				contentTop: 1
+				contentBottom: 1
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/select-box-selected.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: select-box-selected-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 2, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 9, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 6
+				contentRight: 16
+				contentTop: 1
+				contentBottom: 1
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/white.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: white
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/white.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: dark
+			name: dark
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scroll-pane-h.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scroll-pane-h
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scroll-pane-v.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scroll-pane-v
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scroll-pane-h.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scroll-pane-h-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 1, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/scroll-pane-v.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: scroll-pane-v-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 1, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/list.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: list-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 1, 67 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 1, 34 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 2
+				contentRight: 2
+				contentTop: 1
+				contentBottom: 1
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/white.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: black
+			name: black
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/heading-background.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: heading-background
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/heading-background.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: heading-background-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 3
+				contentRight: 3
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-text.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-text
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-text-over.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-text-over
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-text-over.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-text-over-10
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 6, 20 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 1, 14, 15 ]
+					size: 4
+					ordered: true
+				}
+				contentLeft: 9
+				contentRight: 9
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/button-text.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-text-10
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 6, 20 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 1, 14, 15 ]
+					size: 4
+					ordered: true
+				}
+				contentLeft: 9
+				contentRight: 9
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/selection.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: selection
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/selection.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: selection-10
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 0, 5 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 0, 20 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 2
+				contentRight: 2
+				contentTop: 3
+				contentBottom: 3
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/acceleration-grid.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: acceleration-grid
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/acceleration-grid.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: acceleration-grid-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: [ 39, 43 ]
+					size: 2
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: [ 5, 25 ]
+					size: 2
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.03
+				regionNames: []
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-no-dark.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-no-dark
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-yes.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-yes
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-yes-dark.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-yes-dark
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-no.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-no
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-yes.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-yes-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: []
+					size: 0
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: []
+					size: 0
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.1
+				regionNames: [
+					image-yes
+					image-yes-dark
+				]
+				playMode: 2
+			}
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/image-no.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: image-no-ten
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: {
+				horizontalStretchAreas: {
+					items: []
+					size: 0
+					ordered: true
+				}
+				verticalStretchAreas: {
+					items: []
+					size: 0
+					ordered: true
+				}
+				contentLeft: 0
+				contentRight: 0
+				contentTop: 0
+				contentBottom: 0
+				tile: false
+				colorName: null
+				color1Name: null
+				color2Name: null
+				color3Name: null
+				color4Name: null
+				offsetX: 0
+				offsetY: 0
+				offsetXspeed: 0
+				offsetYspeed: 0
+				frameDuration: 0.1
+				regionNames: [
+					image-no
+					image-no-dark
+				]
+				playMode: 2
+			}
+		}
+	]
+	fontDrawables: [
+		{
+			file: E:/workspace/Slipstream UI/output/button-font export.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button-font export
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/font2.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: font2
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/font-shadow.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: font-shadow
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/menu-font export.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: menu-font export
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: E:/workspace/Slipstream UI/output/menu-font-faded export.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: menu-font-faded export
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+	]
+}
+jsonData: {
+	colors: [
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			name: black
+		}
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 0.011764706
+				g: 0.28235295
+				b: 0.35686275
+				a: 1
+			}
+			name: dark
+		}
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			name: white
+		}
+	]
+	fonts: [
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: font
+			file: E:/workspace/Slipstream UI/output/font2.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: font-shadow
+			file: E:/workspace/Slipstream UI/output/font-shadow.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: heading
+			file: E:/workspace/Slipstream UI/output/button-font export.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: menu
+			file: E:/workspace/Slipstream UI/output/menu-font export.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: menu-faded
+			file: E:/workspace/Slipstream UI/output/menu-font-faded export.fnt
+		}
+	]
+	freeTypeFonts: []
+	classStyleMap: {
+		com.badlogic.gdx.scenes.scene2d.ui.Button: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Button
+				properties: {
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: null
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.CheckBox: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.CheckBox
+				properties: {
+					checkboxOn: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkboxOn
+						optional: false
+						value: null
+					}
+					checkboxOff: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkboxOff
+						optional: false
+						value: null
+					}
+					checkboxOnOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkboxOnOver
+						optional: true
+						value: null
+					}
+					checkboxOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkboxOver
+						optional: true
+						value: null
+					}
+					checkboxOnDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkboxOnDisabled
+						optional: true
+						value: null
+					}
+					checkboxOffDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkboxOffDisabled
+						optional: true
+						value: null
+					}
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: null
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					downFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: downFontColor
+						optional: true
+						value: null
+					}
+					overFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: overFontColor
+						optional: true
+						value: null
+					}
+					checkedFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedFontColor
+						optional: true
+						value: null
+					}
+					checkedOverFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedOverFontColor
+						optional: true
+						value: null
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: null
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.ImageButton: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+				properties: {
+					imageUp: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: null
+					}
+					imageDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: null
+					}
+					imageOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: null
+					}
+					imageChecked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					imageDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-menu-up-10
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: false
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: ok
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+				properties: {
+					imageUp: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: image-ok
+					}
+					imageDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: null
+					}
+					imageOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: image-ok-ten
+					}
+					imageChecked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					imageDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-ok-up-ten
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: button-ok-over-10
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: yes
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+				properties: {
+					imageUp: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: image-yes
+					}
+					imageDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: null
+					}
+					imageOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: image-yes-ten
+					}
+					imageChecked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					imageDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-ok-up-ten
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: button-ok-over-10
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: no
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+				properties: {
+					imageUp: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: image-no
+					}
+					imageDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: null
+					}
+					imageOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: image-no-ten
+					}
+					imageChecked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					imageDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-ok-up-ten
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: button-ok-over-10
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton
+				properties: {
+					imageUp: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: null
+					}
+					imageDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: null
+					}
+					imageOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: null
+					}
+					imageChecked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					imageDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: null
+					}
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: null
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					downFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: downFontColor
+						optional: true
+						value: null
+					}
+					overFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: overFontColor
+						optional: true
+						value: null
+					}
+					checkedFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedFontColor
+						optional: true
+						value: null
+					}
+					checkedOverFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedOverFontColor
+						optional: true
+						value: null
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: null
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.Label: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: font
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: font-shadow
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: font-shadow
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: button
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: heading
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: heading-background-ten
+					}
+				}
+				deletable: true
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.List: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.List
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: font-shadow
+					}
+					fontColorSelected: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColorSelected
+						optional: false
+						value: white
+					}
+					fontColorUnselected: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColorUnselected
+						optional: false
+						value: white
+					}
+					selection: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: selection
+						optional: false
+						value: selection-10
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.ProgressBar: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default-horizontal
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ProgressBar
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: false
+						value: null
+					}
+					disabledBackground: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledBackground
+						optional: true
+						value: null
+					}
+					knob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knob
+						optional: true
+						value: null
+					}
+					disabledKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnob
+						optional: true
+						value: null
+					}
+					knobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobBefore
+						optional: true
+						value: null
+					}
+					knobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobAfter
+						optional: true
+						value: null
+					}
+					disabledKnobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobBefore
+						optional: true
+						value: null
+					}
+					disabledKnobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobAfter
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default-vertical
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ProgressBar
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: false
+						value: null
+					}
+					disabledBackground: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledBackground
+						optional: true
+						value: null
+					}
+					knob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knob
+						optional: true
+						value: null
+					}
+					disabledKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnob
+						optional: true
+						value: null
+					}
+					knobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobBefore
+						optional: true
+						value: null
+					}
+					knobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobAfter
+						optional: true
+						value: null
+					}
+					disabledKnobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobBefore
+						optional: true
+						value: null
+					}
+					disabledKnobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobAfter
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.ScrollPane: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ScrollPane
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+					corner: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: corner
+						optional: true
+						value: null
+					}
+					hScroll: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: hScroll
+						optional: true
+						value: null
+					}
+					hScrollKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: hScrollKnob
+						optional: true
+						value: scroll-pane-h-ten
+					}
+					vScroll: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: vScroll
+						optional: true
+						value: null
+					}
+					vScrollKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: vScrollKnob
+						optional: true
+						value: scroll-pane-v-ten
+					}
+				}
+				deletable: false
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: list
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ScrollPane
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: list-ten
+					}
+					corner: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: corner
+						optional: true
+						value: null
+					}
+					hScroll: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: hScroll
+						optional: true
+						value: null
+					}
+					hScrollKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: hScrollKnob
+						optional: true
+						value: scroll-pane-h-ten
+					}
+					vScroll: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: vScroll
+						optional: true
+						value: null
+					}
+					vScrollKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: vScrollKnob
+						optional: true
+						value: scroll-pane-v-ten
+					}
+				}
+				deletable: true
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.SelectBox: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.SelectBox
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: font-shadow
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: false
+						value: white
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: select-box-ten
+					}
+					scrollStyle: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle
+						name: scrollStyle
+						optional: false
+						value: list
+					}
+					listStyle: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle
+						name: listStyle
+						optional: false
+						value: default
+					}
+					backgroundOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: backgroundOver
+						optional: true
+						value: null
+					}
+					backgroundOpen: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: backgroundOpen
+						optional: true
+						value: select-box-selected-ten
+					}
+					backgroundDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: backgroundDisabled
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.Slider: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default-horizontal
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Slider
+				properties: {
+					knobOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobOver
+						optional: true
+						value: null
+					}
+					knobDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobDown
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: false
+						value: null
+					}
+					disabledBackground: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledBackground
+						optional: true
+						value: null
+					}
+					knob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knob
+						optional: true
+						value: null
+					}
+					disabledKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnob
+						optional: true
+						value: null
+					}
+					knobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobBefore
+						optional: true
+						value: null
+					}
+					knobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobAfter
+						optional: true
+						value: null
+					}
+					disabledKnobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobBefore
+						optional: true
+						value: null
+					}
+					disabledKnobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobAfter
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default-vertical
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Slider
+				properties: {
+					knobOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobOver
+						optional: true
+						value: null
+					}
+					knobDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobDown
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: false
+						value: null
+					}
+					disabledBackground: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledBackground
+						optional: true
+						value: null
+					}
+					knob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knob
+						optional: true
+						value: null
+					}
+					disabledKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnob
+						optional: true
+						value: null
+					}
+					knobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobBefore
+						optional: true
+						value: null
+					}
+					knobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knobAfter
+						optional: true
+						value: null
+					}
+					disabledKnobBefore: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobBefore
+						optional: true
+						value: null
+					}
+					disabledKnobAfter: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledKnobAfter
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.SplitPane: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default-horizontal
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.SplitPane
+				properties: {
+					handle: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: handle
+						optional: false
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default-vertical
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.SplitPane
+				properties: {
+					handle: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: handle
+						optional: false
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.TextButton: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: font
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					downFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: downFontColor
+						optional: true
+						value: null
+					}
+					overFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: overFontColor
+						optional: true
+						value: null
+					}
+					checkedFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedFontColor
+						optional: true
+						value: null
+					}
+					checkedOverFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedOverFontColor
+						optional: true
+						value: null
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-text-10
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: button-text-over-10
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: false
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: menu
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: menu
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					downFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: downFontColor
+						optional: true
+						value: null
+					}
+					overFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: overFontColor
+						optional: true
+						value: null
+					}
+					checkedFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedFontColor
+						optional: true
+						value: null
+					}
+					checkedOverFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedOverFontColor
+						optional: true
+						value: null
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-menu-up-10
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: button-menu-over-10
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: menu-faded
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: menu-faded
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					downFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: downFontColor
+						optional: true
+						value: null
+					}
+					overFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: overFontColor
+						optional: true
+						value: null
+					}
+					checkedFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedFontColor
+						optional: true
+						value: null
+					}
+					checkedOverFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedOverFontColor
+						optional: true
+						value: null
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-menu-up-10
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: button-menu-over-10
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: ok
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: heading
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					downFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: downFontColor
+						optional: true
+						value: null
+					}
+					overFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: overFontColor
+						optional: true
+						value: null
+					}
+					checkedFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedFontColor
+						optional: true
+						value: null
+					}
+					checkedOverFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: checkedOverFontColor
+						optional: true
+						value: null
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: button-ok-up-ten
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: button-ok-over-10
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.TextField: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.TextField
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: null
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: false
+						value: null
+					}
+					focusedFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: focusedFontColor
+						optional: true
+						value: null
+					}
+					disabledFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: disabledFontColor
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+					focusedBackground: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focusedBackground
+						optional: true
+						value: null
+					}
+					disabledBackground: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabledBackground
+						optional: true
+						value: null
+					}
+					cursor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: cursor
+						optional: true
+						value: null
+					}
+					selection: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: selection
+						optional: true
+						value: null
+					}
+					messageFont: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: messageFont
+						optional: true
+						value: null
+					}
+					messageFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: messageFontColor
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.TextTooltip: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.TextTooltip
+				properties: {
+					label: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle
+						name: label
+						optional: false
+						value: default
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+					wrapWidth: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: wrapWidth
+						optional: true
+						value: 0
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.Touchpad: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Touchpad
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+					knob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knob
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.Tree: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Tree
+				properties: {
+					plus: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: plus
+						optional: false
+						value: null
+					}
+					minus: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: minus
+						optional: false
+						value: null
+					}
+					plusOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: plusOver
+						optional: true
+						value: null
+					}
+					minusOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: minusOver
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					selection: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: selection
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+		com.badlogic.gdx.scenes.scene2d.ui.Window: [
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Window
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+					titleFont: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: titleFont
+						optional: false
+						value: null
+					}
+					titleFontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: titleFontColor
+						optional: true
+						value: null
+					}
+					stageBackground: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: stageBackground
+						optional: true
+						value: null
+					}
+				}
+				deletable: false
+				parent: null
+			}
+		]
+	}
+	customClasses: []
+}
+preferences: {
+	maxUndos: {
+		class: java.lang.Integer
+		value: 30
+	}
+	last-import-export-path: {
+		class: java.lang.String
+		value: E:/workspace/Slipstream UI/example/core/assets/slipstream-ui.json
+	}
+	id: {
+		class: java.lang.Integer
+		value: 541655915
+	}
+	resources-relative: {
+		class: java.lang.Boolean
+		value: false
+	}
+}
+saveFile: E:/workspace/Slipstream UI/work/Slipstream UI.scmp
+version: 34
+}

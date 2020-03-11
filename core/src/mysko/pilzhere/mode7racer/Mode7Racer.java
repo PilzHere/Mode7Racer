@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import mysko.pilzhere.mode7racer.constants.GameConstants;
 import mysko.pilzhere.mode7racer.inputs.GameInputManager;
 import mysko.pilzhere.mode7racer.managers.AssetsManager;
-import mysko.pilzhere.mode7racer.screens.GameScreen;
+import mysko.pilzhere.mode7racer.screens.MenuScreen;
 import mysko.pilzhere.mode7racer.storage.GameStorage;
 
 /** 
@@ -156,7 +156,8 @@ public class Mode7Racer extends Game {
 		System.out.println("STATUS: Setting up new screen...");
 		updateTimePro();
 		
-		setScreen(new GameScreen(this));
+		// XXX setScreen(new GameScreen(this));
+		setScreen(new MenuScreen(this));
 		
 		updateTimeEnd(timePro);
 		System.out.println("STATUS: Screen done. (" + timeEnd + " ms");

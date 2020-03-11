@@ -28,7 +28,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import mysko.pilzhere.mode7racer.Mode7Racer;
 import mysko.pilzhere.mode7racer.constants.GameConstants;
 import mysko.pilzhere.mode7racer.entities.Car;
-import mysko.pilzhere.mode7racer.entities.CarType;
+import mysko.pilzhere.mode7racer.entities.CarTypes;
 import mysko.pilzhere.mode7racer.entities.Entity;
 import mysko.pilzhere.mode7racer.entities.MapMaker;
 import mysko.pilzhere.mode7racer.entities.ModelInstanceBB;
@@ -129,8 +129,10 @@ public class GameScreen implements Screen {
 //
 //		playerCar = cars.get(0);
 
-		stage = new Stage(new FitViewport(299 * 4, 224 * 4));
-		stage.addActor(hud = new GameHUD(game, this, game.getSkin()));
+		stage = new Stage(new FitViewport(GameConstants.VIEWPORT_WIDTH_STRETCHED, GameConstants.VIEWPORT_HEIGHT));
+		stage.addActor(hud = new GameHUD(game, game.getSkin()));
+		
+		hud.spawnTitle("MUTE CITY I"); // TODO dynamic title
 		
 //		play intro music
 		updateBackgroundMusic(assMan.MUSIC_ZOOM, false);
@@ -335,8 +337,8 @@ public class GameScreen implements Screen {
 	}
 
 	private void placeVehicles() {
-		cars.put(0, new Car(this, new Vector3(0, 0, 0), false, CarType.BLUE));
-		cars.put(1, new Car(this, new Vector3(0, 0, -2), true, CarType.YELLOW));
+		cars.put(0, new Car(this, new Vector3(0, 0, 0), false, CarTypes.BLUE));
+		cars.put(1, new Car(this, new Vector3(0, 0, -2), true, CarTypes.YELLOW));
 
 		playerCar = cars.get(0);
 

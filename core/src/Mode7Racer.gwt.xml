@@ -4,6 +4,8 @@
 	<source path="mysko/pilzhere/mode7racer" />
 	
 	<inherits name="com.badlogic.gdx.controllers.controllers-gwt"/>
+	<inherits name="com.ray3k.tenpatch.tenpatch"/>
+	<inherits name="space.earlygrey.shapedrawer"/>
 	
 	<!-- enable reflection for preferences serialization -->
 	<extend-configuration-property name="gdx.reflect.include" value="mysko.pilzhere.mode7racer.storage.inputs" />
