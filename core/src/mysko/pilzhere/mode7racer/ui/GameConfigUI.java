@@ -9,11 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Scaling;
 
 import mysko.pilzhere.mode7racer.Mode7Racer;
 import mysko.pilzhere.mode7racer.entities.CarType;
+import mysko.pilzhere.mode7racer.entities.CarTypes;
 import mysko.pilzhere.mode7racer.game.GameClass;
 import mysko.pilzhere.mode7racer.game.GameLeague;
 import mysko.pilzhere.mode7racer.game.GameSettings;
@@ -55,29 +55,14 @@ public class GameConfigUI extends Table
 	}
 	
 	private void createCarsMenu(Table table){
-		
-		CarType [] cars = {CarType.BLUE, CarType.YELLOW};
-		
-		for(int i=0 ; i<cars.length ; i++){
-			table.add(createCarItem(cars[i])).pad(10).row();
+		for(CarType carType : CarTypes.SELECTABLE_TYPES){
+			table.add(createCarItem(carType)).pad(10).row();
 		}
-		
 	}
 	
 	private Actor createCarItem(final CarType carType) 
 	{
-		// TODO need a meta car repository
-		Texture texture;
-		switch (carType) {
-		case BLUE:
-			texture = game.getAssMan().get(game.getAssMan().CAR_01_SIZE_09_FRONT_LEFT_01);
-			break;
-		case YELLOW:
-			texture = game.getAssMan().get(game.getAssMan().CAR_02_SIZE_09_FRONT_LEFT_01);
-			break;
-		default:
-			throw new GdxRuntimeException("oops!");
-		}
+		Texture texture = carType.getDefaultSprite(game.getAssMan());
 		
 		// TODO cusrsor and blink and such
 		Image image = new Image(texture);

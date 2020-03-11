@@ -122,14 +122,13 @@ public class Car extends Entity {
 	private void getTextures() {
 		final AssetsManager assMan = screen.assMan;
 
-		switch (CAR_TYPE) {
-		case INVISIBLE:
+		if (CAR_TYPE == CarTypes.INVISIBLE) {
 			
 //			This might have a purpose in the future.
 			
-			break;
+		}
+		else if(CAR_TYPE == CarTypes.BLUE) {
 			
-		case BLUE:
 //			Back
 			texCarSize09Back01 = assMan.get(assMan.CAR_01_SIZE_09_BACK_01);
 			texCarSize08Back01 = assMan.get(assMan.CAR_01_SIZE_08_BACK_01);
@@ -187,9 +186,9 @@ public class Car extends Entity {
 			texCarSize03FrontLeft01 = assMan.get(assMan.CAR_01_SIZE_03_FRONT_LEFT_01);
 			texCarSize02FrontLeft01 = assMan.get(assMan.CAR_01_SIZE_02_FRONT_LEFT_01);
 			texCarSize01FrontLeft01 = assMan.get(assMan.CAR_01_SIZE_01_FRONT_LEFT_01);
-			break;
-			
-		case YELLOW:
+		}
+		else if(CAR_TYPE == CarTypes.YELLOW) {
+
 //			Back
 			texCarSize09Back01 = assMan.get(assMan.CAR_02_SIZE_09_BACK_01);
 			texCarSize08Back01 = assMan.get(assMan.CAR_02_SIZE_08_BACK_01);
@@ -248,7 +247,6 @@ public class Car extends Entity {
 			texCarSize02FrontLeft01 = assMan.get(assMan.CAR_02_SIZE_02_FRONT_LEFT_01);
 			texCarSize01FrontLeft01 = assMan.get(assMan.CAR_02_SIZE_01_FRONT_LEFT_01);
 			
-			break;
 		}
 
 	}

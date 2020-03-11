@@ -1,7 +1,6 @@
 package mysko.pilzhere.mode7racer.ui;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
@@ -33,7 +32,7 @@ public class CarSelectionUI extends Table
 		root.pad(10);
 		add(root);
 		
-		Label label = new Label("Blue Falcon", getSkin(), "button");
+		Label label = new Label(carType.name, getSkin(), "button");
 		root.add(label).expandY().top();
 		
 		root.row();
@@ -44,28 +43,28 @@ public class CarSelectionUI extends Table
 		label = new Label("ENGINE UNIT", getSkin());
 		table.add(label);
 		
-		label = new Label(": BF-2001x4", getSkin());
+		label = new Label(": " + carType.engineUnit, getSkin());
 		table.add(label);
 		
 		table.row();
 		label = new Label("MAX POWER", getSkin());
 		table.add(label);
 		
-		label = new Label(": 3200ps", getSkin());
+		label = new Label(": " + carType.maxPower + "ps", getSkin());
 		table.add(label);
 		
 		table.row();
 		label = new Label("MAX SPEED", getSkin());
 		table.add(label);
 		
-		label = new Label(": 457km-h", getSkin());
+		label = new Label(": " + carType.maxSpeed  + "km-h", getSkin());
 		table.add(label);
 		
 		table.row();
 		label = new Label("WEIGHT", getSkin());
 		table.add(label);
 		
-		label = new Label(": 1260kg", getSkin());
+		label = new Label(": " + carType.weight + "kg", getSkin());
 		table.add(label);
 		
 		root.row();
@@ -85,7 +84,7 @@ public class CarSelectionUI extends Table
 		//create graph
 		final GraphDrawerDrawable graphDrawerDrawable = new GraphDrawerDrawable(new GraphDrawer(new ShapeDrawer(stage.getBatch(), getSkin().getRegion("white"))));
 		//This controls the appearance of the graph. It can be assigned to any of the default Interpolations or you can create one with your own formula.
-		graphDrawerDrawable.setInterpolation(Interpolation.sine);
+		graphDrawerDrawable.setInterpolation(carType.curve);
 		graphDrawerDrawable.setColor(Color.WHITE);
 		//start domain end at 0 for the beginning of the animation.
 		graphDrawerDrawable.setDomainEnd(0);
