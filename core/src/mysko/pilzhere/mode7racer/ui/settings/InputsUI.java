@@ -126,6 +126,10 @@ public class InputsUI extends Table
 			s = "---";
 		}
 		
+		if(s.length() > 10){
+			s = s.substring(0, 10);
+		}
+		
 		return s;
 	}
 
