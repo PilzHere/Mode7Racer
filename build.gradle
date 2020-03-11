@@ -30,6 +30,8 @@ allprojects {
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.7.3'
         aiVersion = '1.8.1'
+        tenPatchVersion = '5.0.0'
+        shapedrawerVersion = '2.2.0'
     }
 
     repositories {
@@ -38,6 +40,7 @@ allprojects {
         google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -69,6 +72,8 @@ project(":html") {
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion:sources"
         compile "com.badlogicgames.gdx:gdx-controllers-gwt:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers-gwt:$gdxVersion:sources"
+        compile "com.github.raeleus.TenPatch:tenpatch:$tenPatchVersion:sources"
+        compile "space.earlygrey:shapedrawer:$shapedrawerVersion:sources"
         
     }
 }
@@ -80,6 +85,8 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        compile "com.github.raeleus.TenPatch:tenpatch:$tenPatchVersion"
+        compile "space.earlygrey:shapedrawer:$shapedrawerVersion"
         
         // https://mvnrepository.com/artifact/kryonet/kryonet
 		// compile "com.esotericsoftware:kryonet:2.22.0-RC1"

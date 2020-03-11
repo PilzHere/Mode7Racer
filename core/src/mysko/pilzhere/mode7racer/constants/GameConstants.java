@@ -12,4 +12,6 @@ public class GameConstants {
 	public static final int VIEWPORT_HEIGHT = 224;
 	
 	public static final float GAME_MUSIC_VOLUME_DEFAULT = 0.33f;
+	
+	public static final int MAX_PLAYERS = 2;
 }

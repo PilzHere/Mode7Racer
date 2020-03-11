@@ -1,10 +1,9 @@
-package mysko.pilzhere.mode7racer.ui;
+package mysko.pilzhere.mode7racer.ui.settings;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -18,7 +17,6 @@ import mysko.pilzhere.mode7racer.inputs.GameInputManager;
 import mysko.pilzhere.mode7racer.inputs.base.Command;
 import mysko.pilzhere.mode7racer.inputs.base.ControllerBase;
 import mysko.pilzhere.mode7racer.inputs.base.TriggerBase;
-import mysko.pilzhere.mode7racer.ui.events.DismissEvent;
 
 public class InputsUI extends Table
 {
@@ -28,7 +26,7 @@ public class InputsUI extends Table
 	private SelectBox<ControllerBase> controllerSelector;
 	
 	private ButtonGroup<Button> buttons = new ButtonGroup<Button>();
-	private Label learnLabel;
+	private TextButton learnLabel;
 
 	private final Mode7Racer game;
 
@@ -41,13 +39,12 @@ public class InputsUI extends Table
 		
 		final GameInputManager inputs = game.INPUTS;
 		
-		setBackground("default-rect");
-		defaults().pad(10);
+		setBackground("box-ten");
+		pad(11);
+		defaults().pad(0);
 		
 		buttons.setMinCheckCount(0);
 		buttons.setMaxCheckCount(1);
-		
-		add("CONTROLLER SETTINGS").row();
 		
 		controllerSelector = new SelectBox<ControllerBase>(skin);
 		controllerSelector.setItems(inputs.getControllers(playerID));
@@ -58,17 +55,8 @@ public class InputsUI extends Table
 		add(cmdTable = new Table(skin)).row();
 		
 		
-		TextButton btClose = new TextButton("OK", skin);
-		add(btClose);
-		
 		displayController(controllerSelector.getSelected());
 
-		btClose.addListener(new ChangeListener() {
-			@Override
-			public void changed(ChangeEvent event, Actor actor) {
-				fire(new DismissEvent());
-			}
-		});
 		controllerSelector.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
@@ -77,23 +65,20 @@ public class InputsUI extends Table
 				displayController(controllerSelector.getSelected());
 			}
 		});
-		
 	}
 	
 	private void displayController(final ControllerBase ce){
 		cmdTable.clearChildren();
 		
-		cmdTable.defaults().pad(5);
+		cmdTable.defaults().pad(0);
 		
 		buttons.clear();
 		
 		for(final Command cmd : game.INPUTS.commands){
 			cmdTable.add(cmd.label);
 			
-			final Label keysLabel = cmdTable.add(triggersToText(ce, cmd)).getActor();
-			keysLabel.setColor(Color.BLACK);
-			
-			final TextButton btLearn = new TextButton("change", getSkin(), "toggle");
+			final TextButton btLearn = new TextButton(triggersToText(ce, cmd), getSkin(), "toggle");
+			btLearn.getLabel().setColor(Color.GRAY);
 			cmdTable.add(btLearn).row();
 			
 			buttons.add(btLearn);
@@ -103,13 +88,13 @@ public class InputsUI extends Table
 				@Override
 				public void changed(ChangeEvent event, Actor actor) {
 					if(btLearn.isChecked()){
-						keysLabel.setText("...");
-						learnLabel = keysLabel;
+						btLearn.setText("...");
+						learnLabel = btLearn;
 						learningCommand = cmd;
 						ce.clear(cmd);
 						ce.learnStart(cmd);
 					}else{
-						keysLabel.setText(triggersToText(ce, cmd));
+						btLearn.setText(triggersToText(ce, cmd));
 						if(learningCommand == cmd){
 							learningCommand = null;
 							learnLabel = null;
@@ -121,7 +106,7 @@ public class InputsUI extends Table
 		}
 	}
 	
-	protected CharSequence triggersToText(ControllerBase ce, Command cmd) {
+	protected String triggersToText(ControllerBase ce, Command cmd) {
 		Array<TriggerBase> triggers = new Array<TriggerBase>();
 		
 		for(Entry<TriggerBase, Command> entry : ce.triggers){
@@ -136,6 +121,11 @@ public class InputsUI extends Table
 			if(i > 0) s += ", ";
 			s += triggers.get(i).toString();
 		}
+		
+		if(s.isEmpty()){
+			s = "---";
+		}
+		
 		return s;
 	}
 

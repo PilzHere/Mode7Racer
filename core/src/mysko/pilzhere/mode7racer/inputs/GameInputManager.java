@@ -2,6 +2,7 @@ package mysko.pilzhere.mode7racer.inputs;
 
 import com.badlogic.gdx.Input;
 
+import mysko.pilzhere.mode7racer.constants.GameConstants;
 import mysko.pilzhere.mode7racer.inputs.base.InputManagerBase;
 
 public class GameInputManager extends InputManagerBase
@@ -12,7 +13,7 @@ public class GameInputManager extends InputManagerBase
 	}
 	
 	public GameInputManager() {
-		super(2); // XXX one player only for now
+		super(GameConstants.MAX_PLAYERS);
 	}
 
 	@Override

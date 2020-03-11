@@ -346,7 +346,7 @@ public class AssetsManager extends AssetManager {
 	}
 	
 //	Skins
-	public final String GAME_SKIN = "skins/game-skin.json";
+	public final String GAME_SKIN = "skins/slipstream-ui.json";
 	
 	private void loadSkins() {
 		load(GAME_SKIN, Skin.class);

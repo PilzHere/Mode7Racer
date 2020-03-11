@@ -129,8 +129,10 @@ public class GameScreen implements Screen {
 //
 //		playerCar = cars.get(0);
 
-		stage = new Stage(new FitViewport(299 * 4, 224 * 4));
-		stage.addActor(hud = new GameHUD(game, this, game.getSkin()));
+		stage = new Stage(new FitViewport(GameConstants.VIEWPORT_WIDTH_STRETCHED, GameConstants.VIEWPORT_HEIGHT));
+		stage.addActor(hud = new GameHUD(game, game.getSkin()));
+		
+		hud.spawnTitle("MUTE CITY I"); // TODO dynamic title
 		
 //		play intro music
 		updateBackgroundMusic(assMan.MUSIC_ZOOM, false);
